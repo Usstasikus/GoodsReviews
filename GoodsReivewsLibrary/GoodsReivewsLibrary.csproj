@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -39,6 +40,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions.cs" />
@@ -48,6 +50,7 @@
     <Compile Include="LogFile.cs" />
     <Compile Include="ModelReview.cs" />
     <Compile Include="Models.cs" />
+    <Compile Include="MyMethods.cs" />
     <Compile Include="UnknownField.cs" />
     <Compile Include="YandexResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

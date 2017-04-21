@@ -7,11 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using GoodsReivewsLibrary;
 
-namespace GraphicPart
+namespace GoodsReivewsLibrary
 {
-    static class MyMethods
+    public static class MyMethods
     {
         public static List<string> GetDBList(string data_source)
         {
@@ -114,6 +113,69 @@ namespace GraphicPart
                 MessageBox.Show("Неизвестная ошибка");
             }
             return null;
+        }
+
+        /// <summary>
+        /// Возвращает список полей, предоставляемых Яндекс Маркетом
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetYandexFields()
+        {
+            List<string> ya_fields = new List<string>();
+            ya_fields.Add("Оценка");
+            ya_fields.Add("Количество согласных");
+            ya_fields.Add("Количество несогласных");
+            ya_fields.Add("Дата написания отзыва");
+            ya_fields.Add("Имя автора отзыва");
+            ya_fields.Add("Текст отзыва");
+            ya_fields.Add("Описание достоинств");
+            ya_fields.Add("Описание недостатков");
+            ya_fields.Add("Опыт использования модели");
+            return ya_fields;
+        }
+
+        /// <summary>
+        /// Возвращает английский аналог русского названия поля, предоставляемого Яндекс Маркетом 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static string TurnRussianYandexFieldNameToEnglish(string name)
+        {
+            switch (name)
+            {
+                case "Оценка": return "Grade";
+                case "Количество согласных": return "Agree";
+                case "Количество несогласных": return "Reject";
+                case "Дата написания отзыва": return "Date";
+                case "Имя автора отзыва": return "Name";
+                case "Текст отзыва": return "Text";
+                case "Описание достоинств": return "Pro";
+                case "Описание недостатков": return "Contra";
+                case "Опыт использования модели": return "UsageTime";
+                default : return null;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает русский аналог английского названия поля, предоставляемого Яндекс Маркетом 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static string TurnEnglishYandexFieldNameToRussian(string name)
+        {
+            switch (name)
+            {
+                case "Grade": return "Оценка";
+                case "Agree": return "Количество согласных";
+                case "Reject": return "Количество несогласных";
+                case "Date": return "Дата написания отзыва";
+                case "Name": return "Имя автора отзыва";
+                case "Text": return "Текст отзыва";
+                case "Pro": return "Описание достоинств";
+                case "Contra": return "Описание недостатков";
+                case "UsageTime": return "Опыт использования модели";
+                default: return null;
+            }
         }
 
         /// <summary>
@@ -238,7 +300,7 @@ namespace GraphicPart
 
         public static void AddToList(List<UnknownField> unknown_fields, UnknownField uf)
         {
-            for(int i = 0; i<unknown_fields.Count; i++)
+            for (int i = 0; i < unknown_fields.Count; i++)
             {
                 if (unknown_fields[i].FieldName == uf.FieldName)
                 {
@@ -257,7 +319,7 @@ namespace GraphicPart
         /// <returns>Возвращает ссылку на TextBox с совпадающим именем</returns>
         public static TextBox GetTextBoxByName(StackPanel parent, string name)
         {
-            for(int i = 0; i<parent.Children.Count; i++)
+            for (int i = 0; i < parent.Children.Count; i++)
             {
                 try
                 {
@@ -324,6 +386,60 @@ namespace GraphicPart
             }
             return null;
         }
+
+        /// <summary>
+        /// Возвращает номер элемента по его имени
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static string GetElementID(string name)
+        {
+            int i;
+            for (i = 0; i < name.Length; i++)
+            {
+                if (name[i] == '_')
+                {
+                    i++;
+                    break;
+                }
+            }
+            string id = name.Substring(i);
+            return id;
+        }
+
+        /// <summary>
+        /// Возвращает номер TextBox
+        /// </summary>
+        /// <param name="tb"></param>
+        /// <returns></returns>
+        public static string GetElementID(TextBox tb)
+        {
+            string name = tb.Name;
+            return GetElementID(name);
+        }
+
+        /// <summary>
+        /// Возвращает номер CheckBox
+        /// </summary>
+        /// <param name="chb"></param>
+        /// <returns></returns>
+        public static string GetElementID(CheckBox chb)
+        {
+            string name = chb.Name;
+            return GetElementID(name);
+        }
+
+        /// <summary>
+        /// Возвращает номер ComboBox
+        /// </summary>
+        /// <param name="cmb"></param>
+        /// <returns></returns>
+        public static string GetElementID(ComboBox cmb)
+        {
+            string name = cmb.Name;
+            return GetElementID(name);
+        }
+
 
     }
 }

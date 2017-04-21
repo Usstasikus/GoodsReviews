@@ -25,7 +25,8 @@ namespace GraphicPart
         List<string[]> _not_nullable_fields;
         List<TextBox> _not_filled;
         Dictionary<string, string> _field_types;
-        Fields _fields; 
+        Fields _fields;
+        List<string> _ya_fields;
 
         /// <summary>
         /// Заполнение GroupBox полями для ввода значений
@@ -41,6 +42,7 @@ namespace GraphicPart
 
                 value.Name = String.Format("TextBox_{0}", i);
                 value.KeyDown += TextBox_KeyDown;
+                value.LostFocus += TextBox_LostFocus;
 
                 field.Text = _not_nullable_fields[i][0];
                 
@@ -51,15 +53,31 @@ namespace GraphicPart
 
                 cmb.Name = String.Format("ComboBox_{0}", i);
                 cmb.Visibility = Visibility.Hidden;
+                cmb.SelectionChanged += ComboBox_SelectionChanged;
 
                 StackPanel_Fields.Children.Add(field);
                 StackPanel_Values.Children.Add(value);
                 StackPanel_Triggers.Children.Add(chb);
                 StackPanel_ComboBox_Values.Children.Add(cmb);
+            }
+            MyMethods.GetTextBoxByName(StackPanel_Values, "TextBox_0").Focus();
+        }
 
-                //заполнение уже заполненных полей
+        /// <summary>
+        /// Заполнение полей формы, тем, что уже были заполнены ранее (перед редактированием)
+        /// </summary>
+        private void FillFieldsFromUnknownFields()
+        {
+            TextBox value;
+            ComboBox cmb;
+            CheckBox chb;
+            for (int i = 0; i < StackPanel_Triggers.Children.Count; i++)
+            {
+                value = (TextBox)StackPanel_Values.Children[i];
+                cmb = (ComboBox)StackPanel_ComboBox_Values.Children[i];
+                chb = (CheckBox)StackPanel_Triggers.Children[i];
                 UnknownField unknown_field;
-                if (_fields.unknown_fields.Count!=0)
+                if (_fields.unknown_fields.Count != 0)
                 {
                     unknown_field = _fields.unknown_fields[i];
                     if (unknown_field.Dependency == null)
@@ -67,13 +85,11 @@ namespace GraphicPart
                     else
                     {
                         chb.IsChecked = true;
-                        MyMethods.ComboBoxFill(cmb, MyMethods.GetFieldsList(_fields.ConnectionString, _fields.Table));
-                        cmb.SelectedItem = unknown_field.Dependency;
+                        MyMethods.ComboBoxFill(cmb, _ya_fields);
+                        cmb.SelectedItem = MyMethods.TurnEnglishYandexFieldNameToRussian(unknown_field.Dependency);
                     }
                 }
             }
-            MyMethods.GetTextBoxByName(StackPanel_Values, "TextBox_0").Focus();
-            
         }
         
 
@@ -86,7 +102,7 @@ namespace GraphicPart
         {
             bool is_written = true;
             int index_of_TextBox;
-            int.TryParse(GetElementID(tb), out index_of_TextBox);
+            int.TryParse(MyMethods.GetElementID(tb), out index_of_TextBox);
             string type = _not_nullable_fields[index_of_TextBox][1];
             if (type == "int")
             {
@@ -106,65 +122,18 @@ namespace GraphicPart
         {
             for (int i = 0; i < _not_nullable_fields.Count; i++)
             {
-                if (((TextBox)StackPanel_Values.Children[i]).Text == "")
+                if ((bool)((CheckBox)StackPanel_Triggers.Children[i]).IsChecked)
+                {
+                    if (((ComboBox)StackPanel_ComboBox_Values.Children[i]).SelectedItem.ToString() == "")
+                        return true;
+                }
+                else if (((TextBox)StackPanel_Values.Children[i]).Text == "")
                     return true;
             }
             return false;
         }
 
-        /// <summary>
-        /// Возвращает номер жлемента по его имени
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public string GetElementID(string name)
-        {
-            int i;
-            for (i = 0; i < name.Length; i++)
-            {
-                if (name[i] == '_')
-                {
-                    i++;
-                    break;
-                }
-            }
-            string id = name.Substring(i);
-            return id;
-        }
-
-        /// <summary>
-        /// Возвращает номер TextBox
-        /// </summary>
-        /// <param name="tb"></param>
-        /// <returns></returns>
-        private string GetElementID(TextBox tb)
-        {
-            string name = tb.Name;
-            return GetElementID(name);
-        }
-
-        /// <summary>
-        /// Возвращает номер CheckBox
-        /// </summary>
-        /// <param name="chb"></param>
-        /// <returns></returns>
-        private string GetElementID(CheckBox chb)
-        {
-            string name = chb.Name;
-            return GetElementID(name);
-        }
-
-        /// <summary>
-        /// Возвращает номер ComboBox
-        /// </summary>
-        /// <param name="cmb"></param>
-        /// <returns></returns>
-        private string GetElementID(ComboBox cmb)
-        {
-            string name = cmb.Name;
-            return GetElementID(name);
-        }
-
+       
         /// <summary>
         /// Заполнение полей, неизвестных Яндекс Маркету
         /// </summary>
@@ -182,7 +151,8 @@ namespace GraphicPart
                 if ((bool)chb.IsChecked)
                 {
                     ComboBox cmb = (ComboBox)StackPanel_ComboBox_Values.Children[i];
-                    _fields.unknown_fields.Add(new UnknownField(name.Text, value.Text, _not_nullable_fields[i][1], cmb.SelectedItem.ToString()));
+                    string yandex_english_param = MyMethods.TurnRussianYandexFieldNameToEnglish(cmb.SelectedItem.ToString());
+                    _fields.unknown_fields.Add(new UnknownField(name.Text, value.Text, _not_nullable_fields[i][1],yandex_english_param));
                 }
                 else
                     _fields.unknown_fields.Add(new UnknownField(name.Text, value.Text, _not_nullable_fields[i][1]));
@@ -198,11 +168,30 @@ namespace GraphicPart
             _fields = fields;
             _not_nullable_fields = not_nullable_fields;
             _not_filled = new List<TextBox>();
-            FillingFields();
             _field_types = MyMethods.GetFieldsType(_fields.ConnectionString, _fields.Table);
+            _ya_fields = MyMethods.GetYandexFields();
+
+            FillingFields();
+            FillFieldsFromUnknownFields();
 
             if (!IsEmptyLeft())
                 Next.IsEnabled = true;
+        }
+
+        public void ComboBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (!IsEmptyLeft())
+                Next.IsEnabled = true;
+            else
+                Next.IsEnabled = false;
+        }
+
+        public void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!IsEmptyLeft())
+                Next.IsEnabled = true;
+            else
+                Next.IsEnabled = false;
         }
 
         public void TextBox_KeyDown(object sender, KeyEventArgs e)
@@ -222,7 +211,7 @@ namespace GraphicPart
                 }
 
                 int index_of_TextBox;
-                int.TryParse(GetElementID(tb), out index_of_TextBox);
+                int.TryParse(MyMethods.GetElementID(tb), out index_of_TextBox);
 
                 if (index_of_TextBox < _not_nullable_fields.Count - 1)
                     StackPanel_Values.Children[index_of_TextBox + 1].Focus();
@@ -248,23 +237,22 @@ namespace GraphicPart
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            string index = GetElementID((CheckBox)sender);
+            string index = MyMethods.GetElementID((CheckBox)sender);
             MyMethods.GetTextBoxByName(StackPanel_Values, "TextBox_" + index).Visibility = Visibility.Hidden;
             ComboBox cmb = MyMethods.GetComboBoxByName(StackPanel_ComboBox_Values, "ComboBox_" + index);
             cmb.Visibility = Visibility.Visible;
 
-            MyMethods.ComboBoxFill(cmb, GetFilledList()); //заполнение соответсвующего ComboBox
+            MyMethods.ComboBoxFill(cmb, _ya_fields); //заполнение соответсвующего ComboBox
         }
 
         
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            string index = GetElementID((CheckBox)sender);
+            string index = MyMethods.GetElementID((CheckBox)sender);
             MyMethods.GetTextBoxByName(StackPanel_Values, "TextBox_" + index).Visibility = Visibility.Visible;
             ComboBox cmb = MyMethods.GetComboBoxByName(StackPanel_ComboBox_Values, "ComboBox_" + index);
             cmb.Visibility = Visibility.Hidden;
-
-            MyMethods.ComboBoxFill(cmb, MyMethods.GetFieldsList(_fields.ConnectionString, _fields.Table)); //заполнение соответсвующего ComboBox
+            
         }
         
 

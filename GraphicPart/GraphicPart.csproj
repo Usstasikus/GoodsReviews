@@ -70,7 +70,6 @@
     <Compile Include="WorkingWithDB.xaml.cs">
       <DependentUpon>WorkingWithDB.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyMethods.cs" />
     <Page Include="Action.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

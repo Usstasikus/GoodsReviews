@@ -145,10 +145,10 @@ namespace GoodsReivewsLibrary
 
             for (int i = 0; i < _fields.unknown_fields.Count; i++)
             {
-                query_string += string.Format("[{0}],", _fields.unknown_fields[i].FieldName);
+                query_string += string.Format("[{0}], ", _fields.unknown_fields[i].FieldName);
             }
 
-            query_string = query_string.Substring(0, query_string.Length - 1);//удаление запятой
+            query_string = query_string.Substring(0, query_string.Length - 2);//удаление запятой
             query_string += String.Format(") VALUES ({0}, ", goods_id);
 
             for (int i = 0; i < _fields.ya_fields.Count; i++)
@@ -168,9 +168,18 @@ namespace GoodsReivewsLibrary
                     else
                         query_string += string.Format("{0}, ", _fields.unknown_fields[i].Value);
                 }
+                else
+                {
+                    if (_fields.unknown_fields[i].Type != "int")
+                        query_string += string.Format("'{0}', ", mr.GetElementByName(_fields.unknown_fields[i].Dependency));
+                    else
+                        query_string += string.Format("{0}, ", mr.GetElementByName(_fields.unknown_fields[i].Dependency));
+                }
             }
 
-            query_string = query_string.Substring(0, query_string.Length - 1);//удаление запятой
+            query_string = query_string.Substring(0, query_string.Length - 2);//удаление запятой
+            query_string += ")";
+
             return query_string;
         }
         private string FormMessage(WebException we)
@@ -203,9 +212,7 @@ namespace GoodsReivewsLibrary
             SqlConnection sqlConnection = new SqlConnection(_connectionString);
             sqlConnection.Open();
             
-            string queryString = string.Format(@"SELECT GI1.GoodsID, {0}, GI1.GoodsName 
-                            FROM {1} LEFT JOIN YandexReviews.dbo.GoodsInfo as GI1 ON
-                            {2} =  GI1.GoodsName collate Cyrillic_General_CI_AS WHERE GI1.GoodsName is not null",
+            string queryString = string.Format(@"SELECT GI1.GoodsID, {0}, GI1.GoodsName FROM {1} LEFT JOIN YandexReviews.dbo.GoodsInfo as GI1 ON {2} =  GI1.GoodsName collate Cyrillic_General_CI_AS WHERE GI1.GoodsName is not null",
                             _fields.DB + ".dbo." + _fields.TableFrom + "." + _fields.GoodsIDFrom, _fields.DB + ".dbo." + _fields.TableFrom, _fields.DB + ".dbo." + _fields.GoodsNameTableFrom + "." + _fields.GoodsNameFrom);
             try
             {
@@ -253,7 +260,7 @@ namespace GoodsReivewsLibrary
                             }
                         }
                         tb.Text += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_id[i][2]);
-
+                        
                     }
                     sqlConnection.Close();
                 }

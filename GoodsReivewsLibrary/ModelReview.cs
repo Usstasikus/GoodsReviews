@@ -4,20 +4,16 @@ using System.Xml.Linq;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace GoodsReivewsLibrary
 {
     public class ModelReview
     {
-        int grade;
         /// <summary>
         /// Оценка товара
         /// </summary>
-        public int Grade
-        {
-            get{ return grade + 3; }
-            set { grade = value; }
-        }
+        public int Grade { get; set; }
 
         /// <summary>
         /// Комментарий к товару
@@ -46,14 +42,15 @@ namespace GoodsReivewsLibrary
 
         public int Agree { get; set; }
         public int Reject { get; set; }
+
         public ModelReview(int grade, string text, string pro, string contra, DateTime date, string author, int agree, int reject)
         {
-            Grade = grade;
-            Text = text;
-            Pro = pro;
-            Contra = contra;
+            Grade = grade+3;
+            Text = GetTextContainsInvertedComma(text);
+            Pro = GetTextContainsInvertedComma(pro);
+            Contra = GetTextContainsInvertedComma(contra);
             Date = date;
-            AuthorName = author;
+            AuthorName = GetTextContainsInvertedComma(author);
             Agree = agree;
             Reject = reject;
         }
@@ -86,6 +83,14 @@ namespace GoodsReivewsLibrary
                 default:
                     return null;
             }
+        }
+
+
+        private static string GetTextContainsInvertedComma(string text)
+        {
+            StringBuilder text_without_inverted_commas = new StringBuilder(text);
+            text_without_inverted_commas = text_without_inverted_commas.Replace("'", "''");
+            return text_without_inverted_commas.ToString();
         }
 
         /// <summary>
