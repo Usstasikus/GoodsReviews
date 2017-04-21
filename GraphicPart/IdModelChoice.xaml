@@ -1,0 +1,86 @@
+﻿<Window x:Class="GraphicPart.IdModelChoice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraphicPart"
+        mc:Ignorable="d"
+        Title="IdModelChoice" Height="420" Width="550">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="0,5,0,0"/>
+                <Setter Property="Height" Value="23"/>
+            </Style>
+            <Style TargetType="{x:Type ComboBox}">
+                <Setter Property="Margin" Value="0,5,0,0"/>
+                <Setter Property="Height" Value="23"/>
+            </Style>
+        </Grid.Resources>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center"
+                 Height="Auto" TextAlignment="Center" TextWrapping="Wrap" Text ="Выберите, откуда брать ID товара и куда его записывать" VerticalAlignment="Center" Width="250" />
+
+        <GroupBox x:Name="groupBox" Header="Выберите ID" HorizontalAlignment="Center" Height="Auto" Grid.Row="1"
+                  VerticalAlignment="Center" Width="400" Margin="0,22,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Откуда" Grid.Row="0"></TextBlock>
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                    <TextBlock Text="Таблица" Margin="0,0,0,0" Opacity="0.55"></TextBlock>
+                    <ComboBox Name="ComboBox_TableFrom" Margin="0,0,0,0" SelectionChanged="ComboBox_TableFrom_SelectionChanged" ></ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="1">
+                    <TextBlock Text="Поле" Margin="0,0,0,0" Opacity="0.55"></TextBlock>
+                    <ComboBox Name="ComboBox_FieldFrom" Margin="0,0,0,0" IsEnabled="False"></ComboBox>
+                </StackPanel>
+                <TextBlock Text="Куда" Grid.Row="2"></TextBlock>
+                <StackPanel Grid.Column="0" Grid.Row="3">
+                    <TextBlock Text="Поле" Margin="0,0,0,0" Opacity="0.55"></TextBlock>
+                    <ComboBox Name="ComboBox_FieldTo" Margin="0,0,0,0" SelectionChanged="ComboBox_Fields_SelectionChanged" ></ComboBox>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="groupBoxGoodsName" Header="Где хранится название модели" HorizontalAlignment="Center" Height="Auto" Grid.Row="2"
+                  VerticalAlignment="Center" Width="400" Margin="0,22,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                    <TextBlock Text="Таблица" Margin="0,10,0,0" Opacity="0.55"></TextBlock>
+                    <ComboBox Name="ComboBox_GoodsName_TableFrom" Margin="0,0,0,0" SelectionChanged="ComboBox_GoodsName_TableFrom_SelectionChanged" ></ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="1">
+                    <TextBlock Text="Поле" Margin="0,10,0,0" Opacity="0.55"></TextBlock>
+                    <ComboBox Name="ComboBox_GoodsName_FieldFrom" Margin="0,0,0,0" IsEnabled="False"></ComboBox>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <Button Grid.Row="3" Name="Next" Content="Далее" HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10" IsEnabled="False" Click="Next_Click"/>
+
+        <Button x:Name="Prev" Content="Назад" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Bottom" Width="75" Margin="10,0,0,10" Click="Prev_Click"/>
+    </Grid>
+</Window>

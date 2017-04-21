@@ -1,0 +1,73 @@
+﻿<Window x:Class="GraphicPart.NotNullableFields"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraphicPart"
+        mc:Ignorable="d"
+        Title="NotNullableFields" Height="400" Width="550">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Opacity="0.55"
+                 Height="Auto" TextAlignment="Center" TextWrapping="Wrap" Text ="Мы нашли у Вас поля, которые не могут принимать NULL. 
+                   Определите значения, которые будут им присвоены" VerticalAlignment="Bottom" Width="378" />
+
+        <GroupBox x:Name="groupBox" Header="Поля" HorizontalAlignment="Center" Height="Auto" MaxHeight="250" Grid.Row="1"
+                  VerticalAlignment="Center" Width="400">
+            <ScrollViewer>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Name="StackPanel_Fields">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="0,5,0,0"/>
+                                <Setter Property="Height" Value="23"/>
+                            </Style>
+                        </StackPanel.Resources>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Name="StackPanel_Values">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Margin" Value="0,5,10,0"/>
+                                <Setter Property="Height" Value="23"></Setter>
+                            </Style>
+                        </StackPanel.Resources>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="1" Name="StackPanel_ComboBox_Values">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type ComboBox}">
+                                <Setter Property="Margin" Value="0,5,10,0"/>
+                                <Setter Property="Height" Value="23"></Setter>
+                            </Style>
+                        </StackPanel.Resources>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="2" Name="StackPanel_Triggers">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type CheckBox}">
+                                <Setter Property="Margin" Value="0,10,3,0"/>
+                                <Setter Property="Height" Value="18"></Setter>
+                            </Style>
+                        </StackPanel.Resources>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </GroupBox>
+        <Button Name="Next" Grid.Row="2" Content="Далее" HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" Width="75" Click="Next_Click" IsEnabled="False" Margin="0,0,10,10"/>
+
+        <Button x:Name="Prev" Content="Назад" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom" Width="75" Margin="10,0,0,10" Click="Prev_Click"/>
+
+    </Grid>
+</Window>

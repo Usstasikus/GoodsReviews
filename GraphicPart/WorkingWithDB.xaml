@@ -1,0 +1,72 @@
+﻿<Window x:Class="GraphicPart.WorkingWithDB"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraphicPart"
+        mc:Ignorable="d"
+        Title="WorkingWithDB" Height="450" Width="550" MinHeight="450" MinWidth="550">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TBPath" Grid.Column="1" Grid.Row="0" Margin="0,2,0,0" HorizontalAlignment="Center" Opacity="0.55"
+                 Height="30" Text ="Выберите таблицу для записи отзывов о товарах" VerticalAlignment="Bottom" Width="Auto"/>
+        <ComboBox x:Name="ComboBox_Table" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"
+                 Height="25" Text="" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,4" SelectionChanged="ComboBox_Table_SelectionChanged"/>
+        
+        <GroupBox x:Name="groupBox" Header="Выберите нужные компоненты" HorizontalAlignment="Center" Height="280" Grid.Row="2"
+                  VerticalAlignment="Center" Width="400" Margin="58,22,59,36" IsEnabled="False">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Name="StackPanel_Fields" Grid.Column="0">
+                    
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type CheckBox}">
+                            <Setter Property="Margin" Value="0,11,0,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    
+                    <CheckBox Name="Grade" Content="Оценка" Checked="Grade_Checked" Unchecked="Grade_Unchecked" ></CheckBox>
+                    <CheckBox Name="Agree" Content="Количество согласных" Checked="Agree_Checked" Unchecked="Agree_Unchecked"></CheckBox>
+                    <CheckBox Name="Reject" Content="Количество несогласных" Checked="Reject_Checked" Unchecked="Reject_Unchecked"></CheckBox>
+                    <CheckBox Name="Date" Content="Дата написания отзыва" HorizontalAlignment="Right" Width="194" Checked="Date_Checked" Unchecked="Date_Unchecked"></CheckBox>
+                    <CheckBox Name="Name" Content="Имя автора отзыва" Checked="Name_Checked" Unchecked="Name_Unchecked"></CheckBox>
+                    <CheckBox Name="Text" Content="Текст отзыва" Checked="Text_Checked" Unchecked="Text_Unchecked"></CheckBox>
+                    <CheckBox Name="Pro" Content="Описание достоинств" Checked="Pro_Checked" Unchecked="Pro_Unchecked"></CheckBox>
+                    <CheckBox Name="Contra" Content="Описание недостатков" Checked="Contra_Checked" Unchecked="Contra_Unchecked"></CheckBox>
+                    <CheckBox Name="UsageTime" Content="Опыт использования модели" Checked="UsageTime_Checked" Unchecked="UsageTime_Unchecked"></CheckBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Name="StackPanel_DBFields">
+
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="Margin" Value="0,5,0,0"/>
+                            <Setter Property="Height" Value="21"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <ComboBox x:Name="comboBox_Grade" SelectionChanged="comboBox_SelectionChanged"/>
+                    <ComboBox x:Name="comboBox_Agree" SelectionChanged="comboBox_SelectionChanged"/>
+                    <ComboBox x:Name="comboBox_Reject" SelectionChanged="comboBox_SelectionChanged"/>
+                    <ComboBox x:Name="comboBox_Date" SelectionChanged="comboBox_SelectionChanged"/>
+                    <ComboBox x:Name="comboBox_Name" SelectionChanged="comboBox_SelectionChanged"/>
+                    <ComboBox x:Name="comboBox_Text" SelectionChanged="comboBox_SelectionChanged"/>
+                    <ComboBox x:Name="comboBox_Pro" SelectionChanged="comboBox_SelectionChanged"/>
+                    <ComboBox x:Name="comboBox_Contra" SelectionChanged="comboBox_SelectionChanged"/>
+                    <ComboBox x:Name="comboBox_UsageTime" SelectionChanged="comboBox_SelectionChanged"/>
+                    
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="Next" Content="Далее" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10" Click="Next_Click" IsEnabled="False"/>
+        <Button x:Name="Prev" Content="Назад" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom" Width="75" Margin="10,0,0,10" Click="Prev_Click"/>
+
+    </Grid>
+</Window>
