@@ -273,8 +273,9 @@ namespace GoodsReivewsLibrary
             catch (WebException we)
             {
                 stopWatch.Stop();
-                tb.Text += FormMessage(we);
-                lg.End(we, dt, stopWatch, target);
+                string message = FormMessage(we);
+                tb.Text += message;
+                lg.End(message, dt, stopWatch, target);
             }
             catch (Exception e)
             {
