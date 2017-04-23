@@ -35,7 +35,9 @@ namespace GraphicPart
         {
             InitializeComponent();
             InitializeListBox();
+
         }
+
         /// <summary>
         /// Десериализует файл, выбранный в ListBox_OpenExisting
         /// </summary>
@@ -86,6 +88,25 @@ namespace GraphicPart
             MainWindow mwd = new MainWindow(fields);
             mwd.Show();
             Close();
+        }
+
+        private void ListBox_OpenExisting_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            ListBox lb = (ListBox)sender;
+            if (lb.SelectedItem == null)
+            {
+                foreach(MenuItem mi in lb.ContextMenu.Items)
+                {
+                    mi.IsEnabled = false;
+                }
+            }
+            else
+            {
+                foreach (MenuItem mi in lb.ContextMenu.Items)
+                {
+                    mi.IsEnabled = true;
+                }
+            }
         }
     }
 }

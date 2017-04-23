@@ -18,7 +18,7 @@
             </Border.BorderBrush>
             <ScrollViewer>
                 <ListBox Name="ListBox_OpenExisting" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                 SelectionChanged="ListBox_OpenExisting_SelectionChanged" Width="280" Height="198" BorderThickness="0" MouseRightButtonUp="ListBox_OpenExisting_MouseRightButtonUp">
+                 SelectionChanged="ListBox_OpenExisting_SelectionChanged" Width="280" Height="198" BorderThickness="0" MouseRightButtonUp="ListBox_OpenExisting_MouseRightButtonUp" ContextMenuOpening="ListBox_OpenExisting_ContextMenuOpening">
                     <ListBox.Resources>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
