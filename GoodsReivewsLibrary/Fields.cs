@@ -10,6 +10,11 @@ namespace GoodsReivewsLibrary
     public class Fields
     {
         /// <summary>
+        /// Имя файла
+        /// </summary>
+        public string FileName { get; set; }
+
+        /// <summary>
         /// IP-адресс БД
         /// </summary>
         public string IPAdress { get; set; }

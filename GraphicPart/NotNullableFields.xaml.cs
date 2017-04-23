@@ -264,7 +264,7 @@ namespace GraphicPart
 
             BinaryFormatter bin_formatter = new BinaryFormatter();
             
-            using(FileStream fs = new FileStream("DBS/"+_fields.DB, FileMode.Create))
+            using(FileStream fs = new FileStream("DBS/"+_fields.FileName, FileMode.Create))
             {
                 bin_formatter.Serialize(fs, _fields);
             }

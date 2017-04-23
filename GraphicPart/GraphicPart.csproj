@@ -61,6 +61,9 @@
     <Compile Include="ChooseFile.xaml.cs">
       <DependentUpon>ChooseFile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FileName.xaml.cs">
+      <DependentUpon>FileName.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IdModelChoice.xaml.cs">
       <DependentUpon>IdModelChoice.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChooseFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FileName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

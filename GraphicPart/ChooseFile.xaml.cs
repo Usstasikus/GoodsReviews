@@ -59,8 +59,8 @@ namespace GraphicPart
 
         private void CreateNew_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
+            FileName fn = new FileName();
+            fn.Show();
             Close();
         }
 
