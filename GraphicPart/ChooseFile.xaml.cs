@@ -24,7 +24,7 @@ namespace GraphicPart
     {
         private void InitializeListBox()
         {
-            DirectoryInfo dir= new DirectoryInfo("DBS");
+            DirectoryInfo dir= new DirectoryInfo(@"..\..\..\Resources\DBS");
             FileInfo[] files = dir.GetFiles();
             for(int i = 0; i<files.Length; i++)
             {
