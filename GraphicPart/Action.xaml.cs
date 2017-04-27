@@ -43,8 +43,10 @@ namespace GraphicPart
             _fields = fields;
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             Actions act = new Actions(_fields);
             act.LoadNewReviews(TextBox_Output);
         }
