@@ -52,7 +52,7 @@ namespace GoodsReivewsLibrary
 
         public void Write()
         {
-            FileStream last_pos_file = new FileStream("last_pos.txt", FileMode.Create);//файл с записью последних координат
+            FileStream last_pos_file = new FileStream(@"..\..\..\Resources\last_pos.txt", FileMode.Create);//файл с записью последних координат
             using (StreamWriter writer = new StreamWriter(last_pos_file))
             {
                 writer.WriteLine(exit_category_number);
@@ -67,7 +67,7 @@ namespace GoodsReivewsLibrary
         public void End(string message, DateTime dt, Stopwatch stopWatch, string target)
         {
             Write();
-            FileStream log_file = new FileStream("log.txt", FileMode.Append);
+            FileStream log_file = new FileStream(@"..\..\..\Resources\log.txt", FileMode.Append);
             using (StreamWriter sw = new StreamWriter(log_file))
             {
                 sw.WriteLine("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."
@@ -79,7 +79,7 @@ namespace GoodsReivewsLibrary
         {
             Write();
             var resp = XDocument.Load(new StreamReader(we.Response.GetResponseStream()));
-            FileStream log_file = new FileStream("log.txt", FileMode.Append);
+            FileStream log_file = new FileStream(@"..\..\..\Resources\log.txt", FileMode.Append);
             using (StreamWriter sw = new StreamWriter(log_file))
             {
                 sw.WriteLine("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."

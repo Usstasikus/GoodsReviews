@@ -46,7 +46,7 @@ namespace GraphicPart
         {
             BinaryFormatter bin_form = new BinaryFormatter();
             Fields fields;
-            using (FileStream fs = new FileStream("DBS\\" + ListBox_OpenExisting.SelectedItem.ToString(), FileMode.Open))
+            using (FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + ListBox_OpenExisting.SelectedItem.ToString(), FileMode.Open))
             {
                 fields = (Fields)bin_form.Deserialize(fs);
             }
