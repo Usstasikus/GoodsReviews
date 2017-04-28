@@ -212,7 +212,7 @@ namespace GoodsReivewsLibrary
             SqlConnection sqlConnection = new SqlConnection(_connectionString);
             sqlConnection.Open();
             
-            string queryString = string.Format(@"SELECT GI1.GoodsID, {0}, GI1.GoodsName FROM {1} LEFT JOIN YandexReviews.dbo.GoodsInfo as GI1 ON {2} =  GI1.GoodsName collate Cyrillic_General_CI_AS WHERE GI1.GoodsName is not null",//Order by
+            string queryString = string.Format(@"SELECT GI1.GoodsID, {0}, GI1.GoodsName FROM {1} LEFT JOIN YandexReviews.dbo.GoodsInfo as GI1 ON {2} =  GI1.GoodsName collate Cyrillic_General_CI_AS WHERE GI1.GoodsName is not null ORDER BY Shop4KNS.dbo.GoodsInfo.GoodsID",
                             _fields.DB + ".dbo." + _fields.TableFrom + "." + _fields.GoodsIDFrom, _fields.DB + ".dbo." + _fields.TableFrom, _fields.DB + ".dbo." + _fields.GoodsNameTableFrom + "." + _fields.GoodsNameFrom);
             try
             {
