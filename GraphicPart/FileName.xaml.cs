@@ -21,12 +21,9 @@ namespace GraphicPart
     /// </summary>
     public partial class FileName : Window
     {
-        Fields _fields;
-        
         public FileName()
         {
             InitializeComponent();
-            _fields = new Fields();
         }
 
         private void TextBox_FileName_TextChanged(object sender, TextChangedEventArgs e)
@@ -62,6 +59,7 @@ namespace GraphicPart
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
+            string file_name;
             if (IsNameExist(TextBox_FileName.Text))
             {
                 MessageBox.Show("Файл с таким именем уже существует. Пожалуйста, выберите другое имя.");
@@ -69,8 +67,8 @@ namespace GraphicPart
             }
             else
             {
-                _fields.FileName = TextBox_FileName.Text;
-                MainWindow mwd = new MainWindow(_fields);
+                file_name = TextBox_FileName.Text;
+                MainWindow mwd = new MainWindow(file_name);
                 mwd.Show();
                 Close();
             }

@@ -39,7 +39,7 @@ namespace GoodsReivewsLibrary
             }
             catch (Exception)
             {
-                MessageBox.Show("Неизвестная ошибка");
+                MessageBox.Show("Неверно введен адрес сервера");
             }
             return null;
         }

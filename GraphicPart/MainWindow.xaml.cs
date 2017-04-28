@@ -34,6 +34,14 @@ namespace GraphicPart
             TextBoxPath.Focus();
         }
 
+        public MainWindow(string file_name)
+        {
+            InitializeComponent();
+            _fields = new Fields();
+            _fields.FileName = file_name;
+            TextBoxPath.Focus();
+        }
+
 
         private void ComboBoxDBFill()
         {
@@ -87,7 +95,12 @@ namespace GraphicPart
         {
             if(e.Key == Key.Enter || e.Key == Key.Tab)
             {
-                ComboBoxDBFill();
+                if(MyMethods.GetDBList(TextBoxPath.Text) != null)
+                    ComboBoxDBFill();
+                else
+                {
+                    Combobox_DB.IsEnabled = false;
+                }
             }
         }
 

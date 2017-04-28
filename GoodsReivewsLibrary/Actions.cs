@@ -197,8 +197,11 @@ namespace GoodsReivewsLibrary
         /// Загрузка комментариев
         /// </summary>
         /// <param name="tb">TextBox вывода</param>
-        public void LoadNewReviews(TextBox tb)
+        public string LoadNewReviews(IProgress<string> progress)//(TextForControl text)
         {
+            string progress_line = string.Empty;
+            
+
             stopWatch.Start();
             target = "комментариями";
 
@@ -259,8 +262,9 @@ namespace GoodsReivewsLibrary
                                 seen_count++;
                             }
                         }
-                        tb.Text += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_id[i][2]);
-                        
+                        //tb.Text += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_id[i][2]);
+                        progress_line += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_id[i][2]);
+                        progress.Report(progress_line);
                     }
                     sqlConnection.Close();
                 }
@@ -274,15 +278,16 @@ namespace GoodsReivewsLibrary
             {
                 stopWatch.Stop();
                 string message = FormMessage(we);
-                tb.Text += message;
+                progress_line += message; progress.Report(progress_line);
                 lg.End(message, dt, stopWatch, target);
             }
             catch (Exception e)
             {
                 stopWatch.Stop();
-                tb.Text += FormMessage(e);
+                progress_line += FormMessage(e); progress.Report(progress_line);
                 lg.End(e.Message, dt, stopWatch, target);
             }
+            return progress_line;
         }
     }
 }

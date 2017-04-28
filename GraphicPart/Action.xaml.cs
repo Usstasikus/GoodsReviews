@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace GraphicPart
     public partial class Action : Window
     {
         Fields _fields;
-
+        
         private List<string[]> GetNotNullableFields()
         {
             List<string[]> nnf = new List<string[]>();
@@ -46,9 +47,16 @@ namespace GraphicPart
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             Actions act = new Actions(_fields);
-            act.LoadNewReviews(TextBox_Output);
+
+            LoadReviews(act);
+            //act.LoadNewReviews(TextBox_Output);
+        }
+        private async void LoadReviews(Actions act)
+        {
+
+            var progress = new Progress<string>(s => TextBox_Output.Text = s);
+            string result = await Task.Factory.StartNew<string>(() => act.LoadNewReviews(progress));
         }
     
 
@@ -58,5 +66,6 @@ namespace GraphicPart
             nnf.Show();
             Close();
         }
+        
     }
 }

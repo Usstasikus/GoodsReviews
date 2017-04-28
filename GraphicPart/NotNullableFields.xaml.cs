@@ -50,6 +50,7 @@ namespace GraphicPart
                 chb.IsChecked = false;
                 chb.Checked += CheckBox_Checked;
                 chb.Unchecked += CheckBox_Unchecked;
+                chb.ToolTip = "Нажмите, чтобы привязать данное поле к параметру, предоставляемым Яндекс Маркетом";
 
                 cmb.Name = String.Format("ComboBox_{0}", i);
                 cmb.Visibility = Visibility.Hidden;
