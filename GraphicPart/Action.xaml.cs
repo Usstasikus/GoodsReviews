@@ -55,7 +55,7 @@ namespace GraphicPart
         private async void LoadReviews(Actions act)
         {
 
-            var progress = new Progress<string>(s => TextBox_Output.Text = s);
+            var progress = new Progress<string>(s => TextBlock_Output.Text = s);
             string result = await Task.Factory.StartNew<string>(() => act.LoadNewReviews(progress));
         }
     

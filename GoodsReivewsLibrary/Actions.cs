@@ -200,7 +200,6 @@ namespace GoodsReivewsLibrary
         public string LoadNewReviews(IProgress<string> progress)//(TextForControl text)
         {
             string progress_line = string.Empty;
-            
 
             stopWatch.Start();
             target = "комментариями";
