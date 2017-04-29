@@ -12,7 +12,5 @@
         </Grid.RowDefinitions>
         <TextBlock Name="TextBlock_Output" Grid.Row="0" Height="300" Width="450" Margin="0,20,0,0" TextWrapping="Wrap"></TextBlock>
         <Button Content="Начать" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10" Click="Button_Click"/>
-
-        <Button x:Name="Prev" Content="Назад" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom" Width="75" Margin="10,0,0,10" Click="Prev_Click"/>
     </Grid>
 </Window>

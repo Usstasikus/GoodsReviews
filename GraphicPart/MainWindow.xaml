@@ -22,7 +22,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="TextBlockPath" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Opacity="0.55"
-                 Height="30" Text ="Путь к базе данных" VerticalAlignment="Top" Width="Auto"/>
+                 Height="30" Text ="Адрес сервера" VerticalAlignment="Top" Width="Auto"/>
         <TextBox x:Name="TextBoxPath" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"
                  Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,4" 
                  TextChanged="TextBoxPath_TextChanged" KeyDown="TextBoxPath_KeyDown"/>

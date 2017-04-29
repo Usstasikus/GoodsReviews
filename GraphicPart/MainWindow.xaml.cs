@@ -46,6 +46,11 @@ namespace GraphicPart
         private void ComboBoxDBFill()
         {
             Combobox_DB.Items.Clear();
+            TextBoxLogin.Clear();
+            TextBoxLogin.IsEnabled = false;
+            PasswordBox.Clear();
+            PasswordBox.IsEnabled = false;
+            
             MyMethods.ComboBoxFill(Combobox_DB, MyMethods.GetDBList(TextBoxPath.Text));
         }
 
@@ -96,8 +101,8 @@ namespace GraphicPart
             if(e.Key == Key.Enter || e.Key == Key.Tab)
             {
                 ProgressBarWindow pbw = new ProgressBarWindow("Происходит подключение к серверу");
-                pbw.Show();
 
+                pbw.Show();
                 string adress = TextBoxPath.Text;
                 var is_correct = await Task.Run(() =>
                 {
@@ -119,6 +124,24 @@ namespace GraphicPart
             PasswordBox.IsEnabled = true;
         }
 
+        /// <summary>
+        /// Проверяет, верно ли задан
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
+        private bool IsAdrresCorrect(string connectionString)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            try
+            {
+                sqlConnection.Open();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -128,8 +151,10 @@ namespace GraphicPart
             {
                 ProgressBarWindow pbw = new ProgressBarWindow();
                 pbw.Show();
-                await Task.Run(()=> sqlConnection.Open());
+                bool is_correct = await Task<bool>.Run(()=> IsAdrresCorrect(connectionString));
                 pbw.Close();
+                if (!is_correct)
+                    throw new Exception();
                 IsEnabled = true;
                 sqlConnection.Close();
 
@@ -144,7 +169,7 @@ namespace GraphicPart
             }
             catch (Exception)
             {
-                MessageBox.Show("Неправильно заполнены поля");
+                MessageBox.Show("Неправильный логин или пароль");
             }
         }
     }

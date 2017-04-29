@@ -60,14 +60,6 @@ namespace GraphicPart
             string result = await Task.Factory.StartNew<string>(() => act.LoadNewReviews(progress, token), token);
 
         }
-    
-
-        private void Prev_Click(object sender, RoutedEventArgs e)
-        {
-            NotNullableFields nnf = new NotNullableFields(GetNotNullableFields(), _fields);
-            nnf.Show();
-            Close();
-        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
