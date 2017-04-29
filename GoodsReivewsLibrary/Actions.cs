@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using GoodsReivewsLibrary;
 using System.Xml.Linq;
 using System.Windows.Controls;
+using System.Threading;
 
 namespace GoodsReivewsLibrary
 {
@@ -182,6 +183,11 @@ namespace GoodsReivewsLibrary
 
             return query_string;
         }
+        private string FormMessage(string message)
+        {
+            return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."
+                    , dt, stopWatch.Elapsed, lg.added_count, message, target);
+        }
         private string FormMessage(WebException we)
         {
             var resp = XDocument.Load(new StreamReader(we.Response.GetResponseStream()));
@@ -197,9 +203,16 @@ namespace GoodsReivewsLibrary
         /// Загрузка комментариев
         /// </summary>
         /// <param name="tb">TextBox вывода</param>
-        public string LoadNewReviews(IProgress<string> progress)//(TextForControl text)
+        public string LoadNewReviews(IProgress<string> progress, CancellationToken token)//(TextForControl text)
         {
+
             string progress_line = string.Empty;
+            for (int i = 0; i < 10; i++)
+            {
+                progress_line += i.ToString();
+                Thread.Sleep(1000);
+                progress.Report(progress_line);
+            }
 
             stopWatch.Start();
             target = "комментариями";
@@ -230,6 +243,10 @@ namespace GoodsReivewsLibrary
                         matched_id.Add(new string[] { rd.GetString(0), rd.GetInt32(1).ToString(), rd.GetString(2) });
                     }
                     rd.Close();
+                    if (token.IsCancellationRequested)
+                    {
+                        throw new Exception("Программа звершила работу");
+                    }
                     for (int i = lg.log_model_number; i < matched_id.Count; i++)
                     {
                         lg.exit_model_number = i;
@@ -238,6 +255,10 @@ namespace GoodsReivewsLibrary
 
                         int added_count_for_this_model = 0;
 
+                        if (token.IsCancellationRequested)
+                        {
+                            throw new Exception("Программа звершила работу");
+                        }
                         for (int page = lg.log_page_reviews_number + 1; page <= 50; page++)
                         {
                             lg.exit_page_reviews_number = page;
@@ -250,6 +271,10 @@ namespace GoodsReivewsLibrary
                                 lg.Write();
                                 break;
                             }
+                            if (token.IsCancellationRequested)
+                            {
+                                throw new Exception("Программа звершила работу");
+                            }
                             for (int pos = 0; pos < mr.Count; pos++)
                             {
                                 added_count_for_this_model++;
@@ -260,6 +285,10 @@ namespace GoodsReivewsLibrary
                                 lg.added_count++;
                                 seen_count++;
                             }
+                        }
+                        if (token.IsCancellationRequested)
+                        {
+                            throw new Exception("Программа звершила работу");
                         }
                         //tb.Text += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_id[i][2]);
                         progress_line += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_id[i][2]);
@@ -280,6 +309,13 @@ namespace GoodsReivewsLibrary
                 progress_line += message; progress.Report(progress_line);
                 lg.End(message, dt, stopWatch, target);
             }
+            catch (ThreadAbortException)
+            {
+                stopWatch.Stop();
+                progress_line = FormMessage("Программа завершила работу");
+                progress.Report(progress_line);
+                lg.End("Программа завершила работу", dt, stopWatch, target);
+            }
             catch (Exception e)
             {
                 stopWatch.Stop();
@@ -287,6 +323,11 @@ namespace GoodsReivewsLibrary
                 lg.End(e.Message, dt, stopWatch, target);
             }
             return progress_line;
+        }
+
+        public void End(IProgress<string> progress)
+        {
+            
         }
     }
 }

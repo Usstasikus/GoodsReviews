@@ -22,7 +22,9 @@ namespace GraphicPart
     public partial class Action : Window
     {
         Fields _fields;
-        
+        Actions act;
+        CancellationTokenSource cancelTokenSource;
+        CancellationToken token;
         private List<string[]> GetNotNullableFields()
         {
             List<string[]> nnf = new List<string[]>();
@@ -42,21 +44,21 @@ namespace GraphicPart
         {
             InitializeComponent();
             _fields = fields;
+            act = new Actions(_fields);
+            cancelTokenSource = new CancellationTokenSource();
+            token = cancelTokenSource.Token;
         }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Actions act = new Actions(_fields);
-
             LoadReviews(act);
             //act.LoadNewReviews(TextBox_Output);
         }
         private async void LoadReviews(Actions act)
         {
-
             var progress = new Progress<string>(s => TextBlock_Output.Text = s);
-            string result = await Task.Factory.StartNew<string>(() => act.LoadNewReviews(progress));
+            string result = await Task.Factory.StartNew<string>(() => act.LoadNewReviews(progress, token), token);
+
         }
     
 
@@ -66,6 +68,14 @@ namespace GraphicPart
             nnf.Show();
             Close();
         }
-        
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите завершить работу приложения?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                cancelTokenSource.Cancel();
+            }
+            else e.Cancel = true;
+        }
     }
 }
