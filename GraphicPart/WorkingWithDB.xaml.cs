@@ -31,6 +31,7 @@ namespace GraphicPart
         public WorkingWithDB()
         {
             InitializeComponent();
+            ComboBox_Table.Focus();
         }
 
 
@@ -64,6 +65,7 @@ namespace GraphicPart
             field_types = new Dictionary<string, string>();
             MyMethods.ComboBoxFill(ComboBox_Table, MyMethods.GetTablesList(_connectionString));
             TryToFillIn();
+            ComboBox_Table.Focus();
         }
 
         /// <summary>

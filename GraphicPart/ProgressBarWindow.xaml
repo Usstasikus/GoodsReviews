@@ -1,0 +1,15 @@
+﻿<Window x:Class="GraphicPart.ProgressBarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraphicPart"
+        mc:Ignorable="d"
+        Title="ProgessBar" Height="200" Width="300">
+    <Grid>
+        <ProgressBar HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="250" IsIndeterminate="True" Margin="0,50,0,0" />
+
+        <TextBlock Name="TextBlock_PB" Text="" FontSize="15" HorizontalAlignment="Center" Width="Auto"  Height="Auto" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" Margin="0,0,0,50"/>
+
+    </Grid>
+</Window>

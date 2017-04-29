@@ -90,17 +90,26 @@ namespace GraphicPart
             else
                 Button.IsEnabled = false;
         }
-
-        private void TextBoxPath_KeyDown(object sender, KeyEventArgs e)
+        
+        private async void TextBoxPath_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter || e.Key == Key.Tab)
             {
-                if(MyMethods.GetDBList(TextBoxPath.Text) != null)
+                ProgressBarWindow pbw = new ProgressBarWindow("Происходит подключение к серверу");
+                pbw.Show();
+
+                string adress = TextBoxPath.Text;
+                var is_correct = await Task.Run(() =>
+                {
+                    return (MyMethods.GetDBList(adress) != null);
+                });
+                pbw.Close();
+
+                if (is_correct)
                     ComboBoxDBFill();
                 else
-                {
                     Combobox_DB.IsEnabled = false;
-                }
+
             }
         }
 
@@ -111,14 +120,19 @@ namespace GraphicPart
         }
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             string connectionString = String.Format("Server={0};Database={1};Uid={2};Pwd={3};", TextBoxPath.Text, Combobox_DB.SelectedItem, TextBoxLogin.Text, PasswordBox.Password);
             SqlConnection sqlConnection = new SqlConnection(connectionString);
             try
             {
-                sqlConnection.Open();
+                ProgressBarWindow pbw = new ProgressBarWindow();
+                pbw.Show();
+                await Task.Run(()=> sqlConnection.Open());
+                pbw.Close();
+                IsEnabled = true;
                 sqlConnection.Close();
+
                 _fields.IPAdress = TextBoxPath.Text;
                 _fields.ConnectionString = connectionString;
                 _fields.DB = Combobox_DB.SelectedItem.ToString();

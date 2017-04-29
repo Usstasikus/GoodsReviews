@@ -70,6 +70,9 @@
     <Compile Include="NotNullableFields.xaml.cs">
       <DependentUpon>NotNullableFields.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgressBarWindow.xaml.cs">
+      <DependentUpon>ProgressBarWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkingWithDB.xaml.cs">
       <DependentUpon>WorkingWithDB.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NotNullableFields.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgressBarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

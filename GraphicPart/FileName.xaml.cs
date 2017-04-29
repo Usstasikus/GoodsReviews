@@ -24,6 +24,7 @@ namespace GraphicPart
         public FileName()
         {
             InitializeComponent();
+            TextBox_FileName.Focus();
         }
 
         private void TextBox_FileName_TextChanged(object sender, TextChangedEventArgs e)
