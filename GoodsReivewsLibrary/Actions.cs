@@ -40,7 +40,7 @@ namespace GoodsReivewsLibrary
             seen_count = 0;
             url = String.Format("https://api.content.market.yandex.ru/v1/");   //category/{0}/models.xml?geo_id=225&count=30&&page={1}");
             key = "c9rSUIhhM7SRQzeEXaYbpEQknRaVMq";
-            string[] last_pos = File.ReadAllLines("last_pos.txt");
+            string[] last_pos = File.ReadAllLines("../../../Resources/last_pos.txt");
             lg = new LogFile(last_pos);
         }
         void Yandex_Goods_Fill(string url, string key, LogFile lg, int limit)
@@ -207,13 +207,6 @@ namespace GoodsReivewsLibrary
         {
 
             string progress_line = string.Empty;
-            for (int i = 0; i < 10; i++)
-            {
-                progress_line += i.ToString();
-                Thread.Sleep(1000);
-                progress.Report(progress_line);
-            }
-
             stopWatch.Start();
             target = "комментариями";
 
