@@ -38,7 +38,7 @@ namespace GoodsReivewsLibrary
             dt = DateTime.Now;
             repeat_counter = 0;
             seen_count = 0;
-            url = String.Format("https://api.content.market.yandex.ru/v1/");   //category/{0}/models.xml?geo_id=225&count=30&&page={1}");
+            url = String.Format("http://localhost:1553/https://api.content.market.yandex.ru/v1/");   //category/{0}/models.xml?geo_id=225&count=30&&page={1}");
             key = "c9rSUIhhM7SRQzeEXaYbpEQknRaVMq";
             string[] last_pos = File.ReadAllLines("../../../Resources/last_pos.txt");
             lg = new LogFile(last_pos);

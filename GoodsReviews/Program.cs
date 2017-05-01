@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 using System.IO;
 using System.Net;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using GoodsReivewsLibrary;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace GoodsReviews
 {
+
     class Program
     {
         static string _connectionString = @"Server=127.0.0.1;Database=YandexReviews;Uid=StasDon;Pwd=stasik99;";
@@ -347,8 +345,59 @@ namespace GoodsReviews
                 throw new Exception("Не найдено совпадающих товаров.");
             }
         }
+
+        private static string XmlToString(XDocument xdoc)
+        {
+            using (var stringWriter = new StringWriter())
+            using (var xmlTextWriter = XmlWriter.Create(stringWriter))
+            {
+                xdoc.WriteTo(xmlTextWriter);
+                xmlTextWriter.Flush();
+                return stringWriter.GetStringBuilder().ToString();
+            }
+        }
+
+
         static void Main(string[] args)
         {
+            HttpListener listener = new HttpListener();
+            // установка адресов прослушки
+            listener.Prefixes.Add("http://localhost:1553/");
+            listener.Start();
+            while (true)
+            {
+                Console.WriteLine("Ожидание подключений...");
+                // метод GetContext блокирует текущий поток, ожидая получение запроса 
+                HttpListenerContext context = listener.GetContext();
+                HttpListenerRequest request = context.Request;
+                // получаем объект ответа
+                HttpListenerResponse response = context.Response;
+                // создаем ответ в виде кода html
+                string url = request.RawUrl.Substring(1);
+                string key = "c9rSUIhhM7SRQzeEXaYbpEQknRaVMq";
+                HttpWebRequest ya_request = (HttpWebRequest)WebRequest.Create(url);
+                ya_request.Headers.Add(String.Format("Authorization: {0}", key));
+
+                HttpWebResponse ya_response = (HttpWebResponse)ya_request.GetResponse();
+                XDocument xdoc = XDocument.Load(new StreamReader(ya_response.GetResponseStream()));
+                string ya_response_string = XmlToString(xdoc);
+
+
+                byte[] buffer = System.Text.Encoding.UTF8.GetBytes(ya_response_string);
+                
+                // получаем поток ответа и пишем в него ответ
+                response.ContentLength64 = buffer.Length;
+                Stream output = response.OutputStream;
+                output.Write(buffer, 0, buffer.Length);
+                // закрываем поток
+                output.Close();
+            }
+            // останавливаем прослушивание подключений
+            listener.Stop();
+            Console.WriteLine("Обработка подключений завершена");
+            Console.Read();
+
+            /*
             string url = String.Format("https://api.content.market.yandex.ru/v1/");   //category/{0}/models.xml?geo_id=225&count=30&&page={1}");
             string key = "c9rSUIhhM7SRQzeEXaYbpEQknRaVMq";
             string[] last_pos = File.ReadAllLines("last_pos.txt");
@@ -391,6 +440,7 @@ namespace GoodsReviews
             }
 
             Console.ReadKey();
+            */
         }
     }
 }
