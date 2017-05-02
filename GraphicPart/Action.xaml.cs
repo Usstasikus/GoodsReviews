@@ -6,13 +6,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GraphicPart
 {
@@ -51,12 +44,13 @@ namespace GraphicPart
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            TextBox_Output.Text = "Начало работы...";
             LoadReviews(act);
             //act.LoadNewReviews(TextBox_Output);
         }
         private async void LoadReviews(Actions act)
         {
-            var progress = new Progress<string>(s => TextBlock_Output.Text = s);
+            var progress = new Progress<string>(s => TextBox_Output.Text = s);
             string result = await Task.Factory.StartNew<string>(() => act.LoadNewReviews(progress, token), token);
 
         }

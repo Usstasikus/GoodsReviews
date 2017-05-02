@@ -40,7 +40,7 @@ namespace GoodsReivewsLibrary
             seen_count = 0;
             url = String.Format("http://localhost:1553/https://api.content.market.yandex.ru/v1/");   //category/{0}/models.xml?geo_id=225&count=30&&page={1}");
             key = "c9rSUIhhM7SRQzeEXaYbpEQknRaVMq";
-            string[] last_pos = File.ReadAllLines("../../../Resources/last_pos.txt");
+            string[] last_pos = File.ReadAllLines(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
             lg = new LogFile(last_pos);
         }
         void Yandex_Goods_Fill(string url, string key, LogFile lg, int limit)
@@ -190,9 +190,17 @@ namespace GoodsReivewsLibrary
         }
         private string FormMessage(WebException we)
         {
-            var resp = XDocument.Load(new StreamReader(we.Response.GetResponseStream()));
-            return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."
-                    , dt, stopWatch.Elapsed, lg.added_count, resp.Descendants("errors").ElementAt(0).Value, target);
+            try
+            {
+                XDocument resp = XDocument.Load(new StreamReader(we.Response.GetResponseStream()));
+                return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."
+                        , dt, stopWatch.Elapsed, lg.added_count, resp.Descendants("errors").ElementAt(0).Value, target);
+            }
+            catch (Exception e)
+            {
+                return FormMessage("Проблемы с подключением к серверу.");
+            }
+            
         }
         private string FormMessage(Exception e)
         {
@@ -205,6 +213,7 @@ namespace GoodsReivewsLibrary
         /// <param name="tb">TextBox вывода</param>
         public string LoadNewReviews(IProgress<string> progress, CancellationToken token)//(TextForControl text)
         {
+            url = String.Format("http://localhost:1553/https://api.content.market.yandex.ru/v1/");
 
             string progress_line = string.Empty;
             stopWatch.Start();

@@ -378,19 +378,35 @@ namespace GoodsReviews
                 HttpWebRequest ya_request = (HttpWebRequest)WebRequest.Create(url);
                 ya_request.Headers.Add(String.Format("Authorization: {0}", key));
 
-                HttpWebResponse ya_response = (HttpWebResponse)ya_request.GetResponse();
-                XDocument xdoc = XDocument.Load(new StreamReader(ya_response.GetResponseStream()));
-                string ya_response_string = XmlToString(xdoc);
+                byte[] buffer;
+                try
+                {
+                    HttpWebResponse ya_response = (HttpWebResponse)ya_request.GetResponse();
+                    XDocument xdoc = XDocument.Load(new StreamReader(ya_response.GetResponseStream()));
+                    string ya_response_string = XmlToString(xdoc);
+                    buffer = System.Text.Encoding.UTF8.GetBytes(ya_response_string);
 
+                    // получаем поток ответа и пишем в него ответ
+                    response.ContentLength64 = buffer.Length;
+                    // закрываем поток
+                    
+                }
+                catch (WebException we)
+                {
+                    XDocument xdoc = XDocument.Load(new StreamReader(we.Response.GetResponseStream()));
+                    string ya_response_string = XmlToString(xdoc);
 
-                byte[] buffer = System.Text.Encoding.UTF8.GetBytes(ya_response_string);
-                
-                // получаем поток ответа и пишем в него ответ
-                response.ContentLength64 = buffer.Length;
+                    buffer = System.Text.Encoding.UTF8.GetBytes(ya_response_string);
+                    response.StatusCode = (int)HttpStatusCode.Forbidden;
+                    response.ContentLength64 = buffer.Length;
+                    //response.Close();
+                    
+                }
+
                 Stream output = response.OutputStream;
                 output.Write(buffer, 0, buffer.Length);
-                // закрываем поток
                 output.Close();
+
             }
             // останавливаем прослушивание подключений
             listener.Stop();

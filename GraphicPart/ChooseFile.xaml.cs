@@ -24,18 +24,28 @@ namespace GraphicPart
     {
         private void InitializeListBox()
         {
-            DirectoryInfo dir= new DirectoryInfo(@"..\..\..\Resources\DBS");
-            FileInfo[] files = dir.GetFiles();
-            for(int i = 0; i<files.Length; i++)
-            {
-                ListBox_OpenExisting.Items.Add(files[i].Name);
-            }
+            ListBox_Fill();
         }
         public ChooseFile()
         {
             InitializeComponent();
             InitializeListBox();
 
+        }
+
+        /// <summary>
+        /// Заполняет ListBox именами файлов, хранящихся по пути "..\..\..\Resources\DBS"
+        /// </summary>
+        private void ListBox_Fill()
+        {
+            ListBox_OpenExisting.Items.Clear();
+            DirectoryInfo dir = new DirectoryInfo(@"..\..\..\Resources\DBS");
+            FileInfo[] files = dir.GetFiles();
+            for (int i = 0; i < files.Length; i++)
+            {
+                string file_name = System.IO.Path.GetFileNameWithoutExtension(@"..\..\..\Resources\DBS\" + files[i].Name);
+                ListBox_OpenExisting.Items.Add(file_name);
+            }
         }
 
         /// <summary>
@@ -46,7 +56,7 @@ namespace GraphicPart
         {
             BinaryFormatter bin_form = new BinaryFormatter();
             Fields fields;
-            using (FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + ListBox_OpenExisting.SelectedItem.ToString(), FileMode.Open))
+            using (FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + ListBox_OpenExisting.SelectedItem.ToString() + ".dbs", FileMode.Open))
             {
                 fields = (Fields)bin_form.Deserialize(fs);
             }
@@ -88,6 +98,22 @@ namespace GraphicPart
             MainWindow mwd = new MainWindow(fields);
             mwd.Show();
             Close();
+        }
+        private void MenuItem_Remove_Click(object sender, RoutedEventArgs e)
+        {
+            FileInfo file = new FileInfo(@"..\..\..\Resources\DBS\" + ListBox_OpenExisting.SelectedItem.ToString() + ".dbs");
+            if (file.Exists)
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить данный файл без возможности восстановления?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    file.Delete();
+
+                    FileInfo log_file = new FileInfo(@"..\..\..\Resources\last_pos\" + ListBox_OpenExisting.SelectedItem.ToString() + ".txt");
+                    if (log_file.Exists)
+                        log_file.Delete();
+                    ListBox_Fill();
+                }
+            }
         }
 
         private void ListBox_OpenExisting_ContextMenuOpening(object sender, ContextMenuEventArgs e)

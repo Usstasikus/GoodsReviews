@@ -265,11 +265,11 @@ namespace GraphicPart
 
             BinaryFormatter bin_formatter = new BinaryFormatter();
             
-            using(FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + _fields.FileName, FileMode.Create))
+            using(FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + _fields.FileName + ".dbs", FileMode.Create))
             {
                 bin_formatter.Serialize(fs, _fields);
             }
-
+            File.Create(@"..\..\..\Resources\last_pos_" + _fields.FileName + ".txt");
             act.Show();
             Close();
         }
