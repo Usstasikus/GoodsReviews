@@ -63,5 +63,11 @@ namespace GraphicPart
             }
             else e.Cancel = true;
         }
+
+        private void TextBox_Output_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            TextBox_Output.SelectionStart = TextBox_Output.Text.Length;
+            TextBox_Output.ScrollToEnd();
+        }
     }
 }

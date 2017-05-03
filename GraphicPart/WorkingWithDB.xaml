@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicPart"
         mc:Ignorable="d"
-        Title="WorkingWithDB" Height="450" Width="550" MinHeight="450" MinWidth="550">
+        Title="WorkingWithDB" Height="450" Width="550" MaxHeight="450" MinHeight="450" MaxWidth="550" MinWidth="550">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
