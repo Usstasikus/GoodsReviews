@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicPart"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" MaxHeight="350" MinHeight="350" MaxWidth="525" MinWidth="525">
+        Title="Настройка БД" Height="350" Width="525" MaxHeight="350" MinHeight="350" MaxWidth="525" MinWidth="525">
 
     <Grid>
         <Grid.ColumnDefinitions>

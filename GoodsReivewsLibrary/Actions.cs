@@ -128,6 +128,20 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
+        /// Возвращает значение, обозначающее, является ли тип числовым
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private bool IsNumericType(string type)
+        {
+            type = type.ToLower();
+            if (type == "tinyint" || type == "smallint" || type == "mediumint" || type == "int" || type == "bigint" || type == "bool" ||
+                type == "boolean" || type == "dec" || type == "decimal" || type == "numeric" || type == "float" || type == "double")
+                return true;
+            return false;
+        }
+
+        /// <summary>
         /// Формирование строки запроса для записи в таблицу отзывов
         /// </summary>
         /// <param name="fields"></param>
@@ -154,7 +168,7 @@ namespace GoodsReivewsLibrary
 
             for (int i = 0; i < _fields.ya_fields.Count; i++)
             {
-                if (_fields.ya_fields[i].Type != "int")
+                if (!IsNumericType(_fields.ya_fields[i].Type))
                     query_string += string.Format("'{0}', ", mr.GetElementByName(_fields.ya_fields[i].YandexElementName));
                 else
                     query_string += string.Format("{0}, ", mr.GetElementByName(_fields.ya_fields[i].YandexElementName));
@@ -164,14 +178,14 @@ namespace GoodsReivewsLibrary
             {
                 if (_fields.unknown_fields[i].Dependency == null)
                 {
-                    if (_fields.unknown_fields[i].Type != "int")
+                    if (!IsNumericType(_fields.ya_fields[i].Type))
                         query_string += string.Format("'{0}', ", _fields.unknown_fields[i].Value);
                     else
                         query_string += string.Format("{0}, ", _fields.unknown_fields[i].Value);
                 }
                 else
                 {
-                    if (_fields.unknown_fields[i].Type != "int")
+                    if (!IsNumericType(_fields.ya_fields[i].Type))
                         query_string += string.Format("'{0}', ", mr.GetElementByName(_fields.unknown_fields[i].Dependency));
                     else
                         query_string += string.Format("{0}, ", mr.GetElementByName(_fields.unknown_fields[i].Dependency));
@@ -185,7 +199,7 @@ namespace GoodsReivewsLibrary
         }
         private string FormMessage(string message)
         {
-            return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."
+            return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nТаблица была дополнена {2} {4}."
                     , dt, stopWatch.Elapsed, lg.added_count, message, target);
         }
         private string FormMessage(WebException we)
@@ -193,7 +207,9 @@ namespace GoodsReivewsLibrary
             try
             {
                 XDocument resp = XDocument.Load(new StreamReader(we.Response.GetResponseStream()));
-                return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."
+                if (resp.Descendants("errors").ElementAt(0).Value == "Rate limit exceeded")
+                    return FormMessage("Превышение максимального количества запросов.");
+                return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nТаблица была дополнена {2} {4}."
                         , dt, stopWatch.Elapsed, lg.added_count, resp.Descendants("errors").ElementAt(0).Value, target);
             }
             catch (Exception e)
@@ -204,7 +220,7 @@ namespace GoodsReivewsLibrary
         }
         private string FormMessage(Exception e)
         {
-            return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."
+            return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nТаблица была дополнена {2} {4}."
                     , dt, stopWatch.Elapsed, lg.added_count, e.Message, target);
         }
         /// <summary>

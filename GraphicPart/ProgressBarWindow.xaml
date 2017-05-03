@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicPart"
         mc:Ignorable="d"
-        Title="ProgessBar" Height="200" Width="300" MaxHeight="200" MinHeight="200" MaxWidth="300" MinWidth="300">
+        Title="Статус программы" Height="200" Width="300" MaxHeight="200" MinHeight="200" MaxWidth="300" MinWidth="300">
     <Grid>
         <ProgressBar HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="250" IsIndeterminate="True" Margin="0,50,0,0" />
 

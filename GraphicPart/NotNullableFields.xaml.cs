@@ -260,16 +260,15 @@ namespace GraphicPart
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             FillUnknownFields();
-
-            Action act = new Action(_fields);
-
             BinaryFormatter bin_formatter = new BinaryFormatter();
-            
             using(FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + _fields.FileName + ".dbs", FileMode.Create))
             {
                 bin_formatter.Serialize(fs, _fields);
             }
-            File.Create(@"..\..\..\Resources\last_pos_" + _fields.FileName + ".txt");
+            File.Create(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
+
+
+            Action act = new Action(_fields);
             act.Show();
             Close();
         }

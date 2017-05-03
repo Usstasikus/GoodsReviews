@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicPart"
         mc:Ignorable="d"
-        Title="FileName" Height="200" Width="400" MaxHeight="200" MinHeight="200" MaxWidth="400" MinWidth="400">
+        Title="Выбор имени файла" Height="200" Width="400" MaxHeight="200" MinHeight="200" MaxWidth="400" MinWidth="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

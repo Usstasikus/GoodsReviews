@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicPart"
         mc:Ignorable="d"
-        Title="NotNullableFields" Height="400" Width="550" MaxHeight="400" MinHeight="400" MaxWidth="550" MinWidth="550">
+        Title="Настройка БД" Height="400" Width="550" MaxHeight="400" MinHeight="400" MaxWidth="550" MinWidth="550">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>

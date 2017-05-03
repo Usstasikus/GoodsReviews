@@ -70,7 +70,7 @@ namespace GoodsReivewsLibrary
             FileStream log_file = new FileStream(@"..\..\..\Resources\log.txt", FileMode.Append);
             using (StreamWriter sw = new StreamWriter(log_file))
             {
-                sw.WriteLine("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."
+                sw.WriteLine("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nТаблица была дополнена {2} {4}."
                     , dt, stopWatch.Elapsed, added_count, message, target);
             }
         }
@@ -82,7 +82,7 @@ namespace GoodsReivewsLibrary
             FileStream log_file = new FileStream(@"..\..\..\Resources\log.txt", FileMode.Append);
             using (StreamWriter sw = new StreamWriter(log_file))
             {
-                sw.WriteLine("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nПревышение количества допустимых запросов. \r\nТаблица была дополнена {2} {4}."
+                sw.WriteLine("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nТаблица была дополнена {2} {4}."
                     , dt, stopWatch.Elapsed, added_count, resp.Descendants("errors").ElementAt(0).Value, target);
             }
         }
