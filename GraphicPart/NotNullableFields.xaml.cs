@@ -50,7 +50,7 @@ namespace GraphicPart
                 chb.IsChecked = false;
                 chb.Checked += CheckBox_Checked;
                 chb.Unchecked += CheckBox_Unchecked;
-                chb.ToolTip = "Нажмите, чтобы привязать данное поле к параметру, предоставляемым Яндекс Маркетом";
+                chb.ToolTip = "Нажмите, чтобы привязать данное поле к параметру, предоставляемому Яндекс Маркетом";
 
                 cmb.Name = String.Format("ComboBox_{0}", i);
                 cmb.Visibility = Visibility.Hidden;
@@ -105,7 +105,8 @@ namespace GraphicPart
             int index_of_TextBox;
             int.TryParse(MyMethods.GetElementID(tb), out index_of_TextBox);
             string type = _not_nullable_fields[index_of_TextBox][1];
-            if (type == "int")
+            if (type == "tinyint" || type == "smallint" || type == "mediumint" || type == "int" || type == "bigint" || type == "bool" ||
+                type == "boolean" || type == "dec" || type == "decimal" || type == "numeric" || type == "float" || type == "double")
             {
                 int value;
                 if (!int.TryParse(tb.Text, out value))
@@ -265,8 +266,10 @@ namespace GraphicPart
             {
                 bin_formatter.Serialize(fs, _fields);
             }
-            File.Create(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
-
+            //File.Create(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
+            using (FileStream fs = new FileStream(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt", FileMode.Create))
+            {
+            }
 
             Action act = new Action(_fields);
             act.Show();

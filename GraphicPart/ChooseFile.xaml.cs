@@ -108,7 +108,7 @@ namespace GraphicPart
                 {
                     file.Delete();
 
-                    FileInfo log_file = new FileInfo(@"..\..\..\Resources\last_pos\" + ListBox_OpenExisting.SelectedItem.ToString() + ".txt");
+                    FileInfo log_file = new FileInfo(@"..\..\..\Resources\last_pos\last_pos_" + ListBox_OpenExisting.SelectedItem.ToString() + ".txt");
                     if (log_file.Exists)
                         log_file.Delete();
                     ListBox_Fill();
@@ -134,5 +134,6 @@ namespace GraphicPart
                 }
             }
         }
+        
     }
 }

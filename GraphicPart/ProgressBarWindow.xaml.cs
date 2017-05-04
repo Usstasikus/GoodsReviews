@@ -25,5 +25,6 @@ namespace GraphicPart
             InitializeComponent();
             TextBlock_PB.Text = message;
         }
+        
     }
 }

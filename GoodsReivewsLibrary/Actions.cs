@@ -178,14 +178,14 @@ namespace GoodsReivewsLibrary
             {
                 if (_fields.unknown_fields[i].Dependency == null)
                 {
-                    if (!IsNumericType(_fields.ya_fields[i].Type))
+                    if (!IsNumericType(_fields.unknown_fields[i].Type))
                         query_string += string.Format("'{0}', ", _fields.unknown_fields[i].Value);
                     else
                         query_string += string.Format("{0}, ", _fields.unknown_fields[i].Value);
                 }
                 else
                 {
-                    if (!IsNumericType(_fields.ya_fields[i].Type))
+                    if (!IsNumericType(_fields.unknown_fields[i].Type))
                         query_string += string.Format("'{0}', ", mr.GetElementByName(_fields.unknown_fields[i].Dependency));
                     else
                         query_string += string.Format("{0}, ", mr.GetElementByName(_fields.unknown_fields[i].Dependency));

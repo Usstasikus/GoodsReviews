@@ -85,7 +85,11 @@ namespace GoodsReivewsLibrary
             }
         }
 
-
+        /// <summary>
+        /// Изменяет символ ' во входящей строке на ''
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private static string GetTextContainsInvertedComma(string text)
         {
             StringBuilder text_without_inverted_commas = new StringBuilder(text);
