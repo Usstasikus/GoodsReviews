@@ -76,10 +76,18 @@ namespace GraphicPart
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            Fields fields = Deserialize();
-            Action act = new Action(fields);
-            act.Show();
-            Close();
+            try
+            {
+                Fields fields = Deserialize();
+                if (!File.Exists(@"..\..\..\Resources\last_pos\last_pos_" + fields.FileName + ".txt")) throw new Exception();
+                Action act = new Action(fields);
+                act.Show();
+                Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Невозможно прочесть данный файл");
+            }
         }
 
         private void ListBox_OpenExisting_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -94,10 +102,17 @@ namespace GraphicPart
 
         private void MenuItem_Edit_Click(object sender, RoutedEventArgs e)
         {
-            Fields fields = Deserialize();
-            MainWindow mwd = new MainWindow(fields);
-            mwd.Show();
-            Close();
+            try
+            {
+                Fields fields = Deserialize();
+                MainWindow mwd = new MainWindow(fields);
+                mwd.Show();
+                Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Невозможно прочесть данный файл");
+            }
         }
         private void MenuItem_Remove_Click(object sender, RoutedEventArgs e)
         {

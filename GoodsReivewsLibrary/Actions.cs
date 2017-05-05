@@ -313,6 +313,7 @@ namespace GoodsReivewsLibrary
                         progress.Report(progress_line);
                     }
                     sqlConnection.Close();
+                    progress_line += FormMessage("Программа звершила работу");
                 }
                 else
                 {
@@ -326,13 +327,6 @@ namespace GoodsReivewsLibrary
                 string message = FormMessage(we);
                 progress_line += message; progress.Report(progress_line);
                 lg.End(message, dt, stopWatch, target);
-            }
-            catch (ThreadAbortException)
-            {
-                stopWatch.Stop();
-                progress_line = FormMessage("Программа завершила работу");
-                progress.Report(progress_line);
-                lg.End("Программа завершила работу", dt, stopWatch, target);
             }
             catch (Exception e)
             {
