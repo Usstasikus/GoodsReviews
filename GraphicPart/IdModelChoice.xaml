@@ -82,5 +82,7 @@
                 VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10" IsEnabled="False" Click="Next_Click"/>
 
         <Button x:Name="Prev" Content="Назад" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Bottom" Width="75" Margin="10,0,0,10" Click="Prev_Click"/>
+        <Button Grid.Row="3" x:Name="Cancel" Content="Отменить" HorizontalAlignment="Right" 
+            VerticalAlignment="Bottom" Width="75" Margin="0,0,90,10" Click="Cancel_Click"/>
     </Grid>
 </Window>

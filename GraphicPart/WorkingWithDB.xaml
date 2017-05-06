@@ -67,6 +67,7 @@
         </GroupBox>
         <Button x:Name="Next" Content="Далее" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10" Click="Next_Click" IsEnabled="False"/>
         <Button x:Name="Prev" Content="Назад" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom" Width="75" Margin="10,0,0,10" Click="Prev_Click"/>
+        <Button x:Name="Cancel" Content="Отменить" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Width="75" Margin="0,0,90,10" Click="Cancel_Click"/>
 
     </Grid>
 </Window>

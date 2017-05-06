@@ -98,5 +98,15 @@ namespace GraphicPart
             wdb.Show();
             Close();
         }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Все изменения будут потеряны. Вы действительно хотите возвратиться на стартовую страницу?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                ChooseFile chf = new ChooseFile();
+                chf.Show();
+                Close();
+            }
+        }
     }
 }
