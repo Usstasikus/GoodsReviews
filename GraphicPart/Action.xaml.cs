@@ -57,7 +57,7 @@ namespace GraphicPart
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MessageBox.Show("Вы действительно хотите завершить работу приложения?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Вы действительно хотите завершить работу приложения?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 cancelTokenSource.Cancel();
             }

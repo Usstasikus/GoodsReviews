@@ -119,7 +119,7 @@ namespace GraphicPart
             FileInfo file = new FileInfo(@"..\..\..\Resources\DBS\" + ListBox_OpenExisting.SelectedItem.ToString() + ".dbs");
             if (file.Exists)
             {
-                if (MessageBox.Show("Вы действительно хотите удалить данный файл без возможности восстановления?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы действительно хотите удалить данный файл без возможности восстановления?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     file.Delete();
 

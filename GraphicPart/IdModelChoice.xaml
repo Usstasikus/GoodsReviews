@@ -24,9 +24,9 @@
             </Style>
         </Grid.Resources>
         <TextBlock Grid.Row="0" HorizontalAlignment="Center"
-                 Height="Auto" TextAlignment="Center" TextWrapping="Wrap" Text ="Выберите, откуда брать ID товара и куда его записывать" VerticalAlignment="Center" Width="250" />
+                 Height="Auto" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" ><Run Text="Выберите, откуда брать ID товара и куда его записывать"/><Run Text=", и откуда брать название модели"/></TextBlock>
 
-        <GroupBox x:Name="groupBox" Header="Выберите ID" HorizontalAlignment="Center" Height="Auto" Grid.Row="1"
+        <GroupBox x:Name="groupBox" Header="ID" HorizontalAlignment="Center" Height="Auto" Grid.Row="1"
                   VerticalAlignment="Center" Width="400" Margin="0,22,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -40,7 +40,7 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Откуда" Grid.Row="0"></TextBlock>
+                <TextBlock Grid.Row="0" Text="Откуда"/>
                 <StackPanel Grid.Column="0" Grid.Row="1">
                     <TextBlock Text="Таблица" Margin="0,0,0,0" Opacity="0.55"></TextBlock>
                     <ComboBox Name="ComboBox_TableFrom" Margin="0,0,0,0" SelectionChanged="ComboBox_TableFrom_SelectionChanged" ></ComboBox>
@@ -57,7 +57,7 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox x:Name="groupBoxGoodsName" Header="Где хранится название модели" HorizontalAlignment="Center" Height="Auto" Grid.Row="2"
+        <GroupBox x:Name="groupBoxGoodsName" Header="Название модели" HorizontalAlignment="Center" Height="Auto" Grid.Row="2"
                   VerticalAlignment="Center" Width="400" Margin="0,22,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>

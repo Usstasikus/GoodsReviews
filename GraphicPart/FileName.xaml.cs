@@ -44,13 +44,13 @@ namespace GraphicPart
         /// <returns></returns>
         private bool IsNameExist(string name)
         {
-            DirectoryInfo dir = new DirectoryInfo("DBS");
+            DirectoryInfo dir = new DirectoryInfo("../../../Resources/DBS");
             FileInfo[] files = dir.GetFiles();
             List<string> names = new List<string>();
             for (int i = 0; i < files.Length; i++)
                 names.Add(files[i].Name);
             
-            if (names.IndexOf(name) == -1)
+            if (names.IndexOf(name+".dbs") == -1)
             {
                 return false;
             }
@@ -77,7 +77,7 @@ namespace GraphicPart
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Все изменения будут потеряны. Вы действительно хотите возвратиться на стартовую страницу?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Все изменения будут потеряны. Вы действительно хотите возвратиться на стартовую страницу?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 ChooseFile chf = new ChooseFile();
                 chf.Show();
