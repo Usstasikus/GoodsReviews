@@ -69,5 +69,6 @@ namespace GraphicPart
             TextBox_Output.SelectionStart = TextBox_Output.Text.Length;
             TextBox_Output.ScrollToEnd();
         }
+        
     }
 }

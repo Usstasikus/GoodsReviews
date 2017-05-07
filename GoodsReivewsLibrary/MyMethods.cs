@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -261,7 +262,7 @@ namespace GoodsReivewsLibrary
         {
             SqlConnection sqlConnection = new SqlConnection(connectionString);
             sqlConnection.Open();
-            string queryString = String.Format("SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{0}'", table);
+            string queryString = String.Format("SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{0}'", table);
             SqlCommand sqlCommand = new SqlCommand(queryString, sqlConnection);
             SqlDataReader rd = sqlCommand.ExecuteReader();
             List<string[]> not_nullable_fields = new List<string[]>();
@@ -269,9 +270,12 @@ namespace GoodsReivewsLibrary
             {
                 while (rd.Read())
                 {
-                    if (rd.GetString(2) == "NO")
+                    string test = null;
+                    try { test = rd.GetString(3); }
+                    catch (SqlNullValueException) {}
+                    if (rd.GetString(2) == "NO" && test == null)
                         not_nullable_fields.Add(new string[] { rd.GetString(0), rd.GetString(1) });
-                }
+                    }
                 rd.Close();
                 not_nullable_fields.Sort(delegate (string[] x, string[] y)
                 {

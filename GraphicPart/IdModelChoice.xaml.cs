@@ -1,7 +1,9 @@
 ﻿using GoodsReivewsLibrary;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -88,6 +90,20 @@ namespace GraphicPart
             {
                 NotNullableFields nnf = new NotNullableFields(_not_nullable_fields, _fields);
                 nnf.Show();
+                Close();
+            }
+            else
+            {
+                BinaryFormatter bin_formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + _fields.FileName + ".dbs", FileMode.Create))
+                {
+                    bin_formatter.Serialize(fs, _fields);
+                }
+                using (FileStream fs = new FileStream(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt", FileMode.Create))
+                {
+                }
+                Action act = new Action(_fields);
+                act.Show();
                 Close();
             }
         }

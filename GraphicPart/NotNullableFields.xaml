@@ -8,14 +8,13 @@
         Title="Настройка БД" Height="400" Width="550" MaxHeight="400" MinHeight="400" MaxWidth="550" MinWidth="550">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" HorizontalAlignment="Center" Opacity="0.55"
-                 Height="Auto" TextAlignment="Center" TextWrapping="Wrap" Text ="Мы нашли у Вас поля, которые не могут принимать NULL. 
-                   Определите значения, которые будут им присвоены" VerticalAlignment="Bottom" Width="378" />
+                 Height="Auto" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="378" ><Run Text="Мы нашли у Вас поля, которые не могут принимать "/><LineBreak/><Run Text="NULL"/><Run Text=","/><Run Text=" "/><Run Text="без значений по умолчанию"/><Run Text=". "/><LineBreak/><Run Text="Определите значения, которые будут им присвоены"/><Run Text="."/></TextBlock>
 
         <GroupBox x:Name="groupBox" Header="Поля" HorizontalAlignment="Center" Height="Auto" MaxHeight="250" Grid.Row="1"
                   VerticalAlignment="Center" Width="400">

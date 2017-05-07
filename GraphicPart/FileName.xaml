@@ -22,7 +22,7 @@
         <Button x:Name="Next" Grid.Row="2" Content="Далее" HorizontalAlignment="Right" 
                 VerticalAlignment="Center" Width="75" IsEnabled="False" Click="Next_Click" IsDefault="True" Margin="0,18,20,17"/>
         <Button x:Name="Cancel" Grid.Row="2" Content="Отменить" HorizontalAlignment="Right" 
-            VerticalAlignment="Center" Width="75" IsDefault="True" Margin="0,18,100,17" Click="Cancel_Click"/>
+            VerticalAlignment="Center" Width="75" Margin="0,18,100,17" Click="Cancel_Click"/>
 
 
     </Grid>
