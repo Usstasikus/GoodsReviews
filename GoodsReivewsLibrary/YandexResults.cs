@@ -8,9 +8,19 @@ using System.Threading.Tasks;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс ответов Яндекс Маркета
+    /// </summary>
     public class YandexResults
     {
+        /// <summary>
+        /// id
+        /// </summary>
         string _id;
+
+        /// <summary>
+        /// Наименование
+        /// </summary>
         string _name;
 
         public YandexResults(string id, string name)

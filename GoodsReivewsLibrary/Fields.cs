@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс настроек полей БД для работы с алгоритмом записи комментариев
+    /// </summary>
     [Serializable]
     public class Fields
     {
@@ -64,8 +67,14 @@ namespace GoodsReivewsLibrary
         /// </summary>
         public string GoodsNameFrom { get; set; }
 
-        public List<KnownField> ya_fields;// список полей, известных Яндексу
+        /// <summary>
+        /// Список полей, известных Яндексу
+        /// </summary>
+        public List<KnownField> ya_fields;
 
+        /// <summary>
+        ///  Список полей, не изсвестных Яндексу
+        /// </summary>
         public List<UnknownField> unknown_fields;// список полей, не изсвестных Яндексу
         
         public Fields()

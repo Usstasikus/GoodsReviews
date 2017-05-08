@@ -8,6 +8,9 @@ using System.Text;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс для работы с отзывами о товарах
+    /// </summary>
     public class ModelReview
     {
         /// <summary>
@@ -40,7 +43,14 @@ namespace GoodsReivewsLibrary
         /// </summary>
         public string Contra { get; set; }
 
+        /// <summary>
+        /// Количество согласных
+        /// </summary>
         public int Agree { get; set; }
+
+        /// <summary>
+        /// Количество несогласных
+        /// </summary>
         public int Reject { get; set; }
 
         public ModelReview(int grade, string text, string pro, string contra, DateTime date, string author, int agree, int reject)

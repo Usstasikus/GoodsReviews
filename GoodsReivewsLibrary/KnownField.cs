@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс полей, известных Яндекс Маркету
+    /// </summary>
     [Serializable]
     public class KnownField
     {

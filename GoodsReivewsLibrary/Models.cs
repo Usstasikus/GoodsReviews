@@ -9,10 +9,23 @@ using System.Threading.Tasks;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс моделей Яндекс Маркета
+    /// </summary>
     public class Models : YandexResults
     {
         string _category_id, _rating, _reviews_count,
             _vendor_id;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">ID модели</param>
+        /// <param name="name">Наименование модели</param>
+        /// <param name="category_id">Категория</param>
+        /// <param name="rating">Рейтинг</param>
+        /// <param name="reviews_count">Количество отзывов</param>
+        /// <param name="vendor_id">Идентификатор производителя</param>
         public Models(string id, string name, string category_id,
             string rating, string reviews_count, string vendor_id) : base(id, name)
         {
@@ -22,6 +35,12 @@ namespace GoodsReivewsLibrary
             _vendor_id = vendor_id;
         }
 
+        /// <summary>
+        /// Возвращает список моделей по данному url
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static List<Models> ListForm(string url, string key)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -46,6 +65,9 @@ namespace GoodsReivewsLibrary
             return ret;
         }
         #region Properties
+        /// <summary>
+        /// id категории
+        /// </summary>
         public string CategoryId
         {
             get
@@ -54,6 +76,9 @@ namespace GoodsReivewsLibrary
             }
         }
 
+        /// <summary>
+        /// Рейтинг модели
+        /// </summary>
         public string Rating
         {
             get
@@ -62,6 +87,9 @@ namespace GoodsReivewsLibrary
             }
         }
 
+        /// <summary>
+        /// Количество отзывов
+        /// </summary>
         public int ReviewsCount
         {
             get
@@ -74,6 +102,10 @@ namespace GoodsReivewsLibrary
                 return num;
             }
         }
+
+        /// <summary>
+        /// Идентификатор производителя
+        /// </summary>
         public string VendorId
         {
             get

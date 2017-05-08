@@ -8,7 +8,7 @@ using GoodsReivewsLibrary;
 using System.Xml.Linq;
 using System.Xml;
 
-namespace GoodsReviews
+namespace Server
 {
 
     class Program
@@ -323,14 +323,14 @@ namespace GoodsReviews
                         {
                             queryString = string.Format(@"INSERT INTO [dbo].[GoodsOpinion] ([GoodsID], [Mark], [MarkQuality], [MarkPrice], [MarkUsability], [UsageExperienceInMonths],
                             [_date], [UsefulCount], [NotUsefulCount], [CreationDateTime], [Comment], [CommentAdvantages], 
-                            [CommentDisadvantages], [ClientIP], [ClientProxy], [SortCode], [UserFullName]) VALUES ({0}, 0, 0, 0, 0, {1}, {1}, {6}, {7}, '{2}','{3}','{4}','{5}', '', '', 0, '{8}')", 
-                            matched_id[i][1], mr[pos].Grade+3, mr[pos].Date, mr[pos].Text, mr[pos].Pro, mr[pos].Contra, mr[pos].Agree, mr[pos].Reject, mr[pos].AuthorName);
-                            
-                                sqlCommand = new SqlCommand(queryString, sqlConnection);
-                                rd = sqlCommand.ExecuteReader();
-                                rd.Close();
-                                lg.added_count++;
-                            
+                            [CommentDisadvantages], [ClientIP], [ClientProxy], [SortCode], [UserFullName]) VALUES ({0}, 0, 0, 0, 0, {1}, {1}, {6}, {7}, '{2}','{3}','{4}','{5}', '', '', 0, '{8}')",
+                            matched_id[i][1], mr[pos].Grade + 3, mr[pos].Date, mr[pos].Text, mr[pos].Pro, mr[pos].Contra, mr[pos].Agree, mr[pos].Reject, mr[pos].AuthorName);
+
+                            sqlCommand = new SqlCommand(queryString, sqlConnection);
+                            rd = sqlCommand.ExecuteReader();
+                            rd.Close();
+                            lg.added_count++;
+
                             seen_count++;
                         }
 
@@ -381,9 +381,9 @@ namespace GoodsReviews
                     XDocument xdoc = XDocument.Load(new StreamReader(ya_response.GetResponseStream()));
                     string ya_response_string = XmlToString(xdoc);
                     buffer = System.Text.Encoding.UTF8.GetBytes(ya_response_string);
-                    
+
                     response.ContentLength64 = buffer.Length;
-                    
+
                 }
                 catch (WebException we)
                 {
@@ -394,7 +394,7 @@ namespace GoodsReviews
                     response.StatusCode = (int)HttpStatusCode.Forbidden;
                     response.ContentLength64 = buffer.Length;
                     //response.Close();
-                    
+
                 }
 
                 Stream output = response.OutputStream;

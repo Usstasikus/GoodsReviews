@@ -11,8 +11,16 @@ using System.Windows.Controls;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс методов для работы с БД
+    /// </summary>
     public static class MyMethods
     {
+        /// <summary>
+        /// Формирует список БД на данном сервере
+        /// </summary>
+        /// <param name="data_source">Адрес сервера</param>
+        /// <returns>Список БД на данном сервере</returns>
         public static List<string> GetDBList(string data_source)
         {
             List<string> dbs = new List<string>();
@@ -46,10 +54,10 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Возвращает список таблиц в данной БД
+        /// Формирует список таблиц в данной БД
         /// </summary>
-        /// <param name="connectionString"></param>
-        /// <returns></returns>
+        /// <param name="connectionString">Строка подключения</param>
+        /// <returns>Список таблиц в данной БД</returns>
         public static List<string> GetTablesList(string connectionString)
         {
             SqlConnection sqlConnection = new SqlConnection(connectionString);
@@ -82,11 +90,11 @@ namespace GoodsReivewsLibrary
 
 
         /// <summary>
-        /// Возвращает список полей в данной таблице
+        /// Формирует список полей в данной таблице
         /// </summary>
-        /// <param name="connectionString"></param>
-        /// <param name="table_name"></param>
-        /// <returns></returns>
+        /// <param name="connectionString">Строка подключения</param>
+        /// <param name="table_name">Имя таблицы</param>
+        /// <returns>Список полей в данной таблице</returns>
         public static List<string> GetFieldsList(string connectionString, string table_name)
         {
             SqlConnection sqlConnection = new SqlConnection(connectionString);
@@ -117,9 +125,9 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Возвращает список полей, предоставляемых Яндекс Маркетом
+        /// Формирует список полей, предоставляемых Яндекс Маркетом
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Список полей, предоставляемых Яндекс Маркетом</returns>
         public static List<string> GetYandexFields()
         {
             List<string> ya_fields = new List<string>();
@@ -136,10 +144,10 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Возвращает английский аналог русского названия поля, предоставляемого Яндекс Маркетом 
+        /// Переводит называние параметра Яндекс Маркета с русского на английский
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">Наименование параметра</param>
+        /// <returns>Английский аналог русского названия поля, предоставляемого Яндекс Маркетом </returns>
         public static string TurnRussianYandexFieldNameToEnglish(string name)
         {
             switch (name)
@@ -158,10 +166,10 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Возвращает русский аналог английского названия поля, предоставляемого Яндекс Маркетом 
+        /// Переводит называние параметра Яндекс Маркета с английского на русский 
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">Наименование параметра</param>
+        /// <returns>Русский аналог английского названия поля, предоставляемого Яндекс Маркетом</returns>
         public static string TurnEnglishYandexFieldNameToRussian(string name)
         {
             switch (name)
@@ -182,8 +190,8 @@ namespace GoodsReivewsLibrary
         /// <summary>
         /// Заполняет ComboBox элементами из списка
         /// </summary>
-        /// <param name="cmb"></param>
-        /// <param name="values"></param>
+        /// <param name="cmb">Ссылка на ComboBox</param>
+        /// <param name="values">Список элементов для заполнения</param>
         public static void ComboBoxFill(ComboBox cmb, List<string> values)
         {
             cmb.IsEnabled = true;
@@ -198,8 +206,8 @@ namespace GoodsReivewsLibrary
         /// <summary>
         /// Удаляет из списка массива строк тот элемент, у которого первое значение массива совпадает с данной строкой
         /// </summary>
-        /// <param name="list"></param>
-        /// <param name="val"></param>
+        /// <param name="list">Ссылка на список строк</param>
+        /// <param name="val">Значение, которое нужно удалить</param>
         public static void RemoveByFirstValue(List<string[]> list, string val)
         {
             for (int i = 0; i < list.Count; i++)
@@ -213,8 +221,8 @@ namespace GoodsReivewsLibrary
         }/// <summary>
          /// Удаляет из списка KnownField тот элемент, у которого значение TableElementName совпадает с данной строкой
          /// </summary>
-         /// <param name="list"></param>
-         /// <param name="val"></param>
+         /// <param name="list">Ссылка на список полей параметров, известных Яндекс Маркету</param>
+         /// <param name="val">Значение, которое нужно удалить</param>
         public static void RemoveByFirstValue(List<KnownField> list, string val)
         {
             for (int i = 0; i < list.Count; i++)
@@ -228,11 +236,11 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Возвращает словарь из поля/типа
+        /// Извлекает данные о типе поля
         /// </summary>
-        /// <param name="connectionString"></param>
-        /// <param name="table"></param>
-        /// <returns></returns>
+        /// <param name="connectionString">Строка подключения</param>
+        /// <param name="table">Имя таблица</param>
+        /// <returns>Возвращает словарь из поля/типа</returns>
         public static Dictionary<string, string> GetFieldsType(string connectionString, string table)
         {
             SqlConnection sqlConnection = new SqlConnection(connectionString);
@@ -253,10 +261,10 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Первый индекс - имя поля, второй - тип поля
+        /// Извлекает поля, указанной таблицы, не принимающие значение NULL, по указанной строке подключения
         /// </summary>
-        /// <param name="connectionString"></param>
-        /// <param name="table"></param>
+        /// <param name="connectionString">Строка подключения</param>
+        /// <param name="table">Имя таблицы</param>
         /// <returns>Cписок всех полей в таблице, не принимающих значение NULL</returns>
         public static List<string[]> GetNotNullableFields(string connectionString, string table)
         {
@@ -285,42 +293,12 @@ namespace GoodsReivewsLibrary
             return not_nullable_fields;
         }
 
-        public static void DictionaryAdd(Dictionary<string, string> pairs, string key, string value)
-        {
-            try
-            {
-                pairs.Add(key, value);
-            }
-            catch (ArgumentException)
-            {
-                pairs.Remove(key);
-                pairs.Add(key, value);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Неизвестная ошибка");
-            }
-        }
-
-        public static void AddToList(List<UnknownField> unknown_fields, UnknownField uf)
-        {
-            for (int i = 0; i < unknown_fields.Count; i++)
-            {
-                if (unknown_fields[i].FieldName == uf.FieldName)
-                {
-                    unknown_fields[i] = uf;
-                    return;
-                }
-            }
-            unknown_fields.Add(uf);
-        }
-
         /// <summary>
-        /// 
+        /// Находит TextBox с совпадающим именем в указанном родительском контроле
         /// </summary>
-        /// <param name="parent"></param>
-        /// <param name="name"></param>
-        /// <returns>Возвращает ссылку на TextBox с совпадающим именем</returns>
+        /// <param name="parent">Контрол, в котором находится TextBox</param>
+        /// <param name="name">Имя TextBox</param>
+        /// <returns>Ссылку на TextBox с совпадающим именем</returns>
         public static TextBox GetTextBoxByName(StackPanel parent, string name)
         {
             for (int i = 0; i < parent.Children.Count; i++)
@@ -342,11 +320,11 @@ namespace GoodsReivewsLibrary
 
 
         /// <summary>
-        /// 
+        /// Находит CheckBox с совпадающим именем в указанном родительском контроле 
         /// </summary>
-        /// <param name="parent"></param>
-        /// <param name="name"></param>
-        /// <returns>Возвращает ссылку на CheckBox с совпадающим именем</returns>
+        /// <param name="parent">Контрол, в котором находится CheckBox</param>
+        /// <param name="name">Имя CheckBox</param>
+        /// <returns>Ссылку на CheckBox с совпадающим именем</returns>
         public static CheckBox GetCheckBoxByName(StackPanel parent, string name)
         {
             for (int i = 0; i < parent.Children.Count; i++)
@@ -367,10 +345,10 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// 
+        /// Находит ComboBox с совпадающим именем в указанном родительском контроле
         /// </summary>
-        /// <param name="parent"></param>
-        /// <param name="name"></param>
+        /// <param name="parent">Контрол, в котором находится ComboBox</param>
+        /// <param name="name">Имя ComboBox</param>
         /// <returns>Возвращает ссылку на ComboBox с совпадающим именем</returns>
         public static ComboBox GetComboBoxByName(StackPanel parent, string name)
         {
@@ -392,10 +370,10 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Возвращает номер элемента по его имени
+        /// Формирует номер элемента по его имени
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">Имя элемента</param>
+        /// <returns>Номер элемента по его имени</returns>
         public static string GetElementID(string name)
         {
             int i;
@@ -412,10 +390,10 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Возвращает номер TextBox
+        /// Формирует номер TextBox
         /// </summary>
-        /// <param name="tb"></param>
-        /// <returns></returns>
+        /// <param name="tb">Ссылка на TextBox</param>
+        /// <returns>Номер TextBox</returns>
         public static string GetElementID(TextBox tb)
         {
             string name = tb.Name;
@@ -423,10 +401,10 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Возвращает номер CheckBox
+        /// Формирует номер CheckBox
         /// </summary>
-        /// <param name="chb"></param>
-        /// <returns></returns>
+        /// <param name="chb">Ссылка на CheckBox</param>
+        /// <returns>Номер CheckBox</returns>
         public static string GetElementID(CheckBox chb)
         {
             string name = chb.Name;
@@ -434,10 +412,10 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Возвращает номер ComboBox
+        /// Формирует номер ComboBox
         /// </summary>
-        /// <param name="cmb"></param>
-        /// <returns></returns>
+        /// <param name="cmb">Ссылка на ComboBox</param>
+        /// <returns>Номер ComboBox</returns>
         public static string GetElementID(ComboBox cmb)
         {
             string name = cmb.Name;

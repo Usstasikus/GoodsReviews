@@ -15,6 +15,9 @@ using System.Threading;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс с методами для получения и записи комментариев из Яндекс Маркета
+    /// </summary>
     public class Actions
     {
         Fields _fields;
@@ -40,9 +43,16 @@ namespace GoodsReivewsLibrary
             seen_count = 0;
             url = String.Format("http://localhost:1553/https://api.content.market.yandex.ru/v1/");   //category/{0}/models.xml?geo_id=225&count=30&&page={1}");
             key = "c9rSUIhhM7SRQzeEXaYbpEQknRaVMq";
-            string[] last_pos = File.ReadAllLines(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
-            lg = new LogFile(last_pos);
+            lg = new LogFile(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
         }
+
+        /// <summary>
+        /// Запись комментариев из Яндекс Маркета в БД сервера
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="key"></param>
+        /// <param name="lg"></param>
+        /// <param name="limit"></param>
         void Yandex_Goods_Fill(string url, string key, LogFile lg, int limit)
         {
             stopWatch.Start();
@@ -59,6 +69,15 @@ namespace GoodsReivewsLibrary
             Subcategory_View(lg, category_list, url, key, limit, ref query_count);
         }
 
+        /// <summary>
+        /// Просмотр подкатегорий
+        /// </summary>
+        /// <param name="lg"></param>
+        /// <param name="category_list"></param>
+        /// <param name="url"></param>
+        /// <param name="key"></param>
+        /// <param name="limit"></param>
+        /// <param name="query_count"></param>
         void Subcategory_View(LogFile lg, List<Category> category_list, string url, string key, int limit, ref int query_count)
         {
             lg.Write();
@@ -81,6 +100,15 @@ namespace GoodsReivewsLibrary
             }
         }
 
+        /// <summary>
+        /// Просмотр моделей в подкатегории
+        /// </summary>
+        /// <param name="lg"></param>
+        /// <param name="subcategory_list"></param>
+        /// <param name="url"></param>
+        /// <param name="key"></param>
+        /// <param name="limit"></param>
+        /// <param name="query_count"></param>
         void Models_View(LogFile lg, List<Category> subcategory_list, string url, string key, int limit, ref int query_count)
         {
             if (query_count >= limit)
@@ -197,11 +225,23 @@ namespace GoodsReivewsLibrary
 
             return query_string;
         }
+
+        /// <summary>
+        /// Формирование сообщения при завершении работы программы
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         private string FormMessage(string message)
         {
             return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nТаблица была дополнена {2} {4}."
                     , dt, stopWatch.Elapsed, lg.added_count, message, target);
         }
+
+        /// <summary>
+        /// Формирование сообщения при завершении работы программы
+        /// </summary>
+        /// <param name="we"></param>
+        /// <returns></returns>
         private string FormMessage(WebException we)
         {
             try
@@ -218,15 +258,24 @@ namespace GoodsReivewsLibrary
             }
             
         }
+
+        /// <summary>
+        /// Формирование сообщения при завершении работы программы
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private string FormMessage(Exception e)
         {
             return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nТаблица была дополнена {2} {4}."
                     , dt, stopWatch.Elapsed, lg.added_count, e.Message, target);
         }
+
         /// <summary>
-        /// Загрузка комментариев
+        /// Запись комментариев в БД пользователя
         /// </summary>
-        /// <param name="tb">TextBox вывода</param>
+        /// <param name="progress"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public string LoadNewReviews(IProgress<string> progress, CancellationToken token)//(TextForControl text)
         {
             url = String.Format("http://localhost:1553/https://api.content.market.yandex.ru/v1/");

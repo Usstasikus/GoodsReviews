@@ -10,21 +10,76 @@ using System.Xml.Linq;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс для работы с лог-файлом
+    /// </summary>
     public class LogFile
     {
+        string _path;
+
+        /// <summary>
+        /// Текущее значение номера категории
+        /// </summary>
         public int log_category_number { get; set; }
+
+        /// <summary>
+        /// Текущее значение номера подкатегории
+        /// </summary>
         public int log_subcategory_number { get; set; }
+
+        /// <summary>
+        /// Текущее значение номера модели
+        /// </summary>
         public int log_model_number { get; set; }
+
+        /// <summary>
+        /// Текущее значение номера страницы подкатегории
+        /// </summary>
         public int log_page_number { get; set; }
+
+        /// <summary>
+        /// Текущее значение номера страницы отзывов
+        /// </summary>
         public int log_page_reviews_number { get; set; }
+
+        /// <summary>
+        /// Последнее значение номера категории
+        /// </summary>
         public int exit_category_number { get; set; }
+
+        /// <summary>
+        /// Последнее значение номера подкатегории
+        /// </summary>
         public int exit_subcategory_number { get; set; }
+
+        /// <summary>
+        /// Последнее значение номера модели
+        /// </summary>
         public int exit_model_number { get; set; }
+
+        /// <summary>
+        /// Последнее значение номера страницы подкатегории
+        /// </summary>
         public int exit_page_number { get; set; }
+
+        /// <summary>
+        /// Последнее значение номера страницы отзывов
+        /// </summary>
         public int exit_page_reviews_number { get; set; }
+
+        /// <summary>
+        /// Количество добавленных элементов
+        /// </summary>
         public int added_count { get; set; }
-        public LogFile(string[] last_pos)
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path">Путь к файлу, с последними позициями</param>
+        public LogFile(string path)
         {
+            _path = path;
+            string[] last_pos = File.ReadAllLines(path);
             log_category_number = 0; log_subcategory_number = 0; log_page_number = 1; log_model_number = 0; log_page_reviews_number = 1;
             if (last_pos.Length != 0)
             {
@@ -50,9 +105,12 @@ namespace GoodsReivewsLibrary
             }
         }
 
+        /// <summary>
+        /// Запись последних позиций в файл
+        /// </summary>
         public void Write()
         {
-            FileStream last_pos_file = new FileStream(@"..\..\..\Resources\last_pos.txt", FileMode.Create);//файл с записью последних координат
+            FileStream last_pos_file = new FileStream(_path, FileMode.Create);//файл с записью последних координат
             using (StreamWriter writer = new StreamWriter(last_pos_file))
             {
                 writer.WriteLine(exit_category_number);
@@ -64,6 +122,13 @@ namespace GoodsReivewsLibrary
 
         }
 
+        /// <summary>
+        /// Запись окончания работы алгоритма чтения/записи комментариев 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="dt"></param>
+        /// <param name="stopWatch"></param>
+        /// <param name="target"></param>
         public void End(string message, DateTime dt, Stopwatch stopWatch, string target)
         {
             Write();
@@ -74,7 +139,14 @@ namespace GoodsReivewsLibrary
                     , dt, stopWatch.Elapsed, added_count, message, target);
             }
         }
-        
+
+        /// <summary>
+        /// Запись окончания работы алгоритма чтения/записи комментариев 
+        /// </summary>
+        /// <param name="we"></param>
+        /// <param name="dt"></param>
+        /// <param name="stopWatch"></param>
+        /// <param name="target"></param>
         public void End(WebException we, DateTime dt, Stopwatch stopWatch, string target)
         {
             Write();

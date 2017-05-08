@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс полей, неизвестных Яндекс Маркету
+    /// </summary>
     [Serializable]
     public class UnknownField
     {

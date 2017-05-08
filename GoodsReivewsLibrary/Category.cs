@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace GoodsReivewsLibrary
 {
+    /// <summary>
+    /// Класс категорий товаров Яндекс Маркета
+    /// </summary>
     public class Category: YandexResults
     {
         string _child_count, _models_num, _parent_id;
@@ -21,10 +24,16 @@ namespace GoodsReivewsLibrary
             _parent_id = parent_id;
         }
 
+        /// <summary>
+        /// Возвращает список категорий товаров Яндекс Маркета
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static List<Category> ListForm(string url, string key)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Headers.Add("Authorization: c9rSUIhhM7SRQzeEXaYbpEQknRaVMq");
+            request.Headers.Add(String.Format("Authorization: {0}",key));
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             List<Category> ret = new List<Category>();
             XDocument xdoc = XDocument.Load(new StreamReader(response.GetResponseStream()));
@@ -44,6 +53,9 @@ namespace GoodsReivewsLibrary
 
 
         #region Properties
+        /// <summary>
+        /// Возвращает значение количества подкатегорий категории
+        /// </summary>
         public int ChildCount
         {
             get
@@ -57,6 +69,9 @@ namespace GoodsReivewsLibrary
             }
         }
         
+        /// <summary>
+        /// Возвращает значение количества товаров в категории
+        /// </summary>
         public int ModelsNum
         {
             get
@@ -70,6 +85,9 @@ namespace GoodsReivewsLibrary
             }
         }
 
+        /// <summary>
+        /// Возвращает id родителя
+        /// </summary>
         public string ParentId
         {
             get
