@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="6da4477a-fb41-4c21-bc75-561c05c86682" name="GoodsReviews" linkedPackageId="dd3551bd-b6d0-4207-b75b-1ac00a5c99a9" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="34007fb0-da17-45bd-86b5-f3b7bd35dc8d">
+      <profileInstance Id="82898bc2-c0ad-4a47-a08f-337c319c3c08" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="89f87f07-57b3-4505-9a50-fcc77e920e98">
+      <profileInstance Id="222f9580-3298-432d-b90f-bc432a74a039" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="ecb9444e-117d-49cc-be8c-a2f17f83a70b" name="GoodsReviews" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="6eb10308-d7b6-4888-9e9d-b2f4ff2e3af1" />
+        <nodes>
+          <initialNode Id="7377086c-9dfe-43a2-a367-f97bbc2a2c4e" name="Initial1" isLeaf="false">
+            <elementDefinition Id="e76618d4-1c9d-4aaf-ac93-b065ed028d7b" />
+            <objectFlowTargets>
+              <objectFlow Id="c0894b43-0111-4412-9bcd-99d4b3a513aa" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="a640f111-dbec-4860-8bf4-b2ab76196f20" LastKnownName="Пользователь хочет создать новый файл?" />
+                <elementDefinition Id="f6c82f56-cb37-4a6f-b9c0-5a1144913ef8" />
+              </objectFlow>
+            </objectFlowTargets>
+          </initialNode>
+          <objectNode Id="a640f111-dbec-4860-8bf4-b2ab76196f20" name="Пользователь хочет создать новый файл?" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="64bcce30-6662-4ea5-a2d4-b48e9b18fc36" />
+            <objectFlowTargets>
+              <objectFlow Id="4653a5a9-e4df-45fe-afb0-d653860242c7" guard="Да" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="d9f55048-a462-4919-9368-5817cb129395" LastKnownName="Создать новый файл" />
+                <elementDefinition Id="d0d7b8a9-17b0-4c49-a6d2-6164d62f7835" />
+              </objectFlow>
+              <objectFlow Id="3b5c7ca8-7bfa-4b02-a082-f86f7112cf52" guard="Нет" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="b8eee0f4-7002-43c3-aa5e-dc40ef0cb156" LastKnownName="Выбор действия с существующим файлом" />
+                <elementDefinition Id="e8c298a3-1485-4f7a-aca8-6a0bf8ef84ca" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="22c1843e-e01e-44ea-b646-96e336e94d7d" name="2147483647" value="2147483647">
+                <elementDefinition Id="5c5cecb2-6e2e-4f28-8341-77be8c1de846" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="d9f55048-a462-4919-9368-5817cb129395" name="Создать новый файл" isLeaf="false">
+            <elementDefinition Id="f8a8a970-1b98-4f37-a38b-476b9bdac80b" />
+            <flowNodeTargets>
+              <controlFlow Id="43b15152-c2a4-4cd5-9195-65b3744c4e07" isLeaf="false">
+                <opaqueActionMoniker Id="a9781200-47ea-44ae-8ccd-2de9f98da4fa" LastKnownName="Создание и сохранение файла" />
+                <elementDefinition Id="1a18db80-eab6-4a5e-b431-b4ec94b3e7be" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="b8eee0f4-7002-43c3-aa5e-dc40ef0cb156" name="Выбор действия с существующим файлом" isLeaf="false">
+            <elementDefinition Id="40ca49f3-2cba-4524-bf2b-af15d4a3440c" />
+            <flowNodeTargets>
+              <controlFlow Id="e16d022f-4cea-4466-8ed9-bdda58aa758e" isLeaf="false">
+                <opaqueActionMoniker Id="16b93a30-7d14-495f-8aac-f112b47107dd" LastKnownName="Удалить" />
+                <elementDefinition Id="59c8ed32-a29c-4f78-a554-4605dd48de63" />
+              </controlFlow>
+              <controlFlow Id="272929c1-85b1-4a65-91d8-eb1120563834" isLeaf="false">
+                <opaqueActionMoniker Id="ab7f73de-433a-4db4-a38a-a4867156d08b" LastKnownName="Редактировать" />
+                <elementDefinition Id="24e9dd00-6a72-446c-95d6-dc82912c348f" />
+              </controlFlow>
+              <controlFlow Id="38fda07f-09bd-4ea9-9ef0-b41bc5a1a105" isLeaf="false">
+                <opaqueActionMoniker Id="e71ecb41-4463-4dba-9283-b928a2b49383" LastKnownName="Открыть" />
+                <elementDefinition Id="bc1df32f-aa9d-461d-a2c4-a536e272d405" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e71ecb41-4463-4dba-9283-b928a2b49383" name="Открыть" isLeaf="false">
+            <elementDefinition Id="2d9b91b2-ea18-4ae3-9f76-5f651c95d16a" />
+            <objectFlowTargets>
+              <objectFlow Id="121eaa4c-fee8-43d8-a5b1-cce3a6be837d" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="a86585b3-717b-4ead-bd9a-e91cd3367eff" LastKnownName="Пользователь хочет записать комментарии?" />
+                <elementDefinition Id="95fc8300-c164-4784-aae3-e1e5753da009" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction Id="ab7f73de-433a-4db4-a38a-a4867156d08b" name="Редактировать" isLeaf="false">
+            <elementDefinition Id="e13d38c1-5e9d-40ac-a457-63294be41581" />
+            <flowNodeTargets>
+              <controlFlow Id="4b596b81-b05f-4fad-ad9c-7e6c84b1ec40" isLeaf="false">
+                <opaqueActionMoniker Id="f07c9b3c-9287-4ca5-81d9-f1fd7e734dec" LastKnownName="Редкатирование и сохранение файла" />
+                <elementDefinition Id="28fa98d1-45d9-49e6-a8fb-13a0f14a1aea" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="16b93a30-7d14-495f-8aac-f112b47107dd" name="Удалить" isLeaf="false">
+            <elementDefinition Id="e6bbadb3-70fe-416e-b3c0-bd08151d85af" />
+            <objectFlowTargets>
+              <objectFlow Id="6ef5664c-76e0-4410-a389-57fb9a8b04fe" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="a640f111-dbec-4860-8bf4-b2ab76196f20" LastKnownName="Пользователь хочет создать новый файл?" />
+                <elementDefinition Id="b98dc6d7-c5dd-4588-8571-71afbcac4901" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction Id="f07c9b3c-9287-4ca5-81d9-f1fd7e734dec" name="Редкатирование и сохранение файла" isLeaf="false">
+            <elementDefinition Id="11760b37-92c0-442b-a14e-6c2d96c5980e" />
+            <objectFlowTargets>
+              <objectFlow Id="13fd4c6d-0408-4745-ab1e-e69522e3089d" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="a86585b3-717b-4ead-bd9a-e91cd3367eff" LastKnownName="Пользователь хочет записать комментарии?" />
+                <elementDefinition Id="bad4b0d3-2ebb-41d2-b336-634fe1dc0a3e" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction Id="a9781200-47ea-44ae-8ccd-2de9f98da4fa" name="Создание и сохранение файла" isLeaf="false">
+            <elementDefinition Id="7dd5a7cd-072d-4079-946e-00bcf666a7ae" />
+            <objectFlowTargets>
+              <objectFlow Id="3dfd1642-5fed-4774-96ee-f72dfd836bd7" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="a86585b3-717b-4ead-bd9a-e91cd3367eff" LastKnownName="Пользователь хочет записать комментарии?" />
+                <elementDefinition Id="b924cb29-63d1-4dd0-84df-d7961d2165f0" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode Id="a86585b3-717b-4ead-bd9a-e91cd3367eff" name="Пользователь хочет записать комментарии?" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="24e95970-2d14-4d51-b44f-bb50b153c228" />
+            <objectFlowTargets>
+              <objectFlow Id="e2e93cf1-5321-4960-9747-6e22cd65daba" guard="Нет" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="1ce49d92-f4ec-4a06-9e2a-d4ca18fa4cc5" LastKnownName="Выход" />
+                <elementDefinition Id="654de0a0-8262-45e4-83d9-7583569ca286" />
+              </objectFlow>
+              <objectFlow Id="dd0cf2bd-627e-4a5a-8380-b975fef05d95" guard="Да" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="8edf882e-6916-48b9-87b3-93c9b1238c71" LastKnownName="Запись комментариев" />
+                <elementDefinition Id="bac9eebf-2d93-480d-99cc-1a35457f080d" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="d2141dba-d214-40d7-aeac-96172c783972" name="2147483647" value="2147483647">
+                <elementDefinition Id="14ed5d88-1b42-47a4-a460-625ec4559ee5" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="1ce49d92-f4ec-4a06-9e2a-d4ca18fa4cc5" name="Выход" isLeaf="false">
+            <elementDefinition Id="8560a58e-b377-4a69-a0e3-7a73918efebc" />
+          </opaqueAction>
+          <opaqueAction Id="8edf882e-6916-48b9-87b3-93c9b1238c71" name="Запись комментариев" isLeaf="false">
+            <elementDefinition Id="693af395-9f72-4979-b909-f5dd83553200" />
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="dd3551bd-b6d0-4207-b75b-1ac00a5c99a9" name="ModelingProject1">
+    <elementDefinition Id="bde8eaba-28d1-4e2d-ab8e-a8d2cd6d291a" />
+  </package>
+</activityRootModel>

@@ -15,8 +15,8 @@
     <!-- SHFB properties -->
     <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
-    <HtmlHelpName>Documentation1</HtmlHelpName>
-    <Language>en-US</Language>
+    <HtmlHelpName>Documentation</HtmlHelpName>
+    <Language>ru-RU</Language>
     <TransformComponentArguments>
       <Argument Key="logoFile" Value="Help.png" xmlns="" />
       <Argument Key="logoHeight" Value="" xmlns="" />
@@ -34,8 +34,20 @@
     </DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="GoodsReivewsLibrary" isDocumented="True">Библиотека, необходимая для работы программы</NamespaceSummaryItem>
-<NamespaceSummaryItem name="GraphicPart" isDocumented="True">Клиент-приложение</NamespaceSummaryItem>
-<NamespaceSummaryItem name="(global)" isDocumented="False" /></NamespaceSummaries>
+      <NamespaceSummaryItem name="GraphicPart" isDocumented="True">Клиент-приложение</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" />
+    </NamespaceSummaries>
+    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <MaximumGroupParts>2</MaximumGroupParts>
+    <NamespaceGrouping>False</NamespaceGrouping>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <PresentationStyle>VS2013</PresentationStyle>
+    <Preliminary>False</Preliminary>
+    <NamingMethod>Guid</NamingMethod>
+    <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->

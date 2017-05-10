@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="GoodsReviews">
+  <activityRootModelMoniker Id="6da4477a-fb41-4c21-bc75-561c05c86682" />
+  <nestedChildShapes>
+    <initialNodeShape Id="5386531a-f47d-491c-a210-10fbc6dc9bde" absoluteBounds="3.5, 0.75, 0.125, 0.125" customColor="89, 89, 89">
+      <initialNodeMoniker Id="7377086c-9dfe-43a2-a367-f97bbc2a2c4e" LastKnownName="Initial1" />
+    </initialNodeShape>
+    <objectNodeShape Id="ce6d0a59-46d6-49f0-a1ff-344ebcdb3b10" absoluteBounds="2.375, 1.375, 2.375, 0.375" customColor="White">
+      <objectNodeMoniker Id="a640f111-dbec-4860-8bf4-b2ab76196f20" LastKnownName="Пользователь хочет создать новый файл?" />
+    </objectNodeShape>
+    <objectFlowConnector edgePoints="[(3.5625 : 0.875); (3.5625 : 1.375)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="c0894b43-0111-4412-9bcd-99d4b3a513aa" />
+      <relativeChildShapes />
+      <nodes>
+        <initialNodeShapeMoniker Id="5386531a-f47d-491c-a210-10fbc6dc9bde" />
+        <objectNodeShapeMoniker Id="ce6d0a59-46d6-49f0-a1ff-344ebcdb3b10" />
+      </nodes>
+    </objectFlowConnector>
+    <actionShape Id="820c5eb1-d717-4dc1-bbab-9262149ce34f" absoluteBounds="1.75, 2.375, 1.125, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="d9f55048-a462-4919-9368-5817cb129395" LastKnownName="Создать новый файл" />
+    </actionShape>
+    <objectFlowConnector edgePoints="[(2.625 : 1.75); (2.625 : 2.375)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="4653a5a9-e4df-45fe-afb0-d653860242c7" />
+      <relativeChildShapes />
+      <nodes>
+        <objectNodeShapeMoniker Id="ce6d0a59-46d6-49f0-a1ff-344ebcdb3b10" />
+        <actionShapeMoniker Id="820c5eb1-d717-4dc1-bbab-9262149ce34f" />
+      </nodes>
+    </objectFlowConnector>
+    <actionShape Id="6576ae43-f276-487e-9037-18902f7f4530" absoluteBounds="4.625, 2.25, 1.125, 0.625" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="b8eee0f4-7002-43c3-aa5e-dc40ef0cb156" LastKnownName="Выбор действия с существующим файлом" />
+    </actionShape>
+    <objectFlowConnector edgePoints="[(4.6875 : 1.75); (4.6875 : 2.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="3b5c7ca8-7bfa-4b02-a082-f86f7112cf52" />
+      <relativeChildShapes />
+      <nodes>
+        <objectNodeShapeMoniker Id="ce6d0a59-46d6-49f0-a1ff-344ebcdb3b10" />
+        <actionShapeMoniker Id="6576ae43-f276-487e-9037-18902f7f4530" />
+      </nodes>
+    </objectFlowConnector>
+    <actionShape Id="43ef1e56-938c-4a91-9293-4cba6548402e" absoluteBounds="3.5, 3.25, 1.125, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="e71ecb41-4463-4dba-9283-b928a2b49383" LastKnownName="Открыть" />
+    </actionShape>
+    <actionShape Id="ae2bda35-ded3-49b2-a1f1-0a9f0a0ee13b" absoluteBounds="4.75, 3.25, 1.125, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="ab7f73de-433a-4db4-a38a-a4867156d08b" LastKnownName="Редактировать" />
+    </actionShape>
+    <actionShape Id="d7184da3-d829-4960-a485-28dbe090ebee" absoluteBounds="6, 3.25, 1.125, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="16b93a30-7d14-495f-8aac-f112b47107dd" LastKnownName="Удалить" />
+    </actionShape>
+    <controlFlowConnector edgePoints="[(5.75 : 2.5625); (6.5625 : 2.5625); (6.5625 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="e16d022f-4cea-4466-8ed9-bdda58aa758e" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="6576ae43-f276-487e-9037-18902f7f4530" />
+        <actionShapeMoniker Id="d7184da3-d829-4960-a485-28dbe090ebee" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(5.25 : 2.875); (5.25 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="272929c1-85b1-4a65-91d8-eb1120563834" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="6576ae43-f276-487e-9037-18902f7f4530" />
+        <actionShapeMoniker Id="ae2bda35-ded3-49b2-a1f1-0a9f0a0ee13b" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(4.625 : 2.5625); (4.03125 : 2.5625); (4.03125 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="38fda07f-09bd-4ea9-9ef0-b41bc5a1a105" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="6576ae43-f276-487e-9037-18902f7f4530" />
+        <actionShapeMoniker Id="43ef1e56-938c-4a91-9293-4cba6548402e" />
+      </nodes>
+    </controlFlowConnector>
+    <objectFlowConnector edgePoints="[(6.92916666666667 : 3.625); (6.92916666666667 : 3.89625); (7.5624975 : 3.89625); (7.5624975 : 1.5625); (4.75 : 1.5625)]" manuallyRouted="true" fixedFrom="Caller" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="6ef5664c-76e0-4410-a389-57fb9a8b04fe" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="d7184da3-d829-4960-a485-28dbe090ebee" />
+        <objectNodeShapeMoniker Id="ce6d0a59-46d6-49f0-a1ff-344ebcdb3b10" />
+      </nodes>
+    </objectFlowConnector>
+    <actionShape Id="3cb4d816-8c54-4b66-9bf5-9593571cdc88" absoluteBounds="4.75, 4, 1.125, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="f07c9b3c-9287-4ca5-81d9-f1fd7e734dec" LastKnownName="Редкатирование и сохранение файла" />
+    </actionShape>
+    <actionShape Id="023c9c34-c6c3-4906-b9d9-80162614a6bf" absoluteBounds="1.75, 3.25, 1.125, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="a9781200-47ea-44ae-8ccd-2de9f98da4fa" LastKnownName="Создание и сохранение файла" />
+    </actionShape>
+    <controlFlowConnector edgePoints="[(5.3125 : 3.625); (5.3125 : 4)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="4b596b81-b05f-4fad-ad9c-7e6c84b1ec40" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="ae2bda35-ded3-49b2-a1f1-0a9f0a0ee13b" />
+        <actionShapeMoniker Id="3cb4d816-8c54-4b66-9bf5-9593571cdc88" />
+      </nodes>
+    </controlFlowConnector>
+    <controlFlowConnector edgePoints="[(2.3125 : 2.75); (2.3125 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <controlFlowMoniker Id="43b15152-c2a4-4cd5-9195-65b3744c4e07" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="820c5eb1-d717-4dc1-bbab-9262149ce34f" />
+        <actionShapeMoniker Id="023c9c34-c6c3-4906-b9d9-80162614a6bf" />
+      </nodes>
+    </controlFlowConnector>
+    <objectNodeShape Id="00298ab3-58af-4411-a96d-ccba910833c9" absoluteBounds="1.25, 4.875, 2.75, 0.375" customColor="White">
+      <objectNodeMoniker Id="a86585b3-717b-4ead-bd9a-e91cd3367eff" LastKnownName="Пользователь хочет записать комментарии?" />
+    </objectNodeShape>
+    <objectFlowConnector edgePoints="[(2.3125 : 3.625); (2.3125 : 4.875)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="3dfd1642-5fed-4774-96ee-f72dfd836bd7" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="023c9c34-c6c3-4906-b9d9-80162614a6bf" />
+        <objectNodeShapeMoniker Id="00298ab3-58af-4411-a96d-ccba910833c9" />
+      </nodes>
+    </objectFlowConnector>
+    <objectFlowConnector edgePoints="[(3.75 : 3.625); (3.75 : 4.875)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="121eaa4c-fee8-43d8-a5b1-cce3a6be837d" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="43ef1e56-938c-4a91-9293-4cba6548402e" />
+        <objectNodeShapeMoniker Id="00298ab3-58af-4411-a96d-ccba910833c9" />
+      </nodes>
+    </objectFlowConnector>
+    <objectFlowConnector edgePoints="[(5.3125 : 4.375); (5.3125 : 5.0625); (4 : 5.0625)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="13fd4c6d-0408-4745-ab1e-e69522e3089d" />
+      <relativeChildShapes />
+      <nodes>
+        <actionShapeMoniker Id="3cb4d816-8c54-4b66-9bf5-9593571cdc88" />
+        <objectNodeShapeMoniker Id="00298ab3-58af-4411-a96d-ccba910833c9" />
+      </nodes>
+    </objectFlowConnector>
+    <actionShape Id="57e381bd-0042-436d-b86a-34ac3b965cce" absoluteBounds="2.875, 6.125, 1.125, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="1ce49d92-f4ec-4a06-9e2a-d4ca18fa4cc5" LastKnownName="Выход" />
+    </actionShape>
+    <actionShape Id="6a491e65-ed12-4a51-b765-ff927ff1b869" absoluteBounds="1.25, 6.125, 1.125, 0.375" customColor="161, 199, 231">
+      <opaqueActionMoniker Id="8edf882e-6916-48b9-87b3-93c9b1238c71" LastKnownName="Запись комментариев" />
+    </actionShape>
+    <objectFlowConnector edgePoints="[(3.4375 : 5.25); (3.4375 : 6.125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="e2e93cf1-5321-4960-9747-6e22cd65daba" />
+      <relativeChildShapes />
+      <nodes>
+        <objectNodeShapeMoniker Id="00298ab3-58af-4411-a96d-ccba910833c9" />
+        <actionShapeMoniker Id="57e381bd-0042-436d-b86a-34ac3b965cce" />
+      </nodes>
+    </objectFlowConnector>
+    <objectFlowConnector edgePoints="[(1.8125 : 5.25); (1.8125 : 6.125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="dd0cf2bd-627e-4a5a-8380-b975fef05d95" />
+      <relativeChildShapes />
+      <nodes>
+        <objectNodeShapeMoniker Id="00298ab3-58af-4411-a96d-ccba910833c9" />
+        <actionShapeMoniker Id="6a491e65-ed12-4a51-b765-ff927ff1b869" />
+      </nodes>
+    </objectFlowConnector>
+  </nestedChildShapes>
+</activityDiagram>

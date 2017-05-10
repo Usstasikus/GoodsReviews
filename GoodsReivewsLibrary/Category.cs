@@ -16,6 +16,14 @@ namespace GoodsReivewsLibrary
     {
         string _child_count, _models_num, _parent_id;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="name">Наименование категории</param>
+        /// <param name="child_count">Количество подкатегорий</param>
+        /// <param name="models_num">Количество товаров</param>
+        /// <param name="parent_id">Родительская категория</param>
         public Category(string id, string name, string child_count, string models_num,
             string parent_id):base(id, name)
         {

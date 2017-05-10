@@ -53,6 +53,17 @@ namespace GoodsReivewsLibrary
         /// </summary>
         public int Reject { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="grade">Оценка</param>
+        /// <param name="text">Комментарий</param>
+        /// <param name="pro">Достоинства</param>
+        /// <param name="contra">Недостатки</param>
+        /// <param name="date">Дата создания отзыва</param>
+        /// <param name="author">Имя автора</param>
+        /// <param name="agree">Количество согласных</param>
+        /// <param name="reject">Количесвто несогласных</param>
         public ModelReview(int grade, string text, string pro, string contra, DateTime date, string author, int agree, int reject)
         {
             Grade = grade+3;

@@ -23,6 +23,11 @@ namespace GoodsReivewsLibrary
         /// </summary>
         string _name;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="name">Наименование</param>
         public YandexResults(string id, string name)
         {
             _id = id;

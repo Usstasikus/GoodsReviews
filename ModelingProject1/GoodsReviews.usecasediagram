@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="8d45e299-6bc5-469e-bcf5-6a53ce644b12" name="GoodsReviews" linkedPackageId="e96b1fd6-6c9c-473e-99be-7e6014667024" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <ownedCommentsInternal>
+    <comment Id="9cc234dc-a343-4946-8b6d-4ea6a8fd8486">
+      <elementDefinition Id="3e9c7c94-bb9a-486d-b61d-d5180532dffb" />
+      <body>Формат файла только .dbs</body>
+      <annotatedElements>
+        <useCaseMoniker Id="f519973b-e763-4571-97a2-a739507b608e" LastKnownName="Открыть файл настройки БД" />
+        <useCaseMoniker Id="dd2f0aa4-dc75-41b9-8891-8a6fece8583d" LastKnownName="Редактировать файл настройки БД" />
+        <useCaseMoniker Id="25249764-0fa4-4f74-9f0d-8b8176800bf7" LastKnownName="Удалить файл настройки БД" />
+      </annotatedElements>
+    </comment>
+    <comment Id="bcfd74ba-7486-428b-8c24-305944acef7b">
+      <elementDefinition Id="c4fc7b31-d6dd-4816-bc11-d31701a5aecb" />
+      <body>Необходимо наличие файла последней позиции для настройки</body>
+      <annotatedElements>
+        <useCaseMoniker Id="f519973b-e763-4571-97a2-a739507b608e" LastKnownName="Открыть файл настройки БД" />
+        <useCaseMoniker Id="dd2f0aa4-dc75-41b9-8891-8a6fece8583d" LastKnownName="Редактировать файл настройки БД" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="ad40e4cd-606f-4851-a66d-fbc6d85f342a">
+      <profileInstance Id="4fb5acea-e0fa-4634-b80a-117a71bd4073" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="918736c9-4753-4ee4-bbcc-b6747c712a34">
+      <profileInstance Id="027ef6b7-92df-4829-99c9-c08cc83bcb5d" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="c0c4c71d-7ca0-4632-a509-eea92983be0d" name="Пользователь" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c559d86b-b6d8-400a-bd21-4e8d78d499e0" />
+        <targetEnds>
+          <association Id="b8fb6e8a-d8f7-4cca-8110-12068237d73c" isDerived="false" sourceEndRoleName="Пользователь" targetEndRoleName="Создать новый файл настройки БД" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="dcaf07c5-342b-41d5-92d6-849620382c42" LastKnownName="Создать новый файл настройки БД" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="38c733b0-720d-482e-9a8c-c1a84f1e3b58" name="Пользователь" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9a33282f-5100-4bb8-9473-8c7a4b7bddf7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9ad52792-7c43-4ad3-b0b3-2154656a874e" name="Создать новый файл настройки БД" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c09aef06-7b29-4071-bdb3-603b8b412cd3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7293c67b-8ff8-41be-b418-dbf1f63b6176" />
+          </association>
+          <association Id="59b21389-0c22-4441-95a6-aeedacfc2ee2" isDerived="false" sourceEndRoleName="Пользователь" targetEndRoleName="Открыть файл настройки БД" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="f519973b-e763-4571-97a2-a739507b608e" LastKnownName="Открыть файл настройки БД" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3e870d53-f653-4cbf-b1dc-b0de4bd0c42d" name="Пользователь" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="96c66926-48a0-4649-953c-89999c2c01a3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1789c6e9-27f7-4651-b906-24fcfed5b863" name="Открыть файл настройки БД" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a35a6805-5795-420e-8ec8-82db58826e75" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="95084fc9-1c33-4bac-ada9-63eeeaee98e7" />
+          </association>
+          <association Id="dfa2f3a8-9908-47bb-a72f-bec6d85071a3" isDerived="false" sourceEndRoleName="Пользователь" targetEndRoleName="Удалить файл настройки БД" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="25249764-0fa4-4f74-9f0d-8b8176800bf7" LastKnownName="Удалить файл настройки БД" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cdd0efd1-d33d-4e15-9b8c-45831ff25088" name="Пользователь" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="73d8865d-dd6e-4751-be93-d5fea1b57cf4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c997573f-ddbc-4cc5-9c14-eae301606d70" name="Удалить файл настройки БД" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f7cc5bc2-8263-49da-83c9-3e5eebf88696" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="52787df8-f408-4c24-b423-6aa3b69ba514" />
+          </association>
+          <association Id="0cc0f625-7bb9-4c1c-a0c3-69b98a37de8b" isDerived="false" sourceEndRoleName="Пользователь" targetEndRoleName="Редактировать файл настройки БД" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="dd2f0aa4-dc75-41b9-8891-8a6fece8583d" LastKnownName="Редактировать файл настройки БД" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0a416180-1303-4461-bcf5-c593c322b7df" name="Пользователь" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a372efcd-bea5-41b0-aaaf-19d92924aff9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="10915945-e714-49a9-be2d-de9099fd7af8" name="Редактировать файл настройки БД" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6f4c61ad-4610-474e-a012-1828456b1b2d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0b61891b-ccfa-44ba-9903-d40917b85543" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="dcaf07c5-342b-41d5-92d6-849620382c42" name="Создать новый файл настройки БД" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a01b585e-fadf-4814-b5bb-80e3b15f2934" />
+        <additions>
+          <include Id="4c70073a-c236-43a9-8372-b39baaf7ff87">
+            <useCaseMoniker Id="f519973b-e763-4571-97a2-a739507b608e" LastKnownName="Открыть файл настройки БД" />
+            <elementDefinition Id="70b43df1-c65f-4e14-ada3-9e5c4e445491" />
+          </include>
+          <include Id="064e41cb-d03c-43e3-917d-1a06d865197c">
+            <useCaseMoniker Id="e349b02a-2b3a-4291-be5d-8065e64f223d" LastKnownName="Проверка введенных данных на корректность " />
+            <elementDefinition Id="f73ef629-0dd0-4e1a-9be4-7c3efafb9a49" />
+          </include>
+          <include Id="ff4a937e-e7f2-44b0-88e6-f931765005d2">
+            <useCaseMoniker Id="de32485a-d684-48b3-ab9b-cb29a11a7219" LastKnownName="Создание файла последней позиции для этой настройки" />
+            <elementDefinition Id="3e71c382-9467-43e6-9cfd-0d31b082c03f" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f519973b-e763-4571-97a2-a739507b608e" name="Открыть файл настройки БД" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ac0a0ae7-17ba-42c9-b74b-81374feb5472" />
+        <suppliersInternal>
+          <dependency Id="fbca4ed7-087c-414e-b8f9-57a77c3fc804">
+            <useCaseMoniker Id="2d4d91c6-f928-4e6d-8deb-be2d983b31e7" LastKnownName="Запись комментариев" />
+            <elementDefinition Id="9d7ef390-419a-4b44-9a0f-e1bdfd276368" />
+          </dependency>
+        </suppliersInternal>
+        <additions>
+          <include Id="1b1b03a8-7351-4bdd-bd07-9b5dcdf208f7">
+            <useCaseMoniker Id="680efca3-9080-4c5b-a1bf-be9138be95f3" LastKnownName="Проверка файла на корректность" />
+            <elementDefinition Id="d60dd0cf-fe3d-4d64-9ae6-4fbc57de1f7d" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="25249764-0fa4-4f74-9f0d-8b8176800bf7" name="Удалить файл настройки БД" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="0fd2f8c1-8aed-41da-84af-f3afe45e4585" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="dd2f0aa4-dc75-41b9-8891-8a6fece8583d" name="Редактировать файл настройки БД" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="1421ed38-7445-49cc-bce3-c07d93e879b9" />
+        <additions>
+          <include Id="5c309dde-8d1c-4de5-963a-c5611eb30c68">
+            <useCaseMoniker Id="f519973b-e763-4571-97a2-a739507b608e" LastKnownName="Открыть файл настройки БД" />
+            <elementDefinition Id="2689584c-8e90-4e72-8821-51f389b2f517" />
+          </include>
+          <include Id="020b82b7-b7c7-4fa7-91a6-22333b403dac">
+            <useCaseMoniker Id="680efca3-9080-4c5b-a1bf-be9138be95f3" LastKnownName="Проверка файла на корректность" />
+            <elementDefinition Id="12705cad-06b7-43f2-91bf-62281de8d561" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="680efca3-9080-4c5b-a1bf-be9138be95f3" name="Проверка файла на корректность" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9cead48f-5af3-4939-a03a-884f37098968" />
+        <additions>
+          <include Id="9260c301-39d4-48e2-91a0-b41c094061c7">
+            <useCaseMoniker Id="21bfa35a-e6ba-434b-9aed-cc9f2acdc244" LastKnownName="Выдача сообщений об ошибке" />
+            <elementDefinition Id="9a9e7811-71c1-4a3b-9eb7-28f6630e2b12" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e349b02a-2b3a-4291-be5d-8065e64f223d" name="Проверка введенных данных на корректность " isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cc306d7c-b339-4719-b377-452f775e7880" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="de32485a-d684-48b3-ab9b-cb29a11a7219" name="Создание файла последней позиции для этой настройки" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="dbd7e78d-a03c-4a8c-a202-56fc4ffde40b" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="21bfa35a-e6ba-434b-9aed-cc9f2acdc244" name="Выдача сообщений об ошибке" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d077486d-1cbd-4b04-937e-02ecf8670331" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="2d4d91c6-f928-4e6d-8deb-be2d983b31e7" name="Запись комментариев" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f0c656b3-c5be-49b8-a42a-f2b495123605" />
+        <additions>
+          <include Id="ee21a186-556b-48ff-98f0-e065926ece7d">
+            <useCaseMoniker Id="809e70d3-c3e3-4b09-a0b3-f153ac10c347" LastKnownName="Вывод результатов работы программы" />
+            <elementDefinition Id="87b63f4a-a694-4ba2-9227-f2c9e5e60ce8" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="809e70d3-c3e3-4b09-a0b3-f153ac10c347" name="Вывод результатов работы программы" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3f9a1675-eb45-4392-b9c2-567b1d0c2812" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="e96b1fd6-6c9c-473e-99be-7e6014667024" name="ModelingProject1">
+    <elementDefinition Id="bde8eaba-28d1-4e2d-ab8e-a8d2cd6d291a" />
+  </package>
+</useCaseModelRoot>

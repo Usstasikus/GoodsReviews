@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="bde8eaba-28d1-4e2d-ab8e-a8d2cd6d291a"
+  name="ModelingProject1" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="3e9c7c94-bb9a-486d-b61d-d5180532dffb">
+      <body>Формат файла только .dbs</body>
+      <annotatedElements>
+        <useCaseMoniker
+          Id="ac0a0ae7-17ba-42c9-b74b-81374feb5472"
+          LastKnownName="Открыть файл настройки БД"
+          LastKnownLocation="ModelingProject1.uml" />
+        <useCaseMoniker
+          Id="1421ed38-7445-49cc-bce3-c07d93e879b9"
+          LastKnownName="Редактировать файл настройки БД"
+          LastKnownLocation="ModelingProject1.uml" />
+        <useCaseMoniker
+          Id="0fd2f8c1-8aed-41da-84af-f3afe45e4585"
+          LastKnownName="Удалить файл настройки БД"
+          LastKnownLocation="ModelingProject1.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="c4fc7b31-d6dd-4816-bc11-d31701a5aecb">
+      <body>Необходимо наличие файла последней позиции для настройки</body>
+      <annotatedElements>
+        <useCaseMoniker
+          Id="ac0a0ae7-17ba-42c9-b74b-81374feb5472"
+          LastKnownName="Открыть файл настройки БД"
+          LastKnownLocation="ModelingProject1.uml" />
+        <useCaseMoniker
+          Id="1421ed38-7445-49cc-bce3-c07d93e879b9"
+          LastKnownName="Редактировать файл настройки БД"
+          LastKnownLocation="ModelingProject1.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <actor
+        Id="c559d86b-b6d8-400a-bd21-4e8d78d499e0"
+        name="Пользователь"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="7293c67b-8ff8-41be-b418-dbf1f63b6176"
+            isDerived="false"
+            sourceEndRoleName="Пользователь"
+            targetEndRoleName="Создать новый файл настройки БД"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a01b585e-fadf-4814-b5bb-80e3b15f2934"
+              LastKnownName="Создать новый файл настройки БД"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9a33282f-5100-4bb8-9473-8c7a4b7bddf7"
+                  name="Пользователь"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c09aef06-7b29-4071-bdb3-603b8b412cd3"
+                  name="Создать новый файл настройки БД"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="95084fc9-1c33-4bac-ada9-63eeeaee98e7"
+            isDerived="false"
+            sourceEndRoleName="Пользователь"
+            targetEndRoleName="Открыть файл настройки БД"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="ac0a0ae7-17ba-42c9-b74b-81374feb5472"
+              LastKnownName="Открыть файл настройки БД"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="96c66926-48a0-4649-953c-89999c2c01a3"
+                  name="Пользователь"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a35a6805-5795-420e-8ec8-82db58826e75"
+                  name="Открыть файл настройки БД"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="52787df8-f408-4c24-b423-6aa3b69ba514"
+            isDerived="false"
+            sourceEndRoleName="Пользователь"
+            targetEndRoleName="Удалить файл настройки БД"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="0fd2f8c1-8aed-41da-84af-f3afe45e4585"
+              LastKnownName="Удалить файл настройки БД"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="73d8865d-dd6e-4751-be93-d5fea1b57cf4"
+                  name="Пользователь"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f7cc5bc2-8263-49da-83c9-3e5eebf88696"
+                  name="Удалить файл настройки БД"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="0b61891b-ccfa-44ba-9903-d40917b85543"
+            isDerived="false"
+            sourceEndRoleName="Пользователь"
+            targetEndRoleName="Редактировать файл настройки БД"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="1421ed38-7445-49cc-bce3-c07d93e879b9"
+              LastKnownName="Редактировать файл настройки БД"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a372efcd-bea5-41b0-aaaf-19d92924aff9"
+                  name="Пользователь"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6f4c61ad-4610-474e-a012-1828456b1b2d"
+                  name="Редактировать файл настройки БД"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a01b585e-fadf-4814-b5bb-80e3b15f2934"
+        name="Создать новый файл настройки БД"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="70b43df1-c65f-4e14-ada3-9e5c4e445491">
+            <useCaseMoniker
+              Id="ac0a0ae7-17ba-42c9-b74b-81374feb5472"
+              LastKnownName="Открыть файл настройки БД"
+              LastKnownLocation="ModelingProject1.uml" />
+          </include>
+          <include
+            Id="f73ef629-0dd0-4e1a-9be4-7c3efafb9a49">
+            <useCaseMoniker
+              Id="cc306d7c-b339-4719-b377-452f775e7880"
+              LastKnownName="Проверка введенных данных на корректность "
+              LastKnownLocation="ModelingProject1.uml" />
+          </include>
+          <include
+            Id="3e71c382-9467-43e6-9cfd-0d31b082c03f">
+            <useCaseMoniker
+              Id="dbd7e78d-a03c-4a8c-a202-56fc4ffde40b"
+              LastKnownName="Создание файла последней позиции для этой настройки"
+              LastKnownLocation="ModelingProject1.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ac0a0ae7-17ba-42c9-b74b-81374feb5472"
+        name="Открыть файл настройки БД"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="9d7ef390-419a-4b44-9a0f-e1bdfd276368">
+            <useCaseMoniker
+              Id="f0c656b3-c5be-49b8-a42a-f2b495123605"
+              LastKnownName="Запись комментариев"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
+        <additions>
+          <include
+            Id="d60dd0cf-fe3d-4d64-9ae6-4fbc57de1f7d">
+            <useCaseMoniker
+              Id="9cead48f-5af3-4939-a03a-884f37098968"
+              LastKnownName="Проверка файла на корректность"
+              LastKnownLocation="ModelingProject1.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0fd2f8c1-8aed-41da-84af-f3afe45e4585"
+        name="Удалить файл настройки БД"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="1421ed38-7445-49cc-bce3-c07d93e879b9"
+        name="Редактировать файл настройки БД"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="2689584c-8e90-4e72-8821-51f389b2f517">
+            <useCaseMoniker
+              Id="ac0a0ae7-17ba-42c9-b74b-81374feb5472"
+              LastKnownName="Открыть файл настройки БД"
+              LastKnownLocation="ModelingProject1.uml" />
+          </include>
+          <include
+            Id="12705cad-06b7-43f2-91bf-62281de8d561">
+            <useCaseMoniker
+              Id="9cead48f-5af3-4939-a03a-884f37098968"
+              LastKnownName="Проверка файла на корректность"
+              LastKnownLocation="ModelingProject1.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9cead48f-5af3-4939-a03a-884f37098968"
+        name="Проверка файла на корректность"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="9a9e7811-71c1-4a3b-9eb7-28f6630e2b12">
+            <useCaseMoniker
+              Id="d077486d-1cbd-4b04-937e-02ecf8670331"
+              LastKnownName="Выдача сообщений об ошибке"
+              LastKnownLocation="ModelingProject1.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="cc306d7c-b339-4719-b377-452f775e7880"
+        name="Проверка введенных данных на корректность "
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="dbd7e78d-a03c-4a8c-a202-56fc4ffde40b"
+        name="Создание файла последней позиции для этой настройки"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d077486d-1cbd-4b04-937e-02ecf8670331"
+        name="Выдача сообщений об ошибке"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f0c656b3-c5be-49b8-a42a-f2b495123605"
+        name="Запись комментариев"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="87b63f4a-a694-4ba2-9227-f2c9e5e60ce8">
+            <useCaseMoniker
+              Id="3f9a1675-eb45-4392-b9c2-567b1d0c2812"
+              LastKnownName="Вывод результатов работы программы"
+              LastKnownLocation="ModelingProject1.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3f9a1675-eb45-4392-b9c2-567b1d0c2812"
+        name="Вывод результатов работы программы"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7e02e5ae-917e-4c84-86bf-e3ead82f6037"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="6eb10308-d7b6-4888-9e9d-b2f4ff2e3af1"
+        name="GoodsReviews"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="e76618d4-1c9d-4aaf-ac93-b065ed028d7b"
+            name="Initial1"
+            isLeaf="false">
+            <objectFlowTargets>
+              <objectFlow
+                Id="f6c82f56-cb37-4a6f-b9c0-5a1144913ef8"
+                isLeaf="false"
+                isMulticast="false"
+                isMultireceive="false">
+                <objectNodeMoniker
+                  Id="64bcce30-6662-4ea5-a2d4-b48e9b18fc36"
+                  LastKnownName="Пользователь хочет создать новый файл?"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </objectFlow>
+            </objectFlowTargets>
+          </initialNode>
+          <objectNode
+            Id="64bcce30-6662-4ea5-a2d4-b48e9b18fc36"
+            name="Пользователь хочет создать новый файл?"
+            isLeaf="false"
+            ordering="Unordered"
+            isControlType="false">
+            <objectFlowTargets>
+              <objectFlow
+                Id="d0d7b8a9-17b0-4c49-a6d2-6164d62f7835"
+                guard="Да"
+                isLeaf="false"
+                isMulticast="false"
+                isMultireceive="false">
+                <opaqueActionMoniker
+                  Id="f8a8a970-1b98-4f37-a38b-476b9bdac80b"
+                  LastKnownName="Создать новый файл"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </objectFlow>
+              <objectFlow
+                Id="e8c298a3-1485-4f7a-aca8-6a0bf8ef84ca"
+                guard="Нет"
+                isLeaf="false"
+                isMulticast="false"
+                isMultireceive="false">
+                <opaqueActionMoniker
+                  Id="40ca49f3-2cba-4524-bf2b-af15d4a3440c"
+                  LastKnownName="Выбор действия с существующим файлом"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger
+                Id="5c5cecb2-6e2e-4f28-8341-77be8c1de846"
+                name="2147483647"
+                value="2147483647" />
+            </upperBound>
+          </objectNode>
+          <opaqueAction
+            Id="f8a8a970-1b98-4f37-a38b-476b9bdac80b"
+            name="Создать новый файл"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="1a18db80-eab6-4a5e-b431-b4ec94b3e7be"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7dd5a7cd-072d-4079-946e-00bcf666a7ae"
+                  LastKnownName="Создание и сохранение файла"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="40ca49f3-2cba-4524-bf2b-af15d4a3440c"
+            name="Выбор действия с существующим файлом"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="59c8ed32-a29c-4f78-a554-4605dd48de63"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="e6bbadb3-70fe-416e-b3c0-bd08151d85af"
+                  LastKnownName="Удалить"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="24e9dd00-6a72-446c-95d6-dc82912c348f"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="e13d38c1-5e9d-40ac-a457-63294be41581"
+                  LastKnownName="Редактировать"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="bc1df32f-aa9d-461d-a2c4-a536e272d405"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="2d9b91b2-ea18-4ae3-9f76-5f651c95d16a"
+                  LastKnownName="Открыть"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="2d9b91b2-ea18-4ae3-9f76-5f651c95d16a"
+            name="Открыть"
+            isLeaf="false">
+            <objectFlowTargets>
+              <objectFlow
+                Id="95fc8300-c164-4784-aae3-e1e5753da009"
+                isLeaf="false"
+                isMulticast="false"
+                isMultireceive="false">
+                <objectNodeMoniker
+                  Id="24e95970-2d14-4d51-b44f-bb50b153c228"
+                  LastKnownName="Пользователь хочет записать комментарии?"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="e13d38c1-5e9d-40ac-a457-63294be41581"
+            name="Редактировать"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="28fa98d1-45d9-49e6-a8fb-13a0f14a1aea"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="11760b37-92c0-442b-a14e-6c2d96c5980e"
+                  LastKnownName="Редкатирование и сохранение файла"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="e6bbadb3-70fe-416e-b3c0-bd08151d85af"
+            name="Удалить"
+            isLeaf="false">
+            <objectFlowTargets>
+              <objectFlow
+                Id="b98dc6d7-c5dd-4588-8571-71afbcac4901"
+                isLeaf="false"
+                isMulticast="false"
+                isMultireceive="false">
+                <objectNodeMoniker
+                  Id="64bcce30-6662-4ea5-a2d4-b48e9b18fc36"
+                  LastKnownName="Пользователь хочет создать новый файл?"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="11760b37-92c0-442b-a14e-6c2d96c5980e"
+            name="Редкатирование и сохранение файла"
+            isLeaf="false">
+            <objectFlowTargets>
+              <objectFlow
+                Id="bad4b0d3-2ebb-41d2-b336-634fe1dc0a3e"
+                isLeaf="false"
+                isMulticast="false"
+                isMultireceive="false">
+                <objectNodeMoniker
+                  Id="24e95970-2d14-4d51-b44f-bb50b153c228"
+                  LastKnownName="Пользователь хочет записать комментарии?"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="7dd5a7cd-072d-4079-946e-00bcf666a7ae"
+            name="Создание и сохранение файла"
+            isLeaf="false">
+            <objectFlowTargets>
+              <objectFlow
+                Id="b924cb29-63d1-4dd0-84df-d7961d2165f0"
+                isLeaf="false"
+                isMulticast="false"
+                isMultireceive="false">
+                <objectNodeMoniker
+                  Id="24e95970-2d14-4d51-b44f-bb50b153c228"
+                  LastKnownName="Пользователь хочет записать комментарии?"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode
+            Id="24e95970-2d14-4d51-b44f-bb50b153c228"
+            name="Пользователь хочет записать комментарии?"
+            isLeaf="false"
+            ordering="Unordered"
+            isControlType="false">
+            <objectFlowTargets>
+              <objectFlow
+                Id="654de0a0-8262-45e4-83d9-7583569ca286"
+                guard="Нет"
+                isLeaf="false"
+                isMulticast="false"
+                isMultireceive="false">
+                <opaqueActionMoniker
+                  Id="8560a58e-b377-4a69-a0e3-7a73918efebc"
+                  LastKnownName="Выход"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </objectFlow>
+              <objectFlow
+                Id="bac9eebf-2d93-480d-99cc-1a35457f080d"
+                guard="Да"
+                isLeaf="false"
+                isMulticast="false"
+                isMultireceive="false">
+                <opaqueActionMoniker
+                  Id="693af395-9f72-4979-b909-f5dd83553200"
+                  LastKnownName="Запись комментариев"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger
+                Id="14ed5d88-1b42-47a4-a460-625ec4559ee5"
+                name="2147483647"
+                value="2147483647" />
+            </upperBound>
+          </objectNode>
+          <opaqueAction
+            Id="8560a58e-b377-4a69-a0e3-7a73918efebc"
+            name="Выход"
+            isLeaf="false" />
+          <opaqueAction
+            Id="693af395-9f72-4979-b909-f5dd83553200"
+            name="Запись комментариев"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

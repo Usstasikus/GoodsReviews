@@ -33,7 +33,10 @@ namespace GraphicPart
             _fields = new Fields();
             TextBoxPath.Focus();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file_name">Имя файла настройки</param>
         public MainWindow(string file_name)
         {
             InitializeComponent();
@@ -63,6 +66,11 @@ namespace GraphicPart
             TextBoxLogin.Text = _fields.Login;
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fields">Объект настройки</param>
         public MainWindow(Fields fields)
         {
             InitializeComponent();
