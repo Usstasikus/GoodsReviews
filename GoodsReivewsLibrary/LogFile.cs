@@ -79,6 +79,7 @@ namespace GoodsReivewsLibrary
         public LogFile(string path)
         {
             _path = path;
+
             string[] last_pos = File.ReadAllLines(path);
             log_category_number = 0; log_subcategory_number = 0; log_page_number = 1; log_model_number = 0; log_page_reviews_number = 1;
             if (last_pos.Length != 0)
@@ -151,6 +152,8 @@ namespace GoodsReivewsLibrary
         {
             Write();
             var resp = XDocument.Load(new StreamReader(we.Response.GetResponseStream()));
+            if (!File.Exists(@"..\..\..\Resources\log.txt"))
+                File.Create(@"..\..\..\Resources\log.txt");
             FileStream log_file = new FileStream(@"..\..\..\Resources\log.txt", FileMode.Append);
             using (StreamWriter sw = new StreamWriter(log_file))
             {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,17 +12,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GraphicPart
 {
     /// <summary>
-    /// Логика взаимодействия для FileName.xaml
+    /// Логика взаимодействия для RenameFile.xaml
     /// </summary>
-    public partial class FileName : Window
+    public partial class RenameFile : Window
     {
-        public FileName()
+        string _old_name;
+        public RenameFile(string old_name)
         {
             InitializeComponent();
+            _old_name = old_name;
             TextBox_FileName.Focus();
         }
 
@@ -35,10 +38,10 @@ namespace GraphicPart
             else
                 Next.IsEnabled = true;
         }
-        
+
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            string file_name;
+            string new_name;
             if (MyMethods.IsNameExist(TextBox_FileName.Text))
             {
                 MessageBox.Show("Файл с таким именем уже существует. Пожалуйста, выберите другое имя.");
@@ -46,9 +49,20 @@ namespace GraphicPart
             }
             else
             {
-                file_name = TextBox_FileName.Text;
-                MainWindow mwd = new MainWindow(file_name);
-                mwd.Show();
+                new_name = TextBox_FileName.Text;
+                Fields fields = MyMethods.Deserialize(_old_name);
+                fields.FileName = new_name;
+
+                BinaryFormatter bin_formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + new_name + ".dbs", FileMode.Create))
+                {
+                    bin_formatter.Serialize(fs, fields);
+                }
+                File.Delete(@"..\..\..\Resources\DBS\" + _old_name + ".dbs");
+                File.Move(@"..\..\..\Resources\last_pos\last_pos_" + _old_name + ".txt", @"..\..\..\Resources\last_pos\last_pos_" + new_name + ".txt");
+
+                ChooseFile chf = new ChooseFile();
+                chf.Show();
                 Close();
             }
         }

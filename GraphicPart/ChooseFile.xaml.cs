@@ -47,21 +47,7 @@ namespace GraphicPart
                 ListBox_OpenExisting.Items.Add(file_name);
             }
         }
-
-        /// <summary>
-        /// Десериализует файл, выбранный в ListBox_OpenExisting
-        /// </summary>
-        /// <returns></returns>
-        private Fields Deserialize()
-        {
-            BinaryFormatter bin_form = new BinaryFormatter();
-            Fields fields;
-            using (FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + ListBox_OpenExisting.SelectedItem.ToString() + ".dbs", FileMode.Open))
-            {
-                fields = (Fields)bin_form.Deserialize(fs);
-            }
-            return fields;
-        }
+        
         private void ListBox_OpenExisting_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Open.IsEnabled = true;
@@ -78,7 +64,7 @@ namespace GraphicPart
         {
             try
             {
-                Fields fields = Deserialize();
+                Fields fields = MyMethods.Deserialize(ListBox_OpenExisting.SelectedItem.ToString());
                 if (!File.Exists(@"..\..\..\Resources\last_pos\last_pos_" + fields.FileName + ".txt")) throw new Exception();
                 Action act = new Action(fields);
                 act.Show();
@@ -104,7 +90,7 @@ namespace GraphicPart
         {
             try
             {
-                Fields fields = Deserialize();
+                Fields fields = MyMethods.Deserialize(ListBox_OpenExisting.SelectedItem.ToString());
                 MainWindow mwd = new MainWindow(fields);
                 mwd.Show();
                 Close();
@@ -149,6 +135,13 @@ namespace GraphicPart
                 }
             }
         }
-        
+
+        private void MenuItem_Rename_Click(object sender, RoutedEventArgs e)
+        {
+            string old_name = ListBox_OpenExisting.SelectedItem.ToString();
+            RenameFile rf = new RenameFile(old_name);
+            rf.Show();
+            Close();
+        }
     }
 }

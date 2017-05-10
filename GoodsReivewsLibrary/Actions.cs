@@ -172,9 +172,7 @@ namespace GoodsReivewsLibrary
         /// <summary>
         /// Формирование строки запроса для записи в таблицу отзывов
         /// </summary>
-        /// <param name="fields"></param>
         /// <param name="mr"></param>
-        /// <param name="pos_on_page"></param>
         /// <param name="goods_id"></param>
         /// <returns></returns>
         private string InsertQueryStringForm(ModelReview mr, string goods_id)

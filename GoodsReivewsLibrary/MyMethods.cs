@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -421,6 +423,43 @@ namespace GoodsReivewsLibrary
             string name = cmb.Name;
             return GetElementID(name);
         }
-        
+
+
+        /// <summary>
+        /// Проверяет наличие файла настройки с таким именем
+        /// </summary>
+        /// <param name="name">Имя файла настройки</param>
+        /// <returns>True, если файл с таким именем существует</returns>
+        public static bool IsNameExist(string name)
+        {
+            DirectoryInfo dir = new DirectoryInfo("../../../Resources/DBS");
+            FileInfo[] files = dir.GetFiles();
+            List<string> names = new List<string>();
+            for (int i = 0; i < files.Length; i++)
+                names.Add(files[i].Name);
+
+            if (names.IndexOf(name + ".dbs") == -1)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Десериализует файл, выбранный c данным именем
+        /// </summary>
+        /// <param name="file_name">Имя файла</param>
+        /// <returns>Объект файла настройки</returns>
+        public static Fields Deserialize(string file_name)
+        {
+            BinaryFormatter bin_form = new BinaryFormatter();
+            Fields fields;
+            using (FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + file_name + ".dbs", FileMode.Open))
+            {
+                fields = (Fields)bin_form.Deserialize(fs);
+            }
+            return fields;
+        }
+
     }
 }
