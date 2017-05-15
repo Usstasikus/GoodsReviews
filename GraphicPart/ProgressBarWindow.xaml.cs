@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 
 namespace GraphicPart
 {
+    public delegate void Login(string connectionString);
+    public delegate bool ConnectToDB(string connectionString);
     /// <summary>
     /// Логика взаимодействия для ProgressBarWindow.xaml
     /// </summary>
@@ -25,6 +27,5 @@ namespace GraphicPart
             InitializeComponent();
             TextBlock_PB.Text = message;
         }
-        
     }
 }

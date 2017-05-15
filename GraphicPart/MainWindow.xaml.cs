@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GoodsReivewsLibrary;
 using System.IO;
+using System.Windows.Threading;
 
 namespace GraphicPart
 { 
@@ -108,10 +110,9 @@ namespace GraphicPart
         {
             if(e.Key == Key.Enter || e.Key == Key.Tab)
             {
-                ProgressBarWindow pbw = new ProgressBarWindow("Происходит подключение к серверу");
-
-                pbw.Show();
                 string adress = TextBoxPath.Text;
+                ProgressBarWindow pbw = new ProgressBarWindow("Происходит подключение к серверу");
+                Dispatcher.BeginInvoke((System.Action)(() => pbw.ShowDialog()));
                 var is_correct = await Task.Run(() =>
                 {
                     return (MyMethods.GetDBList(adress) != null);
@@ -158,7 +159,7 @@ namespace GraphicPart
             try
             {
                 ProgressBarWindow pbw = new ProgressBarWindow();
-                pbw.Show();
+                Dispatcher.BeginInvoke((System.Action)(() => pbw.ShowDialog()));
                 bool is_correct = await Task<bool>.Run(()=> IsAdrresCorrect(connectionString));
                 pbw.Close();
                 if (!is_correct)

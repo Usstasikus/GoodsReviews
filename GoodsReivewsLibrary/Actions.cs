@@ -326,10 +326,10 @@ namespace GoodsReivewsLibrary
                         }
                         for (int page = lg.log_page_reviews_number + 1; page <= 50; page++)
                         {
-                            lg.exit_page_reviews_number = page;
                             string url_opinion = url + string.Format("{0}/opinion.xml?geo_id=225&count=30&page={1}", matched_id[i][0], page);
                             List<ModelReview> mr;
                             mr = ModelReview.GetReviews(url_opinion, key);
+                            lg.exit_page_reviews_number = page;
                             query_count++;
                             if (mr.Count == 0)
                             {

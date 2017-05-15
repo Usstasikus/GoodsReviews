@@ -260,20 +260,30 @@ namespace GraphicPart
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            FillUnknownFields();
-            BinaryFormatter bin_formatter = new BinaryFormatter();
-            using(FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + _fields.FileName + ".dbs", FileMode.Create))
+            try
             {
-                bin_formatter.Serialize(fs, _fields);
+
+                FillUnknownFields();
+                BinaryFormatter bin_formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream(@"..\..\..\Resources\DBS\" + _fields.FileName + ".dbs", FileMode.Create))
+                {
+                    bin_formatter.Serialize(fs, _fields);
+                }
+                //File.Create(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
+                using (FileStream fs = new FileStream(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt", FileMode.Create))
+                {
+                }
+
+                Action act = new Action(_fields);
+                act.Show();
+                Close();
             }
-            //File.Create(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
-            using (FileStream fs = new FileStream(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt", FileMode.Create))
+            catch (UnauthorizedAccessException)
             {
+                MessageBox.Show("Отсутствуют права для записи/редактирования файлов в директории программы");
+                Close();
             }
 
-            Action act = new Action(_fields);
-            act.Show();
-            Close();
         }
 
         private void Prev_Click(object sender, RoutedEventArgs e)
