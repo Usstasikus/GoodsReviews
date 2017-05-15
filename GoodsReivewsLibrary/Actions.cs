@@ -231,8 +231,8 @@ namespace GoodsReivewsLibrary
         /// <returns></returns>
         private string FormMessage(string message)
         {
-            return String.Format("\r\n{3}\r\n{0}\r\nПрограмма работала в течении {1}.\r\nТаблица была дополнена {2} {4}."
-                    , dt, stopWatch.Elapsed, lg.added_count, message, target);
+            return String.Format("\r\n{0}\r\n{3}\r\nПрограмма работала в течении {1}.\r\nТаблица {5} была дополнена {2} {4}."
+                    , dt, stopWatch.Elapsed, lg.added_count, message, target, _fields.Table);
         }
 
         /// <summary>

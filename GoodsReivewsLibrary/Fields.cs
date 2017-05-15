@@ -38,7 +38,7 @@ namespace GoodsReivewsLibrary
         public string ConnectionString { get; set; }
 
         /// <summary>
-        /// Рабочая таблица
+        /// Имя таблицы комментариев
         /// </summary>
         public string Table { get; set; }
 
@@ -48,22 +48,22 @@ namespace GoodsReivewsLibrary
         public string TableFrom { get; set; }
 
         /// <summary>
-        /// Поле чтения ID товара
+        /// Имя поля чтения ID товара
         /// </summary>
         public string GoodsIDFrom { get; set; }
 
         /// <summary>
-        /// Поле записи ID товара
+        /// Имя поля записи ID товара
         /// </summary>
         public string GoodsIDTo { get; set; }
 
         /// <summary>
-        /// Таблица чтения наименования товара
+        /// Имя таблицы чтения наименования товара
         /// </summary>
         public string GoodsNameTableFrom { get; set; }
 
         /// <summary>
-        /// Поле чтения наименования товара
+        /// Имя поля чтения наименования товара
         /// </summary>
         public string GoodsNameFrom { get; set; }
 
