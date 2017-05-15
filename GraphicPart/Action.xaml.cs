@@ -45,6 +45,7 @@ namespace GraphicPart
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TextBox_Output.Text = "Начало работы...";
+            Start.IsEnabled = false;
             LoadReviews(act);
             //act.LoadNewReviews(TextBox_Output);
         }
@@ -52,7 +53,7 @@ namespace GraphicPart
         {
             var progress = new Progress<string>(s => TextBox_Output.Text = s);
             string result = await Task.Factory.StartNew<string>(() => act.LoadNewReviews(progress, token), token);
-
+            Start.IsEnabled = true;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
