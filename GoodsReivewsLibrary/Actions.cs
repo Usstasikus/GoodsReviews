@@ -174,8 +174,9 @@ namespace GoodsReivewsLibrary
         /// </summary>
         /// <param name="mr"></param>
         /// <param name="goods_id"></param>
+        /// <param name="connection"></param>
         /// <returns></returns>
-        private string InsertQueryStringForm(ModelReview mr, string goods_id)
+        private SqlCommand InsertQueryStringForm(ModelReview mr, string goods_id, SqlConnection connection)
         {
             string query_string = string.Format("INSERT INTO [dbo].[{0}] ([{1}], ", _fields.Table, _fields.GoodsIDTo);
 
@@ -190,38 +191,41 @@ namespace GoodsReivewsLibrary
             }
 
             query_string = query_string.Substring(0, query_string.Length - 2);//удаление запятой
-            query_string += String.Format(") VALUES ({0}, ", goods_id);
+            query_string += String.Format(") VALUES (@{0}, ", _fields.GoodsIDTo);
+            for (int i = 0; i < _fields.ya_fields.Count; i++)
+            {
+                query_string += string.Format("@{0}, ", _fields.ya_fields[i].FieldName);
+            }
+
+            for (int i = 0; i < _fields.unknown_fields.Count; i++)
+            {
+                query_string += string.Format("@{0}, ", _fields.unknown_fields[i].FieldName);
+            }
+
+            query_string = query_string.Substring(0, query_string.Length - 2);//удаление запятой 
+            query_string += ")";
+
+            SqlCommand sql_command = new SqlCommand(query_string, connection);
+            sql_command.Parameters.Add(new SqlParameter(_fields.GoodsIDTo, goods_id));
 
             for (int i = 0; i < _fields.ya_fields.Count; i++)
             {
-                if (!IsNumericType(_fields.ya_fields[i].Type))
-                    query_string += string.Format("'{0}', ", mr.GetElementByName(_fields.ya_fields[i].YandexElementName));
-                else
-                    query_string += string.Format("{0}, ", mr.GetElementByName(_fields.ya_fields[i].YandexElementName));
+                sql_command.Parameters.Add(new SqlParameter(_fields.ya_fields[i].FieldName, mr.GetElementByName(_fields.ya_fields[i].YandexElementName)));
             }
 
             for (int i = 0; i < _fields.unknown_fields.Count; i++)
             {
                 if (_fields.unknown_fields[i].Dependency == null)
                 {
-                    if (!IsNumericType(_fields.unknown_fields[i].Type))
-                        query_string += string.Format("'{0}', ", _fields.unknown_fields[i].Value);
-                    else
-                        query_string += string.Format("{0}, ", _fields.unknown_fields[i].Value);
+                        sql_command.Parameters.Add(new SqlParameter(_fields.unknown_fields[i].FieldName, _fields.unknown_fields[i].Value));
                 }
                 else
                 {
-                    if (!IsNumericType(_fields.unknown_fields[i].Type))
-                        query_string += string.Format("'{0}', ", mr.GetElementByName(_fields.unknown_fields[i].Dependency));
-                    else
-                        query_string += string.Format("{0}, ", mr.GetElementByName(_fields.unknown_fields[i].Dependency));
+                    sql_command.Parameters.Add(new SqlParameter(_fields.unknown_fields[i].FieldName, mr.GetElementByName(_fields.unknown_fields[i].Dependency)));
                 }
             }
 
-            query_string = query_string.Substring(0, query_string.Length - 2);//удаление запятой
-            query_string += ")";
-
-            return query_string;
+            return sql_command;
         }
 
         /// <summary>
@@ -292,7 +296,7 @@ namespace GoodsReivewsLibrary
             SqlConnection sqlConnection = new SqlConnection(_connectionString);
             sqlConnection.Open();
             
-            string queryString = string.Format(@"SELECT GI1.GoodsID, {0}, GI1.GoodsName FROM {1} LEFT JOIN YandexReviews.dbo.GoodsInfo as GI1 ON {2} =  GI1.GoodsName collate Cyrillic_General_CI_AS WHERE GI1.GoodsName is not null ORDER BY Shop4KNS.dbo.GoodsInfo.GoodsID",
+            string queryString = string.Format(@"SELECT GI1.GoodsID, {0}, GI1.GoodsName FROM {1} LEFT JOIN YandexReviews.dbo.GoodsInfo as GI1 ON {2} =  GI1.GoodsName collate Cyrillic_General_CI_AS WHERE GI1.GoodsName is not null ORDER BY {0}",
                             _fields.DB + ".dbo." + _fields.TableFrom + "." + _fields.GoodsIDFrom, _fields.DB + ".dbo." + _fields.TableFrom, _fields.DB + ".dbo." + _fields.GoodsNameTableFrom + "." + _fields.GoodsNameFrom);
             try
             {
@@ -343,8 +347,9 @@ namespace GoodsReivewsLibrary
                             for (int pos = 0; pos < mr.Count; pos++)
                             {
                                 added_count_for_this_model++;
-                                queryString = InsertQueryStringForm(mr[pos], matched_id[i][1]);
-                                sqlCommand = new SqlCommand(queryString, sqlConnection);
+                                //queryString = InsertQueryStringForm(mr[pos], matched_id[i][1]);
+                                //sqlCommand = new SqlCommand(queryString, sqlConnection);
+                                sqlCommand = InsertQueryStringForm(mr[pos], matched_id[i][1], sqlConnection);
                                 rd = sqlCommand.ExecuteReader();
                                 rd.Close();
                                 lg.added_count++;
