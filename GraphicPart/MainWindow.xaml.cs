@@ -29,11 +29,13 @@ namespace GraphicPart
     {
 
         Fields _fields;
+        bool was_button_pressed;
         public MainWindow()
         {
             InitializeComponent();
             _fields = new Fields();
             TextBoxPath.Focus();
+            was_button_pressed = false;
         }
         /// <summary>
         /// 
@@ -47,15 +49,24 @@ namespace GraphicPart
             TextBoxPath.Focus();
         }
 
-
-        private void ComboBoxDBFill()
+        /// <summary>
+        /// Очищает ComboBox и блокирует зависящие от него поля
+        /// </summary>
+        private void ComboBoxClear()
         {
             Combobox_DB.Items.Clear();
             TextBoxLogin.Clear();
             TextBoxLogin.IsEnabled = false;
             PasswordBox.Clear();
             PasswordBox.IsEnabled = false;
-            
+        }
+
+        /// <summary>
+        /// Заполняет ComboBox
+        /// </summary>
+        private void ComboBoxDBFill()
+        {
+            ComboBoxClear();   
             MyMethods.ComboBoxFill(Combobox_DB, MyMethods.GetDBList(TextBoxPath.Text));
         }
 
@@ -105,24 +116,58 @@ namespace GraphicPart
             else
                 Button.IsEnabled = false;
         }
-        
-        private async void TextBoxPath_KeyDown(object sender, KeyEventArgs e)
+
+        private async void TextBoxPath_LostFocus(object sender, RoutedEventArgs e)
         {
-            if(e.Key == Key.Enter || e.Key == Key.Tab)
+            if (was_button_pressed)
+                was_button_pressed = false;
+            else
             {
+                was_button_pressed = true;
                 string adress = TextBoxPath.Text;
-                ProgressBarWindow pbw = new ProgressBarWindow("Происходит подключение к серверу");
+                ProgressBarWindow pbw = new ProgressBarWindow(Combobox_DB, TextBoxLogin, PasswordBox, "Происходит подключение к серверу");
                 Dispatcher.BeginInvoke((System.Action)(() => pbw.ShowDialog()));
                 var is_correct = await Task.Run(() =>
                 {
                     return (MyMethods.GetDBList(adress) != null);
                 });
+
+                if (pbw.IsActive && !is_correct)
+                {
+                    MessageBox.Show("Неверно введен адрес сервера");
+                    ComboBoxClear();
+                    Combobox_DB.IsEnabled = false;
+                }
+                pbw.Close();
+                if (is_correct)
+                    ComboBoxDBFill();
+            }
+        }
+
+        private async void TextBoxPath_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter || e.Key == Key.Tab)
+            {
+                was_button_pressed = true;
+                string adress = TextBoxPath.Text;
+                ProgressBarWindow pbw = new ProgressBarWindow(Combobox_DB, TextBoxLogin, PasswordBox, "Происходит подключение к серверу");
+                Dispatcher.BeginInvoke((System.Action)(() => pbw.ShowDialog()));
+                var is_correct = await Task.Run(() =>
+                {
+                    return (MyMethods.GetDBList(adress) != null);
+                });
+
+                if (pbw.IsActive && !is_correct)
+                {
+                    MessageBox.Show("Неверно введен адрес сервера");
+                    ComboBoxClear();
+                    Combobox_DB.IsEnabled = false;
+                }
+                
                 pbw.Close();
 
                 if (is_correct)
                     ComboBoxDBFill();
-                else
-                    Combobox_DB.IsEnabled = false;
 
             }
         }
@@ -158,7 +203,7 @@ namespace GraphicPart
             SqlConnection sqlConnection = new SqlConnection(connectionString);
             try
             {
-                ProgressBarWindow pbw = new ProgressBarWindow();
+                ProgressBarWindow pbw = new ProgressBarWindow("Выполняется подключение к БД");
                 Dispatcher.BeginInvoke((System.Action)(() => pbw.ShowDialog()));
                 bool is_correct = await Task<bool>.Run(()=> IsAdrresCorrect(connectionString));
                 pbw.Close();
@@ -191,5 +236,6 @@ namespace GraphicPart
                 Close();
             }
         }
+        
     }
 }

@@ -50,7 +50,6 @@ namespace GoodsReivewsLibrary
             }
             catch (Exception)
             {
-                MessageBox.Show("Неверно введен адрес сервера");
             }
             return null;
         }

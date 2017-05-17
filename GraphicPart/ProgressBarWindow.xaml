@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicPart"
         mc:Ignorable="d"
-        Title="Статус программы" Height="200" Width="300" MaxHeight="200" MinHeight="200" MaxWidth="300" MinWidth="300">
+        Title="Статус программы" Height="200" Width="300" MaxHeight="200" MinHeight="200" MaxWidth="300" MinWidth="300" WindowStyle="None">
     <Grid>
         <ProgressBar HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="250" IsIndeterminate="True" Margin="0,50,0,0" />
 
         <TextBlock Name="TextBlock_PB" Text="" FontSize="15" HorizontalAlignment="Center" Width="Auto"  Height="Auto" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" Margin="0,0,0,50"/>
+        <Button x:Name="Button_Cancel" Content="Отменить" HorizontalAlignment="Left" Margin="196,156,0,0" VerticalAlignment="Top" Width="75" Click="Button_Cancel_Click"/>
 
     </Grid>
 </Window>

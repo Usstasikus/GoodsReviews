@@ -79,7 +79,10 @@ namespace GoodsReivewsLibrary
         public LogFile(string path)
         {
             _path = path;
-
+            if (!File.Exists(path))
+            {
+                using (new FileStream(path, FileMode.Create)) ;
+            }
             string[] last_pos = File.ReadAllLines(path);
             log_category_number = 0; log_subcategory_number = 0; log_page_number = 1; log_model_number = 0; log_page_reviews_number = 1;
             if (last_pos.Length != 0)

@@ -25,7 +25,7 @@
                  Height="30" Text ="Адрес сервера" VerticalAlignment="Top" Width="Auto"/>
         <TextBox x:Name="TextBoxPath" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"
                  Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,4" 
-                 TextChanged="TextBoxPath_TextChanged" KeyDown="TextBoxPath_KeyDown"/>
+                 TextChanged="TextBoxPath_TextChanged" KeyDown="TextBoxPath_KeyDown" LostFocus="TextBoxPath_LostFocus"/>
 
         <TextBlock x:Name="TextBlockDBName" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Opacity="0.55"
                  Height="30" Text ="Название БД" VerticalAlignment="Top" Width="Auto"/>
