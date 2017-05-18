@@ -68,7 +68,7 @@ namespace Server
                 if (i != lg.log_category_number)
                 {
                     lg.log_subcategory_number = 0;
-                    lg.log_page_number = 1;
+                    lg.log_page_number = 0;
                 }
 
                 if (category_list[i].ModelsNum == 0) continue;
