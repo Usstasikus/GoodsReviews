@@ -18,9 +18,14 @@ namespace GoodsReivewsLibrary
         public string FileName { get; set; }
 
         /// <summary>
-        /// IP-адресс БД
+        /// Адресс БД
         /// </summary>
-        public string IPAdress { get; set; }
+        public string Adress { get; set; }
+
+        /// <summary>
+        /// Пароль
+        /// </summary>
+        public string Password { get; set; }
 
         /// <summary>
         /// Имя БД

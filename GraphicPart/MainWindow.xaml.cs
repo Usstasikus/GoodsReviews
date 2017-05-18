@@ -48,35 +48,25 @@ namespace GraphicPart
             _fields.FileName = file_name;
             TextBoxPath.Focus();
         }
-
-        /// <summary>
-        /// Очищает ComboBox и блокирует зависящие от него поля
-        /// </summary>
-        private void ComboBoxClear()
-        {
-            Combobox_DB.Items.Clear();
-            TextBoxLogin.Clear();
-            TextBoxLogin.IsEnabled = false;
-            PasswordBox.Clear();
-            PasswordBox.IsEnabled = false;
-        }
+        
 
         /// <summary>
         /// Заполняет ComboBox
         /// </summary>
         private void ComboBoxDBFill()
         {
-            ComboBoxClear();   
-            MyMethods.ComboBoxFill(Combobox_DB, MyMethods.GetDBList(TextBoxPath.Text));
+            Combobox_DB.Items.Clear();
+            MyMethods.ComboBoxFill(Combobox_DB, MyMethods.GetDBList(TextBoxPath.Text, TextBoxLogin.Text, PasswordBox.Password));
         }
 
         private void TryToFillIn()
         {
-            TextBoxPath.Text = _fields.IPAdress;
+            TextBoxPath.Text = _fields.Adress;
+            TextBoxLogin.Text = _fields.Login;
+            PasswordBox.Password = _fields.Password;
             Combobox_DB.IsEnabled = true;
             ComboBoxDBFill();
             Combobox_DB.SelectedItem = _fields.DB;
-            TextBoxLogin.Text = _fields.Login;
 
         }
 
@@ -93,89 +83,78 @@ namespace GraphicPart
         }
         private void TextBoxPath_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (PasswordBox.Password != "" && TextBoxPath.Text != "" && TextBoxLogin.Text != "")
-                Button.IsEnabled = true;
-            else
+            if (Combobox_DB.IsEnabled)
+            {
+                Combobox_DB.Items.Clear();
+                Combobox_DB.IsEnabled = false;
                 Button.IsEnabled = false;
-            
+            }
         }
 
         private void TextBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (PasswordBox.Password != "" && TextBoxPath.Text != "" && TextBoxLogin.Text != "")
-                Button.IsEnabled = true;
-            else
+            if (Combobox_DB.IsEnabled)
+            {
+                Combobox_DB.Items.Clear();
+                Combobox_DB.IsEnabled = false;
                 Button.IsEnabled = false;
+            }
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-
-            if (PasswordBox.Password != "" && TextBoxPath.Text != "" && TextBoxLogin.Text != "")
-                Button.IsEnabled = true;
-            else
-                Button.IsEnabled = false;
-        }
-
-        private async void TextBoxPath_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (was_button_pressed)
-                was_button_pressed = false;
-            else
+            if (Combobox_DB.IsEnabled)
             {
-                was_button_pressed = true;
-                string adress = TextBoxPath.Text;
-                ProgressBarWindow pbw = new ProgressBarWindow(Combobox_DB, TextBoxLogin, PasswordBox, "Происходит подключение к серверу");
-                Dispatcher.BeginInvoke((System.Action)(() => pbw.ShowDialog()));
-                var is_correct = await Task.Run(() =>
-                {
-                    return (MyMethods.GetDBList(adress) != null);
-                });
-
-                if (pbw.IsActive && !is_correct)
-                {
-                    MessageBox.Show("Неверно введен адрес сервера");
-                    ComboBoxClear();
-                    Combobox_DB.IsEnabled = false;
-                }
-                pbw.Close();
-                if (is_correct)
-                    ComboBoxDBFill();
+                Combobox_DB.Items.Clear();
+                Combobox_DB.IsEnabled = false;
+                Button.IsEnabled = false;
             }
         }
-
-        private async void TextBoxPath_KeyDown(object sender, KeyEventArgs e)
+        private void TextBoxPath_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter || e.Key == Key.Tab)
+            if(e.Key==Key.Enter)
+                TextBoxLogin.Focus();
+        }
+
+        private void TextBoxLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                PasswordBox.Focus();
+        }
+
+        private async void PasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter || e.Key == Key.Tab)
             {
                 was_button_pressed = true;
                 string adress = TextBoxPath.Text;
-                ProgressBarWindow pbw = new ProgressBarWindow(Combobox_DB, TextBoxLogin, PasswordBox, "Происходит подключение к серверу");
+                string user_id = TextBoxLogin.Text;
+                string password = PasswordBox.Password;
+                ProgressBarWindow pbw = new ProgressBarWindow("Происходит подключение к серверу");
                 Dispatcher.BeginInvoke((System.Action)(() => pbw.ShowDialog()));
                 var is_correct = await Task.Run(() =>
                 {
-                    return (MyMethods.GetDBList(adress) != null);
+                    return (MyMethods.GetDBList(adress, user_id, password) != null);
                 });
 
                 if (pbw.IsActive && !is_correct)
                 {
                     MessageBox.Show("Неверно введен адрес сервера");
-                    ComboBoxClear();
+                    Combobox_DB.Items.Clear();
                     Combobox_DB.IsEnabled = false;
                 }
-                
+
                 pbw.Close();
 
                 if (is_correct)
                     ComboBoxDBFill();
-
+                Combobox_DB.Focus();
             }
         }
 
         private void Combobox_DB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TextBoxLogin.IsEnabled = true;
-            PasswordBox.IsEnabled = true;
+            Button.IsEnabled = true;
         }
 
         /// <summary>
@@ -199,32 +178,17 @@ namespace GraphicPart
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = String.Format("Server={0};Database={1};Uid={2};Pwd={3};", TextBoxPath.Text, Combobox_DB.SelectedItem, TextBoxLogin.Text, PasswordBox.Password);
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
-            try
-            {
-                ProgressBarWindow pbw = new ProgressBarWindow("Выполняется подключение к БД");
-                Dispatcher.BeginInvoke((System.Action)(() => pbw.ShowDialog()));
-                bool is_correct = await Task<bool>.Run(()=> IsAdrresCorrect(connectionString));
-                pbw.Close();
-                if (!is_correct)
-                    throw new Exception();
-                IsEnabled = true;
-                sqlConnection.Close();
-
-                _fields.IPAdress = TextBoxPath.Text;
-                _fields.ConnectionString = connectionString;
-                _fields.DB = Combobox_DB.SelectedItem.ToString();
-                _fields.Login = TextBoxLogin.Text;
-                
-                WorkingWithDB window = new WorkingWithDB(_fields);
-                window.Show();
-                Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Неправильный логин или пароль");
-            }
+            string connectionString = String.Format("Data Source={0};Initial Catalog={1};User id={2};Password={3};", TextBoxPath.Text, Combobox_DB.SelectedItem, TextBoxLogin.Text, PasswordBox.Password);
+           
+            _fields.Adress = TextBoxPath.Text;
+            _fields.ConnectionString = connectionString;
+            _fields.DB = Combobox_DB.SelectedItem.ToString();
+            _fields.Login = TextBoxLogin.Text;
+            _fields.Password = PasswordBox.Password;
+            
+            WorkingWithDB window = new WorkingWithDB(_fields);
+            window.Show();
+            Close();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -236,6 +200,6 @@ namespace GraphicPart
                 Close();
             }
         }
-        
+
     }
 }

@@ -23,12 +23,14 @@ namespace GoodsReivewsLibrary
         /// </summary>
         /// <param name="data_source">Адрес сервера</param>
         /// <returns>Список БД на данном сервере</returns>
-        public static List<string> GetDBList(string data_source)
+        public static List<string> GetDBList(string data_source, string user_id, string password)
         {
             List<string> dbs = new List<string>();
             SqlConnectionStringBuilder conStr = new SqlConnectionStringBuilder();
             conStr.DataSource = data_source;
-            conStr.IntegratedSecurity = true;
+            conStr.IntegratedSecurity = false;
+            conStr.UserID = user_id;
+            conStr.Password = password;
             string query = "SELECT name FROM sys.databases WHERE database_id > 4";
             DataTable table = new DataTable("Dbs");
             try

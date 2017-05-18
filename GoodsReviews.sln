@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodsReivewsLibrary", "GoodsReivewsLibrary\GoodsReivewsLibrary.csproj", "{08B60CFB-B507-473E-9EBF-213F11E381A4}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject1", "ModelingProject1\ModelingProject1.modelproj", "{0AE2C1BD-BC64-4E1A-9DB3-FBFDB30D09DD}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GoodsReviews_Setup", "GoodsReviews_Setup\GoodsReviews_Setup.vdproj", "{715E6927-DF5B-41F3-8BC4-BA7AFB2ED997}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "WebServer\WebServer.csproj", "{64F754C5-F922-4A0C-8A3E-462160B88D22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{0AE2C1BD-BC64-4E1A-9DB3-FBFDB30D09DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{715E6927-DF5B-41F3-8BC4-BA7AFB2ED997}.Debug|Any CPU.ActiveCfg = Debug
 		{715E6927-DF5B-41F3-8BC4-BA7AFB2ED997}.Release|Any CPU.ActiveCfg = Release
+		{64F754C5-F922-4A0C-8A3E-462160B88D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F754C5-F922-4A0C-8A3E-462160B88D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F754C5-F922-4A0C-8A3E-462160B88D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F754C5-F922-4A0C-8A3E-462160B88D22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -24,24 +24,27 @@
         <TextBlock x:Name="TextBlockPath" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Opacity="0.55"
                  Height="30" Text ="Адрес сервера" VerticalAlignment="Top" Width="Auto"/>
         <TextBox x:Name="TextBoxPath" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"
-                 Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,4" 
-                 TextChanged="TextBoxPath_TextChanged" KeyDown="TextBoxPath_KeyDown" LostFocus="TextBoxPath_LostFocus"/>
+                 Height="25" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,4" 
+                 TextChanged="TextBoxPath_TextChanged" KeyDown="TextBoxPath_KeyDown"/>
 
-        <TextBlock x:Name="TextBlockDBName" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Opacity="0.55"
+        <TextBlock x:Name="TextBlockLogin" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Opacity="0.55"
+                 Height="30" Text ="Логин" VerticalAlignment="Top" Width="Auto"/>
+        <TextBox x:Name="TextBoxLogin" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" 
+                 Height="25" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,4" 
+                 TextChanged="TextBoxLogin_TextChanged" KeyDown="TextBoxLogin_KeyDown" />
+
+        <TextBlock x:Name="TextBlockPassword" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Opacity="0.55"
+                 Height="30" Text ="Пароль" VerticalAlignment="Top" Width="Auto"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" 
+                 Height="25" VerticalAlignment="Bottom"  Width="300" Margin="0,0,0,4" KeyDown="PasswordBox_KeyDown"
+                     PasswordChanged="PasswordBox_PasswordChanged"/>
+        
+        <TextBlock x:Name="TextBlockDBName" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Opacity="0.55"
                  Height="30" Text ="Название БД" VerticalAlignment="Top" Width="Auto"/>
-        <ComboBox x:Name="Combobox_DB" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"
+        <ComboBox x:Name="Combobox_DB" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"
                  Height="25" Text="" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,4" IsEnabled="False" SelectionChanged="Combobox_DB_SelectionChanged"/>
 
-        <TextBlock x:Name="TextBlockLogin" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Opacity="0.55"
-                 Height="30" Text ="Логин" VerticalAlignment="Top" Width="Auto"/>
-        <TextBox x:Name="TextBoxLogin" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" 
-                 Height="25" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,4" 
-                 TextChanged="TextBoxLogin_TextChanged" IsEnabled="False"/>
-
-        <TextBlock x:Name="TextBlockPassword" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Opacity="0.55"
-                 Height="30" Text ="Пароль" VerticalAlignment="Top" Width="Auto"/>
-        <PasswordBox x:Name="PasswordBox" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" 
-                 Height="25" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,4" PasswordChanged="PasswordBox_PasswordChanged" IsEnabled="False"/>
+        
 
         <Button x:Name="Button" Grid.Column="2" Grid.Row="5" Content="Далее" HorizontalAlignment="Center" 
                 VerticalAlignment="Center" Width="75" IsEnabled="False" Click="Button_Click" IsDefault="True"/>
