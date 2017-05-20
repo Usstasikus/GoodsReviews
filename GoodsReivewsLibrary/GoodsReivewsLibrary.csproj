@@ -55,6 +55,7 @@
     <Compile Include="KnownField.cs" />
     <Compile Include="Fields.cs" />
     <Compile Include="LogFile.cs" />
+    <Compile Include="MatchedGoods.cs" />
     <Compile Include="ModelReview.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="MyMethods.cs" />

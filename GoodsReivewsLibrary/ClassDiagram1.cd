@@ -3,7 +3,7 @@
   <Class Name="GoodsReivewsLibrary.Actions">
     <Position X="9" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAIACAAAAAAgAYACEAAAAAAAIEAgIAAwCAAKAICA=</HashCode>
+      <HashCode>AAAAAIACAAIAAAhAIACEAAAAAAAIEAgIAAwCAACAIAA=</HashCode>
       <FileName>Actions.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="GoodsReivewsLibrary.Fields">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQgAAAIEAEAAAAgAQAIAAAAAAAAACCAQAABAABA=</HashCode>
+      <HashCode>AAAAAAgAAAIEAEAAAAgAQAAAAAgAAAACCCAQAABAABA=</HashCode>
       <FileName>Fields.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
   <Class Name="GoodsReivewsLibrary.MyMethods">
     <Position X="11.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABABACAIgMAABAAACAAAAAABAAAAAAAAABAAAAgAA=</HashCode>
+      <HashCode>AAABABACAIgMAABAAACAAAAAABBAAAAAAAABAAAAhAA=</HashCode>
       <FileName>MyMethods.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -68,6 +68,13 @@
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAACAAAAAAAAAAQAAADAAFCCAEAAIA=</HashCode>
       <FileName>ModelReview.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoodsReivewsLibrary.MatchedGood">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAIACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MatchedGoods.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

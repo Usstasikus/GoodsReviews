@@ -139,7 +139,7 @@ namespace GraphicPart
 
                 if (pbw.IsActive && !is_correct)
                 {
-                    MessageBox.Show("Неверно введен адрес сервера");
+                    MessageBox.Show("Невозможно подключиться к данному серверу.\nПроверьте корректность введенных данных.");
                     Combobox_DB.Items.Clear();
                     Combobox_DB.IsEnabled = false;
                 }

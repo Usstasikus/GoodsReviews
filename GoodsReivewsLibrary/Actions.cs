@@ -25,6 +25,7 @@ namespace GoodsReivewsLibrary
         SqlConnection sqlConnection;
         Stopwatch stopWatch; //секундомер работы программы
         DateTime dt;
+        DataSet databases;
         int repeat_counter;
         int seen_count;
         string target = "товарами";
@@ -32,6 +33,10 @@ namespace GoodsReivewsLibrary
         string key;
         LogFile lg;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fields">Файл настройки БД</param>
         public Actions(Fields fields)
         {
             _fields = fields;
@@ -44,6 +49,69 @@ namespace GoodsReivewsLibrary
             url = String.Format("http://localhost:1553/https://api.content.market.yandex.ru/v1/");   //category/{0}/models.xml?geo_id=225&count=30&&page={1}");
             key = "c9rSUIhhM7SRQzeEXaYbpEQknRaVMq";
             lg = new LogFile(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
+
+            databases = new DataSet();
+
+        }
+
+        /// <summary>
+        /// Возвращает список совпадающих элементов
+        /// </summary>
+        /// <returns></returns>
+        private List<MatchedGood> GetMatchedGoods()
+        {
+            DataTable dataTableYandexModels = new DataTable();
+            string connectionStringToYandexModels = String.Format("Data Source={0};Initial Catalog={1};User id={2};Password={3};", "tcp:stasdonserver.database.windows.net,1433", "YandexModels", "ReadOnlyLogin", "ReadOnly1");
+            string queryYandexModels = "SELECT * FROM GoodsInfo";
+            SqlConnection sqlConnectionToYandexModels = new SqlConnection(connectionStringToYandexModels);
+            SqlCommand sqlCommandToYandexModels = new SqlCommand(queryYandexModels, sqlConnectionToYandexModels);
+            sqlConnectionToYandexModels.Open();
+
+            SqlDataAdapter sql_d_YandexModels = new SqlDataAdapter(sqlCommandToYandexModels);
+            sql_d_YandexModels.Fill(dataTableYandexModels);
+            sqlConnectionToYandexModels.Close();
+            sql_d_YandexModels.Dispose();
+
+            DataTable dataTableUserTable = new DataTable();
+            string queryUserTable = String.Format("SELECT {0}, {1} FROM {2}", _fields.GoodsNameFrom, _fields.GoodsIDFrom, _fields.TableFrom);
+            SqlConnection sqlConnectionToUserTable = new SqlConnection(_connectionString);
+            SqlCommand sqlCommandToUserTable = new SqlCommand(queryUserTable, sqlConnectionToUserTable);
+            sqlConnectionToUserTable.Open();
+
+            SqlDataAdapter sql_da_UserTable = new SqlDataAdapter(sqlCommandToUserTable);
+            sql_da_UserTable.Fill(dataTableUserTable);
+            sqlConnectionToUserTable.Close();
+            sql_da_UserTable.Dispose();
+            dataTableUserTable.DefaultView.Sort = _fields.GoodsIDFrom + " DESC";
+            dataTableUserTable = dataTableUserTable.DefaultView.ToTable();
+
+            DataTable YandexNames = new DataTable();
+            YandexNames = dataTableYandexModels.Copy();
+            YandexNames.Columns.Remove("GoodsID");
+
+            DataTable UserNames = new DataTable();
+            UserNames = dataTableUserTable.Copy();
+            UserNames.Columns.Remove(_fields.GoodsIDFrom);
+
+            DataTable matchedNames = UserNames.AsEnumerable().Intersect(YandexNames.AsEnumerable(), DataRowComparer.Default).CopyToDataTable();
+
+            List<MatchedGood> matched_goods = new List<MatchedGood>();
+            foreach(DataRow de in matchedNames.Rows)
+            {
+                MatchedGood matched_good = new MatchedGood();
+                matched_good.GoodsName = de[0].ToString();
+                string expression = String.Format("{0} = '{1}'", _fields.GoodsNameFrom, de[0].ToString());
+                DataRow[] found_user_id = dataTableUserTable.Select(expression);
+                matched_good.UserGoodsID =  found_user_id[0][_fields.GoodsIDFrom].ToString();
+
+                expression = String.Format("GoodsName = '{0}'", de[0].ToString());
+                DataRow[] found_yandex_id = dataTableYandexModels.Select(expression);
+                matched_good.YandexGoodsID = found_yandex_id[0]["GoodsID"].ToString();
+
+                matched_goods.Add(matched_good);
+            }
+
+            return matched_goods;
         }
 
         /// <summary>
@@ -164,11 +232,11 @@ namespace GoodsReivewsLibrary
         }
 
         /// <summary>
-        /// Запись комментариев в БД пользователя
+        /// Записывает комментарии в в БД пользователя
         /// </summary>
-        /// <param name="progress"></param>
-        /// <param name="token"></param>
-        /// <returns></returns>
+        /// <param name="progress">Объект, инициирующий обратные вызовы</param>
+        /// <param name="token">Маркер отмены</param>
+        /// <returns>Строку результата работы программы</returns>
         public string LoadNewReviews(IProgress<string> progress, CancellationToken token)//(TextForControl text)
         {
             url = String.Format("http://localhost:1553/https://api.content.market.yandex.ru/v1/");
@@ -184,88 +252,70 @@ namespace GoodsReivewsLibrary
             int query_count = 0;
             url += "model/";
 
-            SqlConnection sqlConnection = new SqlConnection(_connectionString);
-            sqlConnection.Open();
             
-            string queryString = string.Format(@"SELECT GI1.GoodsID, {0}, GI1.GoodsName FROM {1} LEFT JOIN Azure.YandexModels.dbo.GoodsInfo as GI1 ON {2} =  GI1.GoodsName collate Cyrillic_General_CI_AS WHERE GI1.GoodsName is not null ORDER BY {0}",
-                            _fields.DB + ".dbo." + _fields.TableFrom + "." + _fields.GoodsIDFrom, _fields.DB + ".dbo." + _fields.TableFrom, _fields.DB + ".dbo." + _fields.GoodsNameTableFrom + "." + _fields.GoodsNameFrom);
+
             try
             {
-
-                SqlCommand sqlCommand = new SqlCommand(queryString, sqlConnection);
-                SqlDataReader rd = sqlCommand.ExecuteReader();
-                List<string[]> matched_id = new List<string[]>();
-
-                if (rd.HasRows)
+                sqlConnection.Open();
+                List<MatchedGood> matched_goods = GetMatchedGoods();
+                
+                if (token.IsCancellationRequested)
                 {
-                    while (rd.Read())
-                    {
-                        matched_id.Add(new string[] { rd.GetString(0), rd.GetInt32(1).ToString(), rd.GetString(2) });
-                    }
-                    rd.Close();
+                    throw new Exception("Программа завершила работу");
+                }
+                for (int i = lg.log_model_number; i < matched_goods.Count; i++)
+                {
+                    lg.exit_model_number = i;
+                    if (i != lg.log_model_number)
+                        lg.log_page_reviews_number = 0;
+
+                    int added_count_for_this_model = 0;
+
                     if (token.IsCancellationRequested)
                     {
-                        throw new Exception("Программа звершила работу");
+                        throw new Exception("Программа завершила работу");
                     }
-                    for (int i = lg.log_model_number; i < matched_id.Count; i++)
+                    for (int page = lg.log_page_reviews_number + 1; page <= 50; page++)
                     {
-                        lg.exit_model_number = i;
-                        if (i != lg.log_model_number)
-                            lg.log_page_reviews_number = 0;
-
-                        int added_count_for_this_model = 0;
-
-                        if (token.IsCancellationRequested)
+                        string url_opinion = url + string.Format("{0}/opinion.xml?geo_id=225&count=30&page={1}", matched_goods[i].YandexGoodsID, page);
+                        List<ModelReview> mr;
+                        mr = ModelReview.GetReviews(url_opinion, key);
+                        lg.exit_page_reviews_number = page;
+                        query_count++;
+                        if (mr.Count == 0)
                         {
-                            throw new Exception("Программа звершила работу");
-                        }
-                        for (int page = lg.log_page_reviews_number + 1; page <= 50; page++)
-                        {
-                            string url_opinion = url + string.Format("{0}/opinion.xml?geo_id=225&count=30&page={1}", matched_id[i][0], page);
-                            List<ModelReview> mr;
-                            mr = ModelReview.GetReviews(url_opinion, key);
-                            lg.exit_page_reviews_number = page;
-                            query_count++;
-                            if (mr.Count == 0)
-                            {
-                                lg.Write();
-                                break;
-                            }
-                            if (token.IsCancellationRequested)
-                            {
-                                throw new Exception("Программа звершила работу");
-                            }
-                            for (int pos = 0; pos < mr.Count; pos++)
-                            {
-                                added_count_for_this_model++;
-                                //queryString = InsertQueryStringForm(mr[pos], matched_id[i][1]);
-                                //sqlCommand = new SqlCommand(queryString, sqlConnection);
-                                sqlCommand = InsertQueryStringForm(mr[pos], matched_id[i][1], sqlConnection);
-                                rd = sqlCommand.ExecuteReader();
-                                rd.Close();
-                                lg.added_count++;
-                                seen_count++;
-                            }
+                            lg.Write();
+                            break;
                         }
                         if (token.IsCancellationRequested)
                         {
-                            throw new Exception("Программа звершила работу");
+                            throw new Exception("Программа завершила работу");
                         }
-                        //tb.Text += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_id[i][2]);
-                        progress_line += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_id[i][2]);
-                        progress.Report(progress_line);
+                        for (int pos = 0; pos < mr.Count; pos++)
+                        {
+                            added_count_for_this_model++;
+                            SqlCommand sqlCommand = InsertQueryStringForm(mr[pos], matched_goods[i].UserGoodsID, sqlConnection);
+                            SqlDataReader rd = sqlCommand.ExecuteReader();
+                            rd.Close();
+                            lg.added_count++;
+                            seen_count++;
+                        }
                     }
-                    sqlConnection.Close();
-                    progress_line += FormMessage("Программа звершила работу");
+                    if (token.IsCancellationRequested)
+                    {
+                        throw new Exception("Программа завершила работу");
+                    }
+                    //tb.Text += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_id[i][2]);
+                    progress_line += String.Format("Добавлено {0} отзывов для товара {1}\n", added_count_for_this_model, matched_goods[i].GoodsName);
+                    progress.Report(progress_line);
                 }
-                else
-                {
-                    sqlConnection.Close();
-                    throw new Exception("Не найдено совпадающих товаров.");
-                }
+                sqlConnection.Close();
+                progress_line += FormMessage("Программа завершила работу");
+
             }
             catch (WebException we)
             {
+                sqlConnection.Close();
                 stopWatch.Stop();
                 string message = FormMessage(we);
                 progress_line += message; progress.Report(progress_line);
@@ -273,16 +323,13 @@ namespace GoodsReivewsLibrary
             }
             catch (Exception e)
             {
+                sqlConnection.Close();
                 stopWatch.Stop();
                 progress_line += FormMessage(e); progress.Report(progress_line);
                 lg.End(e.Message, dt, stopWatch, target);
             }
             return progress_line;
         }
-
-        public void End(IProgress<string> progress)
-        {
-            
-        }
+        
     }
 }

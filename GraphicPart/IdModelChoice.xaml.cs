@@ -36,12 +36,11 @@ namespace GraphicPart
         private void TryToFillIn()
         {
             if (_fields.GoodsIDFrom != null && _fields.GoodsIDTo != null && _fields.GoodsNameFrom != null 
-                && _fields.TableFrom != null && _fields.GoodsNameTableFrom != null)
+                && _fields.TableFrom != null)
             {
                 ComboBox_TableFrom.SelectedItem = _fields.TableFrom;
                 ComboBox_FieldFrom.SelectedItem = _fields.GoodsIDFrom;
                 ComboBox_FieldTo.SelectedItem = _fields.GoodsIDTo;
-                ComboBox_GoodsName_TableFrom.SelectedItem = _fields.GoodsNameTableFrom;
                 ComboBox_GoodsName_FieldFrom.SelectedItem = _fields.GoodsNameFrom;
             }
         }
@@ -54,7 +53,6 @@ namespace GraphicPart
             InitializeComponent();
             MyMethods.ComboBoxFill(ComboBox_TableFrom, MyMethods.GetTablesList(_connectionString));
             MyMethods.ComboBoxFill(ComboBox_FieldTo, MyMethods.GetFieldsList(_connectionString, _fields.Table));
-            MyMethods.ComboBoxFill(ComboBox_GoodsName_TableFrom, MyMethods.GetTablesList(_connectionString));
             TryToFillIn();
         }
 
@@ -64,18 +62,16 @@ namespace GraphicPart
             MyMethods.ComboBoxFill(ComboBox_FieldFrom,
                 MyMethods.GetFieldsList(_connectionString, ComboBox_TableFrom.SelectedItem.ToString()));
             ComboBox_FieldFrom.IsEnabled = true;
-        }
-        private void ComboBox_GoodsName_TableFrom_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+
             MyMethods.ComboBoxFill(ComboBox_GoodsName_FieldFrom,
-                MyMethods.GetFieldsList(_connectionString, ComboBox_GoodsName_TableFrom.SelectedItem.ToString()));
+                MyMethods.GetFieldsList(_connectionString, ComboBox_TableFrom.SelectedItem.ToString()));
+            ComboBox_GoodsName_FieldFrom.IsEnabled = true;
         }
 
         private void ComboBox_Fields_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBox_FieldFrom.SelectedItem != null && ComboBox_FieldTo.SelectedItem != null)
+            if (ComboBox_FieldFrom.SelectedItem != null && ComboBox_FieldTo.SelectedItem != null && ComboBox_GoodsName_FieldFrom.SelectedItem != null)
                 Next.IsEnabled = true;
-
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -83,7 +79,6 @@ namespace GraphicPart
             _fields.TableFrom = ComboBox_TableFrom.SelectedItem.ToString();
             _fields.GoodsIDFrom = ComboBox_FieldFrom.SelectedItem.ToString();
             _fields.GoodsIDTo = ComboBox_FieldTo.SelectedItem.ToString();
-            _fields.GoodsNameTableFrom = ComboBox_GoodsName_TableFrom.SelectedItem.ToString();
             _fields.GoodsNameFrom = ComboBox_GoodsName_FieldFrom.SelectedItem.ToString();
 
             if (_not_nullable_fields.Count != 0)

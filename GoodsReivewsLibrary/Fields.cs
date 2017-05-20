@@ -48,37 +48,32 @@ namespace GoodsReivewsLibrary
         public string Table { get; set; }
 
         /// <summary>
-        /// Таблица чтения ID товара
+        /// Таблица чтения ID и наименования товаров
         /// </summary>
         public string TableFrom { get; set; }
 
         /// <summary>
-        /// Имя поля чтения ID товара
+        /// Имя столбца чтения ID товара
         /// </summary>
         public string GoodsIDFrom { get; set; }
 
         /// <summary>
-        /// Имя поля записи ID товара
+        /// Имя столбца записи ID товара
         /// </summary>
         public string GoodsIDTo { get; set; }
 
         /// <summary>
-        /// Имя таблицы чтения наименования товара
-        /// </summary>
-        public string GoodsNameTableFrom { get; set; }
-
-        /// <summary>
-        /// Имя поля чтения наименования товара
+        /// Имя столбца чтения наименования товара
         /// </summary>
         public string GoodsNameFrom { get; set; }
 
         /// <summary>
-        /// Список полей, известных Яндексу
+        /// Список столбца, известных Яндексу
         /// </summary>
         public List<KnownField> ya_fields;
 
         /// <summary>
-        ///  Список полей, не изсвестных Яндексу
+        ///  Список столбцов, неизсвестных Яндексу
         /// </summary>
         public List<UnknownField> unknown_fields;// список полей, не изсвестных Яндексу
         

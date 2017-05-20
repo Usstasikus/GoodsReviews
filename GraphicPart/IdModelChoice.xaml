@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicPart"
         mc:Ignorable="d"
-        Title="Настройка БД" Height="420" Width="550" MaxHeight="420" MinHeight="420" MaxWidth="550" MinWidth="550">
+        Title="Настройка БД" Height="450" Width="550" MaxHeight="450" MinHeight="450" MaxWidth="550" MinWidth="550">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <Style TargetType="{x:Type TextBlock}">
@@ -24,60 +23,26 @@
             </Style>
         </Grid.Resources>
         <TextBlock Grid.Row="0" HorizontalAlignment="Center"
-                 Height="Auto" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" ><Run Text="Выберите, откуда брать ID товара и куда его записывать"/><Run Text=", и откуда брать название модели"/></TextBlock>
+                 Height="Auto" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="273" Margin="146,10,123,8" ><Run Text="Выберите, откуда брать ID товара "/><Run Text="и его наименование"/><Run Text=" "/><Run Text="в какой столбец "/><Run Text="его записывать"/><Run Text=","/></TextBlock>
 
-        <GroupBox x:Name="groupBox" Header="ID" HorizontalAlignment="Center" Height="Auto" Grid.Row="1"
-                  VerticalAlignment="Center" Width="400" Margin="0,22,0,0">
+        <GroupBox x:Name="groupBox" Header="Выберите столбцы" HorizontalAlignment="Center" Height="Auto" Grid.Row="1"
+                  VerticalAlignment="Center" Width="400">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition ></ColumnDefinition>
-                    <ColumnDefinition ></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="Откуда"/>
-                <StackPanel Grid.Column="0" Grid.Row="1">
-                    <TextBlock Text="Таблица" Margin="0,0,0,0" Opacity="0.55"></TextBlock>
-                    <ComboBox Name="ComboBox_TableFrom" Margin="0,0,0,0" SelectionChanged="ComboBox_TableFrom_SelectionChanged" ></ComboBox>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Grid.Row="1">
-                    <TextBlock Text="Поле" Margin="0,0,0,0" Opacity="0.55"></TextBlock>
-                    <ComboBox Name="ComboBox_FieldFrom" Margin="0,0,0,0" IsEnabled="False"></ComboBox>
-                </StackPanel>
-                <TextBlock Text="Куда" Grid.Row="2"></TextBlock>
-                <StackPanel Grid.Column="0" Grid.Row="3">
-                    <TextBlock Text="Поле" Margin="0,0,0,0" Opacity="0.55"></TextBlock>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Откуда"/>
+                    <TextBlock Text="Таблица, содержащая id и наименования товаров" Opacity="0.55"/>
+                    <ComboBox x:Name="ComboBox_TableFrom" SelectionChanged="ComboBox_TableFrom_SelectionChanged" />
+                    <TextBlock Text="Столбец, содержащий ID товаров" Opacity="0.55"></TextBlock>
+                    <ComboBox Name="ComboBox_FieldFrom" IsEnabled="False"></ComboBox>
+                    <TextBlock Text="Столбец, содержащий наименования товаров" Margin="0,10,0,0" Opacity="0.55"></TextBlock>
+                    <ComboBox Name="ComboBox_GoodsName_FieldFrom" Margin="0,0,0,0" IsEnabled="False"></ComboBox>
+                    <TextBlock Text="Куда"></TextBlock>
+                    <TextBlock Text="Столбец, предназначенный для записи ID товаров" Margin="0,0,0,0" Opacity="0.55"></TextBlock>
                     <ComboBox Name="ComboBox_FieldTo" Margin="0,0,0,0" SelectionChanged="ComboBox_Fields_SelectionChanged" ></ComboBox>
                 </StackPanel>
             </Grid>
         </GroupBox>
 
-        <GroupBox x:Name="groupBoxGoodsName" Header="Название модели" HorizontalAlignment="Center" Height="Auto" Grid.Row="2"
-                  VerticalAlignment="Center" Width="400" Margin="0,22,0,0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition ></ColumnDefinition>
-                    <ColumnDefinition ></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Column="0" Grid.Row="1">
-                    <TextBlock Text="Таблица" Margin="0,10,0,0" Opacity="0.55"></TextBlock>
-                    <ComboBox Name="ComboBox_GoodsName_TableFrom" Margin="0,0,0,0" SelectionChanged="ComboBox_GoodsName_TableFrom_SelectionChanged" ></ComboBox>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Grid.Row="1">
-                    <TextBlock Text="Поле" Margin="0,10,0,0" Opacity="0.55"></TextBlock>
-                    <ComboBox Name="ComboBox_GoodsName_FieldFrom" Margin="0,0,0,0" IsEnabled="False"></ComboBox>
-                </StackPanel>
-            </Grid>
-        </GroupBox>
         <Button Grid.Row="3" Name="Next" Content="Далее" HorizontalAlignment="Right" 
                 VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10" IsEnabled="False" Click="Next_Click"/>
 

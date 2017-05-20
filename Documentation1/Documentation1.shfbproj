@@ -27,10 +27,7 @@
       <Argument Key="maxVersionParts" Value="" xmlns="" />
     </TransformComponentArguments>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\GraphicPart\GraphicPart.csproj" />
       <DocumentationSource sourceFile="..\GoodsReivewsLibrary\GoodsReivewsLibrary.csproj" />
-      <DocumentationSource sourceFile="..\GoodsReviews\GoodsReviewsServer.csproj" />
-      <DocumentationSource sourceFile="..\Server\Server.csproj" />
     </DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="GoodsReivewsLibrary" isDocumented="True">Библиотека, необходимая для работы программы</NamespaceSummaryItem>
