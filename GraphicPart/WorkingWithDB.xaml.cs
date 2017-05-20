@@ -45,8 +45,8 @@ namespace GraphicPart
             {
                 if (_fields.ya_fields[i] != null)
                 {
-                    MyMethods.GetCheckBoxByName(StackPanel_Fields, _fields.ya_fields[i].YandexElementName).IsChecked = true;
-                    MyMethods.GetComboBoxByName(StackPanel_DBFields, "comboBox_" + _fields.ya_fields[i].YandexElementName).SelectedItem
+                    Methods.GetCheckBoxByName(StackPanel_Fields, _fields.ya_fields[i].YandexElementName).IsChecked = true;
+                    Methods.GetComboBoxByName(StackPanel_DBFields, "comboBox_" + _fields.ya_fields[i].YandexElementName).SelectedItem
                         = _fields.ya_fields[i].FieldName;
                 }
             }
@@ -63,7 +63,7 @@ namespace GraphicPart
             _connectionString = _fields.ConnectionString;
             unfilled_comboboxes = new List<string>();
             field_types = new Dictionary<string, string>();
-            MyMethods.ComboBoxFill(ComboBox_Table, MyMethods.GetTablesList(_connectionString));
+            Methods.ComboBoxFill(ComboBox_Table, Methods.GetTablesList(_connectionString));
             TryToFillIn();
             ComboBox_Table.Focus();
         }
@@ -137,7 +137,7 @@ namespace GraphicPart
             groupBox.IsEnabled = true;
             _fields.Table = ComboBox_Table.SelectedItem.ToString();
             GroupBoxReboot();
-            field_types = MyMethods.GetFieldsType(_connectionString, _fields.Table);
+            field_types = Methods.GetFieldsType(_connectionString, _fields.Table);
         }
     
 
@@ -146,115 +146,115 @@ namespace GraphicPart
         private void Grade_Checked(object sender, RoutedEventArgs e)
         {
             AddToUnfilledList(comboBox_Grade);
-            MyMethods.ComboBoxFill(comboBox_Grade, MyMethods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
+            Methods.ComboBoxFill(comboBox_Grade, Methods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
         }
 
         private void Agree_Checked(object sender, RoutedEventArgs e)
         {
             AddToUnfilledList(comboBox_Agree);
-            MyMethods.ComboBoxFill(comboBox_Agree, MyMethods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
+            Methods.ComboBoxFill(comboBox_Agree, Methods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
         }
 
         private void Reject_Checked(object sender, RoutedEventArgs e)
         {
             AddToUnfilledList(comboBox_Reject);
-            MyMethods.ComboBoxFill(comboBox_Reject, MyMethods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
+            Methods.ComboBoxFill(comboBox_Reject, Methods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
         }
 
         private void Date_Checked(object sender, RoutedEventArgs e)
         {
             AddToUnfilledList(comboBox_Date);
-            MyMethods.ComboBoxFill(comboBox_Date, MyMethods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
+            Methods.ComboBoxFill(comboBox_Date, Methods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
         }
 
         private void Name_Checked(object sender, RoutedEventArgs e)
         {
             AddToUnfilledList(comboBox_Name);
-            MyMethods.ComboBoxFill(comboBox_Name, MyMethods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
+            Methods.ComboBoxFill(comboBox_Name, Methods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
         }
 
         private void Text_Checked(object sender, RoutedEventArgs e)
         {
             AddToUnfilledList(comboBox_Text);
-            MyMethods.ComboBoxFill(comboBox_Text, MyMethods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
+            Methods.ComboBoxFill(comboBox_Text, Methods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
         }
 
         private void Pro_Checked(object sender, RoutedEventArgs e)
         {
             AddToUnfilledList(comboBox_Pro);
-            MyMethods.ComboBoxFill(comboBox_Pro, MyMethods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
+            Methods.ComboBoxFill(comboBox_Pro, Methods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
         }
 
         private void Contra_Checked(object sender, RoutedEventArgs e)
         {
             AddToUnfilledList(comboBox_Contra);
-            MyMethods.ComboBoxFill(comboBox_Contra, MyMethods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
+            Methods.ComboBoxFill(comboBox_Contra, Methods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
         }
 
         private void UsageTime_Checked(object sender, RoutedEventArgs e)
         {
             AddToUnfilledList(comboBox_UsageTime);
-            MyMethods.ComboBoxFill(comboBox_UsageTime, MyMethods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
+            Methods.ComboBoxFill(comboBox_UsageTime, Methods.GetFieldsList(_connectionString, ComboBox_Table.SelectedItem.ToString()));
         }
         private void Grade_Unchecked(object sender, RoutedEventArgs e)
         {
             ComboboxUncheck(comboBox_Grade);
-            MyMethods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
+            Methods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
         }
 
         private void Agree_Unchecked(object sender, RoutedEventArgs e)
         {
             ComboboxUncheck(comboBox_Agree);
-            MyMethods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
+            Methods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
         }
 
         private void Reject_Unchecked(object sender, RoutedEventArgs e)
         {
             ComboboxUncheck(comboBox_Reject);
-            MyMethods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
+            Methods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
         }
 
         private void Date_Unchecked(object sender, RoutedEventArgs e)
         {
             ComboboxUncheck(comboBox_Date);
-            MyMethods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
+            Methods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
         }
 
         private void Name_Unchecked(object sender, RoutedEventArgs e)
         {
             ComboboxUncheck(comboBox_Name);
-            MyMethods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
+            Methods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
         }
 
         private void Text_Unchecked(object sender, RoutedEventArgs e)
         {
             ComboboxUncheck(comboBox_Text);
-            MyMethods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
+            Methods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
         }
 
         private void Pro_Unchecked(object sender, RoutedEventArgs e)
         {
             ComboboxUncheck(comboBox_Pro);
-            MyMethods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
+            Methods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
         }
 
         private void Contra_Unchecked(object sender, RoutedEventArgs e)
         {
             ComboboxUncheck(comboBox_Contra);
-            MyMethods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
+            Methods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
         }
 
         private void UsageTime_Unchecked(object sender, RoutedEventArgs e)
         {
             ComboboxUncheck(comboBox_UsageTime);
-            MyMethods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
+            Methods.RemoveByFirstValue(_fields.ya_fields, ((CheckBox)sender).Name);
         }
 
         #endregion
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            List<string[]> not_nullable_fields = MyMethods.GetNotNullableFields(_connectionString, ComboBox_Table.SelectedItem.ToString());
+            List<string[]> not_nullable_fields = Methods.GetNotNullableFields(_connectionString, ComboBox_Table.SelectedItem.ToString());
 
             FillYaFields();
 
@@ -269,13 +269,13 @@ namespace GraphicPart
 
             for(int i = 0; i<added_fields.Count; i++)//удаление полей, принимающих значение NULL, из списка полей, которые надо заполнить вручную
             {
-                MyMethods.RemoveByFirstValue(not_nullable_fields, added_fields[i]);
+                Methods.RemoveByFirstValue(not_nullable_fields, added_fields[i]);
             }
 
             List<string> auto_incremented_fields = AutoIncrementedFields(); //удаление автоинкрементированных полей из списка полей, которые надо заполнить вручную
             for (int i = 0; i<auto_incremented_fields.Count; i++)
             {
-                MyMethods.RemoveByFirstValue(not_nullable_fields, auto_incremented_fields[i]);
+                Methods.RemoveByFirstValue(not_nullable_fields, auto_incremented_fields[i]);
             }
             
             IdModelChoice nnf = new IdModelChoice(not_nullable_fields, _fields);

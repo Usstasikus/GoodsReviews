@@ -64,7 +64,7 @@ namespace GraphicPart
         {
             try
             {
-                Fields fields = MyMethods.Deserialize(ListBox_OpenExisting.SelectedItem.ToString());
+                Fields fields = Methods.Deserialize(ListBox_OpenExisting.SelectedItem.ToString());
                 if (!File.Exists(@"..\..\..\Resources\last_pos\last_pos_" + fields.FileName + ".txt")) throw new Exception();
                 Action act = new Action(fields);
                 act.Show();
@@ -90,7 +90,7 @@ namespace GraphicPart
         {
             try
             {
-                Fields fields = MyMethods.Deserialize(ListBox_OpenExisting.SelectedItem.ToString());
+                Fields fields = Methods.Deserialize(ListBox_OpenExisting.SelectedItem.ToString());
                 MainWindow mwd = new MainWindow(fields);
                 mwd.Show();
                 Close();

@@ -51,20 +51,20 @@ namespace GraphicPart
             _connectionString = fields.ConnectionString;
             _fields = fields;
             InitializeComponent();
-            MyMethods.ComboBoxFill(ComboBox_TableFrom, MyMethods.GetTablesList(_connectionString));
-            MyMethods.ComboBoxFill(ComboBox_FieldTo, MyMethods.GetFieldsList(_connectionString, _fields.Table));
+            Methods.ComboBoxFill(ComboBox_TableFrom, Methods.GetTablesList(_connectionString));
+            Methods.ComboBoxFill(ComboBox_FieldTo, Methods.GetFieldsList(_connectionString, _fields.Table));
             TryToFillIn();
         }
 
 
         private void ComboBox_TableFrom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MyMethods.ComboBoxFill(ComboBox_FieldFrom,
-                MyMethods.GetFieldsList(_connectionString, ComboBox_TableFrom.SelectedItem.ToString()));
+            Methods.ComboBoxFill(ComboBox_FieldFrom,
+                Methods.GetFieldsList(_connectionString, ComboBox_TableFrom.SelectedItem.ToString()));
             ComboBox_FieldFrom.IsEnabled = true;
 
-            MyMethods.ComboBoxFill(ComboBox_GoodsName_FieldFrom,
-                MyMethods.GetFieldsList(_connectionString, ComboBox_TableFrom.SelectedItem.ToString()));
+            Methods.ComboBoxFill(ComboBox_GoodsName_FieldFrom,
+                Methods.GetFieldsList(_connectionString, ComboBox_TableFrom.SelectedItem.ToString()));
             ComboBox_GoodsName_FieldFrom.IsEnabled = true;
         }
 

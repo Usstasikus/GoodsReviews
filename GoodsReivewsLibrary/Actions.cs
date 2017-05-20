@@ -25,7 +25,6 @@ namespace GoodsReivewsLibrary
         SqlConnection sqlConnection;
         Stopwatch stopWatch; //секундомер работы программы
         DateTime dt;
-        DataSet databases;
         int repeat_counter;
         int seen_count;
         string target = "товарами";
@@ -49,8 +48,7 @@ namespace GoodsReivewsLibrary
             url = String.Format("http://localhost:1553/https://api.content.market.yandex.ru/v1/");   //category/{0}/models.xml?geo_id=225&count=30&&page={1}");
             key = "c9rSUIhhM7SRQzeEXaYbpEQknRaVMq";
             lg = new LogFile(@"..\..\..\Resources\last_pos\last_pos_" + _fields.FileName + ".txt");
-
-            databases = new DataSet();
+            
 
         }
 

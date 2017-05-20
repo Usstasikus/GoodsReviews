@@ -56,7 +56,7 @@ namespace GraphicPart
         private void ComboBoxDBFill()
         {
             Combobox_DB.Items.Clear();
-            MyMethods.ComboBoxFill(Combobox_DB, MyMethods.GetDBList(TextBoxPath.Text, TextBoxLogin.Text, PasswordBox.Password));
+            Methods.ComboBoxFill(Combobox_DB, Methods.GetDBList(TextBoxPath.Text, TextBoxLogin.Text, PasswordBox.Password));
         }
 
         private void TryToFillIn()
@@ -134,7 +134,7 @@ namespace GraphicPart
                 Dispatcher.BeginInvoke((System.Action)(() => pbw.ShowDialog()));
                 var is_correct = await Task.Run(() =>
                 {
-                    return (MyMethods.GetDBList(adress, user_id, password) != null);
+                    return (Methods.GetDBList(adress, user_id, password) != null);
                 });
 
                 if (pbw.IsActive && !is_correct)

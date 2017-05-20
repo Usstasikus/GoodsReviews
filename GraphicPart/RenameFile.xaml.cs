@@ -42,7 +42,7 @@ namespace GraphicPart
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             string new_name;
-            if (MyMethods.IsNameExist(TextBox_FileName.Text))
+            if (Methods.IsNameExist(TextBox_FileName.Text))
             {
                 MessageBox.Show("Файл с таким именем уже существует. Пожалуйста, выберите другое имя.");
                 TextBox_FileName.Focus();
@@ -50,7 +50,7 @@ namespace GraphicPart
             else
             {
                 new_name = TextBox_FileName.Text;
-                Fields fields = MyMethods.Deserialize(_old_name);
+                Fields fields = Methods.Deserialize(_old_name);
                 fields.FileName = new_name;
 
                 BinaryFormatter bin_formatter = new BinaryFormatter();

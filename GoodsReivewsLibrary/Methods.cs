@@ -16,7 +16,7 @@ namespace GoodsReivewsLibrary
     /// <summary>
     /// Класс методов для работы с БД
     /// </summary>
-    public static class MyMethods
+    public static class Methods
     {
         /// <summary>
         /// Формирует список БД на данном сервере

@@ -57,8 +57,8 @@
     <Compile Include="LogFile.cs" />
     <Compile Include="MatchedGoods.cs" />
     <Compile Include="ModelReview.cs" />
-    <Compile Include="Models.cs" />
-    <Compile Include="MyMethods.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="Methods.cs" />
     <Compile Include="UnknownField.cs" />
     <Compile Include="YandexResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -76,7 +76,7 @@ namespace GoodsReviews
                     lg.Write();
                     lg.exit_page_number = page;
                     string url_models = url + string.Format("category/{0}/models.xml?geo_id=225&count=30&page={1}", subcategory_list[j].Id, page);
-                    List<Models> models_list = Models.ListForm(url_models, key);
+                    List<Model> models_list = Model.ListForm(url_models, key);
                     query_count++;
                     for (int page_pos = 0; page_pos < models_list.Count; page_pos++)
                     {

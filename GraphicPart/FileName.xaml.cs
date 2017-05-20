@@ -39,7 +39,7 @@ namespace GraphicPart
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             string file_name;
-            if (MyMethods.IsNameExist(TextBox_FileName.Text))
+            if (Methods.IsNameExist(TextBox_FileName.Text))
             {
                 MessageBox.Show("Файл с таким именем уже существует. Пожалуйста, выберите другое имя.");
                 TextBox_FileName.Focus();

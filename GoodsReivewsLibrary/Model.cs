@@ -12,7 +12,7 @@ namespace GoodsReivewsLibrary
     /// <summary>
     /// Класс моделей Яндекс Маркета
     /// </summary>
-    public class Models : YandexResults
+    public class Model : YandexResults
     {
         string _category_id, _rating, _reviews_count,
             _vendor_id;
@@ -26,7 +26,7 @@ namespace GoodsReivewsLibrary
         /// <param name="rating">Рейтинг</param>
         /// <param name="reviews_count">Количество отзывов</param>
         /// <param name="vendor_id">Идентификатор производителя</param>
-        public Models(string id, string name, string category_id,
+        public Model(string id, string name, string category_id,
             string rating, string reviews_count, string vendor_id) : base(id, name)
         {
             _category_id = category_id;
@@ -41,13 +41,13 @@ namespace GoodsReivewsLibrary
         /// <param name="url"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static List<Models> ListForm(string url, string key)
+        public static List<Model> ListForm(string url, string key)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Headers.Add(String.Format("Authorization: {0}", key));
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             XDocument xdoc = XDocument.Load(new StreamReader(response.GetResponseStream()));
-            List<Models> ret = new List<Models>();
+            List<Model> ret = new List<Model>();
             var categoryQuery_inf = xdoc.Descendants("model");
             var categoryQuery_name = xdoc.Descendants("name");
             var categoryQuery_descr = xdoc.Descendants("description");
@@ -60,7 +60,7 @@ namespace GoodsReivewsLibrary
                 string rating = GetValue(categoryQuery_inf.ElementAt(i), "rating");
                 string reviews_count = GetValue(categoryQuery_inf.ElementAt(i), "reviews-count");
                 string vendor_id = GetValue(categoryQuery_inf.ElementAt(i), "vendor-id");
-                ret.Add(new Models(id, name, category_id, rating,  reviews_count,  vendor_id));
+                ret.Add(new Model(id, name, category_id, rating,  reviews_count,  vendor_id));
             }
             return ret;
         }
