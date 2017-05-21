@@ -34,6 +34,7 @@ namespace GraphicPart
                 ComboBox_FieldTo.SelectedItem = _fields.GoodsIDTo;
                 ComboBox_GoodsName_FieldFrom.SelectedItem = _fields.GoodsNameFrom;
             }
+            Next.IsEnabled = true;
         }
 
         public IdModelChoice(List<string[]> not_nullable_fields, Fields fields)

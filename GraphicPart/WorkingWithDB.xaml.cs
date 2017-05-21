@@ -17,6 +17,7 @@ namespace GraphicPart
         List<string> added_fields;
         List<string> unfilled_comboboxes;
         Dictionary<string, string> field_types;
+        List<string> _used_columns;
         Fields _fields;
         public WorkingWithDB()
         {
@@ -52,6 +53,7 @@ namespace GraphicPart
             _fields = fields;
             _connectionString = _fields.ConnectionString;
             unfilled_comboboxes = new List<string>();
+            _used_columns = new List<string>();
             field_types = new Dictionary<string, string>();
             Methods.ComboBoxFill(ComboBox_Table, Methods.GetTablesList(_connectionString));
             TryToFillIn();
@@ -352,7 +354,7 @@ namespace GraphicPart
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             unfilled_comboboxes.Remove(((ComboBox)sender).Name);
-
+            _used_columns.Add(((ComboBox)sender).Name);
             if (unfilled_comboboxes.Count == 0)
                 Next.IsEnabled = true;
             

@@ -14,7 +14,7 @@ namespace Server
 
     class Program
     {
-        static string _connectionString = @"Server=127.0.0.1;Database=YandexReviews;Uid=StasDon;Pwd=stasik99;";
+        static string _connectionString = String.Format("Data Source={0};Initial Catalog={1};User id={2};Password={3};", "tcp:stasdonserver.database.windows.net,1433", "YandexModels", "Usstasikus", "Stasik99");
         static SqlConnection sqlConnection = new SqlConnection(_connectionString);
         static Stopwatch stopWatch = new Stopwatch(); //секундомер работы программы
         static DateTime dt = DateTime.Now;
